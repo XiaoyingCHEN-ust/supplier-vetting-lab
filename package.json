@@ -1,0 +1,8 @@
+{
+  "name": "supplier-vetting-lab-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
