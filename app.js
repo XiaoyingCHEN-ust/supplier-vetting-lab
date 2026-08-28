@@ -132,3 +132,85 @@ if (lab) {
   });
   runButton.addEventListener("click", runAudit);
 }
+
+const depositGate = document.querySelector("[data-deposit-gate]");
+
+if (depositGate) {
+  const form = depositGate.querySelector("[data-gate-form]");
+  const checks = [...depositGate.querySelectorAll("[data-gate-check]")];
+  const progress = depositGate.querySelector("[data-gate-progress]");
+  const count = depositGate.querySelector("[data-gate-count]");
+  const result = depositGate.querySelector("[data-gate-result]");
+  const verdict = depositGate.querySelector("[data-gate-verdict]");
+  const summary = depositGate.querySelector("[data-gate-summary]");
+  const cleared = depositGate.querySelector("[data-gate-cleared]");
+  const open = depositGate.querySelector("[data-gate-open]");
+  const next = depositGate.querySelector("[data-gate-next]");
+  const date = depositGate.querySelector("[data-gate-date]");
+
+  const checkNames = {
+    legal: "legal entity evidence",
+    beneficiary: "bank beneficiary relationship",
+    product: "product-specific evidence",
+    compliance: "destination-market compliance",
+    terms: "written commercial terms",
+  };
+
+  date.textContent = new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(new Date());
+
+  function selectedCount() {
+    return checks.filter((item) => item.checked).length;
+  }
+
+  function updateProgress() {
+    const total = selectedCount();
+    count.textContent = String(total);
+    progress.style.width = `${(total / checks.length) * 100}%`;
+  }
+
+  function generateDecision() {
+    const total = selectedCount();
+    const remaining = checks.length - total;
+    const firstOpen = checks.find((item) => !item.checked);
+
+    result.classList.remove("is-stamped");
+    void result.offsetWidth;
+    result.classList.add("is-stamped");
+    cleared.textContent = `${total} / ${checks.length}`;
+    open.textContent = String(remaining);
+
+    if (total === checks.length) {
+      result.dataset.state = "ready";
+      verdict.textContent = "READY";
+      summary.textContent = "All five evidence gates are recorded. Complete your final contract, sample, and payment-instruction checks before sending funds.";
+      next.textContent = "Save the supporting evidence and final decision in one review file.";
+      return;
+    }
+
+    if (total >= 2) {
+      result.dataset.state = "review";
+      verdict.textContent = "REVIEW";
+      summary.textContent = `${remaining} evidence gate${remaining === 1 ? " remains" : "s remain"} unresolved. Do not treat a platform badge or low quote as a substitute.`;
+      next.textContent = `Resolve the ${checkNames[firstOpen.name]} before approving a deposit.`;
+      return;
+    }
+
+    result.dataset.state = "hold";
+    verdict.textContent = "HOLD";
+    summary.textContent = "The evidence file is too incomplete for a controlled deposit decision.";
+    next.textContent = firstOpen
+      ? `Start with the ${checkNames[firstOpen.name]}.`
+      : "Start with the supplier's legal entity and intended bank beneficiary.";
+  }
+
+  checks.forEach((item) => item.addEventListener("change", updateProgress));
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    updateProgress();
+    generateDecision();
+  });
+}

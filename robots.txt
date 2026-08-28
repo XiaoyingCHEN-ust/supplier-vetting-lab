@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://supplier-vetting-lab.pages.dev/sitemap.xml

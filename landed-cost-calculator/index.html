@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free landed-cost calculator for small importers. Estimate duty, freight, inspection, contingency, and cost per saleable unit before comparing supplier quotes.">
+    <meta name="theme-color" content="#0b1f33">
+    <meta property="og:title" content="Free Landed-Cost Calculator for Importers">
+    <meta property="og:description" content="Estimate the cost per saleable unit beyond the supplier quote. No email required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://supplier-vetting-lab.pages.dev/landed-cost-calculator/">
+    <link rel="canonical" href="https://supplier-vetting-lab.pages.dev/landed-cost-calculator/">
+    <title>Free Landed-Cost Calculator — Supplier Vetting Lab</title>
+    <link rel="icon" href="../assets/brand-mark.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../resource-tools.js" defer></script>
+  </head>
+  <body class="resource-page calculator-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="Supplier Vetting Lab home"><img src="../assets/brand-mark.svg" alt="" width="34" height="34"><span>Supplier Vetting Lab</span></a>
+      <nav aria-label="Primary navigation"><a href="../#deposit-gate">Free deposit gate</a><a href="../#included">Toolkit</a><a href="../#faq">FAQ</a></nav>
+    </header>
+
+    <main id="main">
+      <header class="resource-hero calculator-hero">
+        <p class="eyebrow">Free working tool · no email required</p>
+        <p class="resource-meta">Browser-only estimate · values are not saved</p>
+        <h1>The quote is not your unit cost.</h1>
+        <p>Estimate freight, duty, inspection, fees, contingency, and expected rejects on the same basis before comparing suppliers.</p>
+      </header>
+
+      <section class="calculator" data-landed-calculator>
+        <form class="calculator-form" data-calculator-form>
+          <div class="calculator-section-title"><span>01</span><div><strong>Order base</strong><small>Use one currency consistently.</small></div></div>
+          <div class="calc-grid">
+            <label><span>Order quantity</span><input type="number" name="units" min="1" step="1" value="1000" required></label>
+            <label><span>Goods value</span><input type="number" name="goods" min="0" step="0.01" value="4100" required></label>
+            <label><span>Expected reject rate</span><span class="input-suffix"><input type="number" name="rejectRate" min="0" max="99" step="0.1" value="3"><b>%</b></span></label>
+          </div>
+
+          <div class="calculator-section-title"><span>02</span><div><strong>Logistics and border</strong><small>Check which costs your Incoterm already includes.</small></div></div>
+          <div class="calc-grid">
+            <label><span>Freight</span><input type="number" name="freight" min="0" step="0.01" value="950"></label>
+            <label><span>Insurance</span><input type="number" name="insurance" min="0" step="0.01" value="45"></label>
+            <label><span>Estimated duty rate</span><span class="input-suffix"><input type="number" name="dutyRate" min="0" step="0.01" value="5"><b>%</b></span></label>
+            <label><span>Import tax / VAT</span><input type="number" name="importTax" min="0" step="0.01" value="0"></label>
+          </div>
+
+          <div class="calculator-section-title"><span>03</span><div><strong>Control and contingency</strong><small>Include the costs that make the order usable.</small></div></div>
+          <div class="calc-grid">
+            <label><span>Inspection and testing</span><input type="number" name="inspection" min="0" step="0.01" value="320"></label>
+            <label><span>Broker, bank, and other fees</span><input type="number" name="other" min="0" step="0.01" value="180"></label>
+            <label><span>Contingency</span><span class="input-suffix"><input type="number" name="contingencyRate" min="0" step="0.1" value="5"><b>%</b></span></label>
+          </div>
+          <button class="button button-primary calculator-run" type="submit">Calculate landed cost</button>
+        </form>
+
+        <aside class="calculator-result" aria-live="polite">
+          <div class="slip-topline"><span>SVL / cost model</span><span>Estimate</span></div>
+          <p class="slip-label">Cost per saleable unit</p>
+          <strong class="cost-per-unit" data-cost-per-unit>6.33</strong>
+          <p class="calculator-currency">in the currency entered above</p>
+          <dl>
+            <div><dt>Goods</dt><dd data-cost-goods>4,100.00</dd></div>
+            <div><dt>Freight + insurance</dt><dd data-cost-logistics>995.00</dd></div>
+            <div><dt>Estimated duty</dt><dd data-cost-duty>254.75</dd></div>
+            <div><dt>Tax + inspection + fees</dt><dd data-cost-controls>500.00</dd></div>
+            <div><dt>Contingency</dt><dd data-cost-contingency>292.49</dd></div>
+            <div class="result-total"><dt>Total landed cost</dt><dd data-cost-total>6,142.24</dd></div>
+            <div><dt>Saleable units</dt><dd data-saleable-units>970</dd></div>
+          </dl>
+          <p class="calculator-note" data-calculator-note>Check the HS classification, customs valuation, Incoterm, tax treatment, and quote inclusions before relying on this estimate.</p>
+        </aside>
+      </section>
+
+      <section class="cost-reading section">
+        <div><p class="eyebrow">Read the result carefully</p><h2>Use the calculator to compare assumptions—not to predict customs.</h2></div>
+        <div>
+          <p><strong>Keep the basis consistent.</strong> Compare every supplier with the same destination, quantity, reject assumption, duty basis, and included services.</p>
+          <p><strong>Avoid double counting.</strong> Your Incoterm and freight quote may already include insurance, origin charges, or delivery legs entered separately here.</p>
+          <p><strong>Confirm regulated inputs.</strong> HS classification, customs value, duty, tax, and product compliance require destination-specific verification.</p>
+        </div>
+      </section>
+
+      <section class="resource-cta">
+        <div><p class="eyebrow">Need supplier-by-supplier comparison?</p><h2>Model landed cost beside evidence, risk flags, and decision weights.</h2></div>
+        <div><strong>US$19 · tax included</strong><a class="button button-primary" href="https://buy.stripe.com/9B64gs5GZ93abTy6KT0sU00?client_reference_id=tool_landed_cost">Get the toolkit</a></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="brand footer-brand"><img src="../assets/brand-mark.svg" alt="" width="30" height="30"><span>Supplier Vetting Lab</span></div>
+      <p>Practical decision tools for small importers.</p>
+      <nav aria-label="Legal"><a href="../terms.html">Terms</a><a href="../privacy.html">Privacy</a><a href="mailto:xiaoyingchen0829@163.com?subject=Supplier%20Vetting%20Lab%20support">Support</a></nav>
+    </footer>
+  </body>
+</html>
