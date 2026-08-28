@@ -1048,10 +1048,9 @@ summary:focus-visible {
   min-width: 240px;
 }
 
-.old-price {
+.price-label {
   font-family: var(--mono);
   font-size: 0.72rem;
-  text-decoration: line-through;
   text-transform: uppercase;
 }
 
