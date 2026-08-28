@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -26,6 +27,7 @@
       </a>
       <nav aria-label="Primary navigation">
         <a href="#workflow">Workflow</a>
+        <a href="#demo">Live demo</a>
         <a href="#included">Inside the kit</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -48,7 +50,8 @@
           </ul>
         </div>
 
-        <div class="hero-board" aria-label="Supplier review workflow preview">
+        <div class="hero-board" aria-label="Supplier review workflow preview" data-hero-board>
+          <span class="board-scanner" aria-hidden="true"></span>
           <div class="board-topline">
             <span>Decision file / 2026</span>
             <span class="status-dot">Review ready</span>
@@ -86,6 +89,81 @@
         <p>Evidence quality is the decision.</p>
       </section>
 
+      <section class="demo section" id="demo">
+        <div class="section-heading">
+          <p class="eyebrow">Interactive sample</p>
+          <h2>Watch evidence change the recommendation.</h2>
+          <p>Switch between three fictional candidates. The lowest quote does not win when identity, documents, or payment evidence is still unresolved.</p>
+        </div>
+
+        <div class="decision-lab" data-decision-lab>
+          <div class="lab-toolbar">
+            <div>
+              <span class="lab-kicker">SVL / sample audit</span>
+              <strong>Supplier decision scanner</strong>
+            </div>
+            <button class="scan-button" type="button" data-run-audit>
+              <span class="scan-button-dot" aria-hidden="true"></span>
+              Run sample audit
+            </button>
+          </div>
+
+          <div class="supplier-tabs" role="tablist" aria-label="Fictional supplier candidates">
+            <button type="button" role="tab" aria-selected="true" data-supplier="pearl">
+              <span>01</span><strong>Pearl River Mfg.</strong><small>US$4.10 / unit</small>
+            </button>
+            <button type="button" role="tab" aria-selected="false" data-supplier="harbor">
+              <span>02</span><strong>Harbor Trade Co.</strong><small>US$3.35 / unit</small>
+            </button>
+            <button type="button" role="tab" aria-selected="false" data-supplier="fast">
+              <span>03</span><strong>FastSource Ltd.</strong><small>US$2.84 / unit</small>
+            </button>
+          </div>
+
+          <div class="lab-grid">
+            <article class="evidence-panel" aria-live="polite">
+              <div class="panel-heading">
+                <div>
+                  <span>Evidence file</span>
+                  <h3 data-demo-name>Pearl River Mfg.</h3>
+                </div>
+                <span class="source-chip" data-demo-source>Direct outreach</span>
+              </div>
+              <ul class="demo-checks" data-demo-checks>
+                <li data-check="legal"><span>Legal entity</span><strong>Verified</strong></li>
+                <li data-check="beneficiary"><span>Bank beneficiary</span><strong>Verified</strong></li>
+                <li data-check="documents"><span>Product documents</span><strong>Verified</strong></li>
+                <li data-check="sample"><span>Sample against brief</span><strong>Verified</strong></li>
+                <li data-check="terms"><span>Quote & Incoterm</span><strong>Verified</strong></li>
+              </ul>
+            </article>
+
+            <article class="verdict-panel" aria-live="polite">
+              <div class="score-wrap">
+                <div class="score-ring" data-score-ring style="--score: 82">
+                  <span data-score>82</span><small>/ 100</small>
+                </div>
+                <div>
+                  <span class="verdict-label">Evidence-weighted score</span>
+                  <strong class="verdict-status" data-demo-status>Strong candidate</strong>
+                </div>
+              </div>
+              <dl class="demo-metrics">
+                <div><dt>Evidence complete</dt><dd data-demo-complete>100%</dd></div>
+                <div><dt>Unresolved checks</dt><dd data-demo-risks>0</dd></div>
+                <div><dt>Lead time</dt><dd data-demo-lead>28 days</dd></div>
+              </dl>
+              <div class="next-action">
+                <span>Next controlled action</span>
+                <p data-demo-action>Confirm the production sample, final beneficiary, contract terms, and landed cost before payment.</p>
+              </div>
+            </article>
+          </div>
+
+          <p class="demo-disclaimer">Fictional sample data for demonstration only. The workbook organizes your evidence; it does not authenticate a supplier.</p>
+        </div>
+      </section>
+
       <section class="workflow section" id="workflow">
         <div class="section-heading">
           <p class="eyebrow">A repeatable review</p>
@@ -119,15 +197,15 @@
 
         <figure class="preview preview-wide">
           <div class="preview-frame">
-            <img src="assets/preview-comparison.png" alt="Supplier comparison workbook showing weighted scores, evidence notes, and risk flags" loading="lazy">
+            <img src="assets/preview-dashboard.png" alt="Decision dashboard showing the leading supplier, evidence completeness, readiness gate, and next action" loading="lazy">
           </div>
           <figcaption>
-            <span>Workbook / supplier comparison</span>
-            <strong>Compare candidates without hiding the evidence gaps.</strong>
+            <span>New in version 1.1 / decision dashboard</span>
+            <strong>See the leading candidate, readiness gate, and next unresolved action at a glance.</strong>
           </figcaption>
         </figure>
 
-        <div class="preview-pair">
+        <div class="preview-trio">
           <figure class="preview preview-cover">
             <div class="preview-frame">
               <img src="assets/preview-cover.png" alt="China Supplier Vetting Kit guide and workbook cover" loading="lazy">
@@ -135,6 +213,15 @@
             <figcaption>
               <span>Field guide</span>
               <strong>An 11-page decision workflow.</strong>
+            </figcaption>
+          </figure>
+          <figure class="preview preview-comparison">
+            <div class="preview-frame">
+              <img src="assets/preview-comparison.png" alt="Supplier comparison workbook showing weighted scores, evidence notes, and automatically linked risk flags" loading="lazy">
+            </div>
+            <figcaption>
+              <span>Workbook / comparison</span>
+              <strong>Enter supplier details once; risk counts now flow back automatically.</strong>
             </figcaption>
           </figure>
           <figure class="preview preview-cost">
@@ -156,7 +243,7 @@
           <p>Open the spreadsheet in Excel or LibreOffice Calc. The editable guide also works in Microsoft Word or compatible editors.</p>
         </div>
         <ul class="manifest-list">
-          <li><span>01</span><strong>Supplier Vetting Workbook</strong><small>XLSX · six purpose-built sheets</small></li>
+          <li><span>01</span><strong>Supplier Vetting Workbook</strong><small>XLSX · seven linked sheets</small></li>
           <li><span>02</span><strong>Field Guide</strong><small>PDF · 11 pages</small></li>
           <li><span>03</span><strong>Editable Field Guide</strong><small>DOCX</small></li>
           <li><span>04</span><strong>Start Here</strong><small>TXT · quick setup</small></li>
@@ -216,6 +303,10 @@
             <p>Yes. The weights and risk penalty are visible in the workbook. Change them only when you understand how they affect the decision.</p>
           </details>
           <details>
+            <summary>What changed in version 1.1?</summary>
+            <p>The workbook now includes a Decision Dashboard and automatically links supplier names and unresolved risk counts between the comparison and checklist sheets, reducing duplicate entry.</p>
+          </details>
+          <details>
             <summary>Can I share or resell the files?</summary>
             <p>The standard license covers personal use or internal use by one business. Redistribution, resale, sublicensing, and competing standalone products are not permitted.</p>
           </details>
@@ -240,5 +331,10 @@
         <a href="https://github.com/XiaoyingCHEN-ust" rel="me">Contact</a>
       </nav>
     </footer>
+
+    <div class="mobile-buy" aria-label="Purchase shortcut">
+      <span><strong>US$19</strong><small>Taxes included · instant download</small></span>
+      <a href="https://buy.stripe.com/9B64gs5GZ93abTy6KT0sU00">Get the kit</a>
+    </div>
   </body>
 </html>
