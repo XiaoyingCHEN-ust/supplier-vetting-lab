@@ -62,7 +62,7 @@ test("verified payment grants status and download access", async () => {
         };
       },
     },
-    STRIPE_WEBHOOK_SECRET: secret,
+    STRIPE_WEBHOOK_TEST_SECRET: secret,
     ALLOWED_PAYMENT_LINK_IDS: "plink_test_allowed",
   };
 
@@ -95,7 +95,7 @@ test("invalid signatures are rejected", async () => {
     }),
     env: {
       ENTITLEMENTS: new MemoryKV(),
-      STRIPE_WEBHOOK_SECRET: "whsec_test_example",
+      STRIPE_WEBHOOK_TEST_SECRET: "whsec_test_example",
       ALLOWED_PAYMENT_LINK_IDS: "plink_test_allowed",
     },
   });
@@ -116,7 +116,7 @@ test("refund events revoke an existing entitlement", async () => {
     request: signedRequest(event, secret),
     env: {
       ENTITLEMENTS: kv,
-      STRIPE_WEBHOOK_SECRET: secret,
+      STRIPE_WEBHOOK_TEST_SECRET: secret,
       ALLOWED_PAYMENT_LINK_IDS: "plink_test_allowed",
     },
   });

@@ -107,8 +107,14 @@ async function revokeByPaymentIntent(paymentIntent, env) {
 export async function onRequestPost({ request, env }) {
   if (!env.ENTITLEMENTS) return json({ error: "Missing KV binding." }, 500);
 
-  const secrets = (env.STRIPE_WEBHOOK_SECRETS || env.STRIPE_WEBHOOK_SECRET || "")
-    .split(",")
+  const secrets = [
+    env.STRIPE_WEBHOOK_TEST_SECRET,
+    env.STRIPE_WEBHOOK_LIVE_SECRET,
+    env.STRIPE_WEBHOOK_SECRETS,
+    env.STRIPE_WEBHOOK_SECRET,
+  ]
+    .filter(Boolean)
+    .flatMap((value) => value.split(","))
     .map((value) => value.trim())
     .filter(Boolean);
   const signatureHeader = request.headers.get("stripe-signature") || "";

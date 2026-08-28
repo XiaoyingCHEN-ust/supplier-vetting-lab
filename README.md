@@ -10,7 +10,9 @@ The Pages project requires these production bindings before checkout is enabled:
 
 - KV namespace binding: `ENTITLEMENTS`
 - R2 bucket binding: `PRODUCT_FILES`
-- Secret: `STRIPE_WEBHOOK_SECRETS` (comma-separated test/live endpoint secrets)
+- Secret: `STRIPE_WEBHOOK_TEST_SECRET` (test endpoint signing secret)
+- Secret: `STRIPE_WEBHOOK_LIVE_SECRET` (live endpoint signing secret; add before launch)
+- Backward-compatible optional secret: `STRIPE_WEBHOOK_SECRETS` (comma-separated endpoint secrets)
 - Variable: `ALLOWED_PAYMENT_LINK_IDS` (comma-separated test/live Payment Link IDs)
 - Variable: `PRODUCT_OBJECT_KEY=China-Supplier-Vetting-Kit-v1.0.zip`
 - Variable: `PRODUCT_DOWNLOAD_NAME=China-Supplier-Vetting-Kit-v1.0.zip`
