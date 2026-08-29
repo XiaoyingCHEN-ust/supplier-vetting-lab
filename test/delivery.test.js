@@ -54,7 +54,7 @@ test("verified payment grants status and download access", async () => {
     ENTITLEMENTS: kv,
     PRODUCT_FILES: {
       async get(key) {
-        assert.equal(key, "China-Supplier-Vetting-Kit-v1.0.zip");
+        assert.equal(key, "China-Supplier-Vetting-Kit-v1.2.zip");
         return {
           body: "zip",
           size: 3,

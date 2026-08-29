@@ -29,11 +29,11 @@ export async function onRequestGet({ request, env }) {
     );
   }
 
-  const objectKey = env.PRODUCT_OBJECT_KEY || "China-Supplier-Vetting-Kit-v1.0.zip";
+  const objectKey = env.PRODUCT_OBJECT_KEY || "China-Supplier-Vetting-Kit-v1.2.zip";
   const object = await env.PRODUCT_FILES.get(objectKey);
   if (!object) return json({ error: "Product file is unavailable." }, 503);
 
-  const filename = env.PRODUCT_DOWNLOAD_NAME || "China-Supplier-Vetting-Kit-v1.0.zip";
+  const filename = env.PRODUCT_DOWNLOAD_NAME || "China-Supplier-Vetting-Kit-v1.2.zip";
   const headers = new Headers();
   object.writeHttpMetadata(headers);
   headers.set("content-type", "application/zip");

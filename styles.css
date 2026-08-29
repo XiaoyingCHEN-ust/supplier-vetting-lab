@@ -111,11 +111,11 @@ footer nav a,
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(380px, 0.92fr);
-  gap: clamp(54px, 7vw, 104px);
+  grid-template-columns: minmax(0, 1.12fr) minmax(370px, 0.88fr);
+  gap: clamp(48px, 6vw, 82px);
   align-items: center;
-  min-height: 760px;
-  padding: 80px 0 92px;
+  min-height: 680px;
+  padding: 62px 0 74px;
 }
 
 .eyebrow {
@@ -149,11 +149,11 @@ h3 {
 
 h1 {
   max-width: 720px;
-  margin-bottom: 30px;
-  font-size: clamp(3.7rem, 7.3vw, 7.2rem);
+  margin-bottom: 24px;
+  font-size: clamp(3.55rem, 5.6vw, 5.85rem);
   font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.075em;
+  line-height: 0.94;
+  letter-spacing: -0.067em;
 }
 
 h1 em {
@@ -176,9 +176,9 @@ h1 em::after {
 
 .hero-deck {
   max-width: 650px;
-  margin-bottom: 34px;
+  margin-bottom: 28px;
   color: var(--ink-soft);
-  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-size: clamp(1.05rem, 1.55vw, 1.25rem);
   line-height: 1.48;
 }
 
@@ -187,6 +187,14 @@ h1 em::after {
   align-items: center;
   gap: 24px;
   flex-wrap: wrap;
+}
+
+.hero-assurance {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.015em;
 }
 
 .button {
@@ -228,7 +236,7 @@ summary:focus-visible {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   max-width: 620px;
-  margin: 56px 0 0;
+  margin: 30px 0 0;
   padding: 0;
   border-top: 1px solid var(--line);
   list-style: none;
@@ -252,6 +260,7 @@ summary:focus-visible {
 
 .hero-board {
   position: relative;
+  min-height: 500px;
   padding: 22px;
   overflow: hidden;
   background: var(--white);
@@ -1159,6 +1168,52 @@ summary:focus-visible {
   color: var(--cyan);
 }
 
+.product-proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: -18px 0 62px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.product-proof-strip p {
+  min-height: 190px;
+  margin: 0;
+  padding: 24px 28px 26px 0;
+}
+
+.product-proof-strip p + p {
+  padding-left: 28px;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.product-proof-strip span,
+.product-proof-strip strong,
+.product-proof-strip small {
+  display: block;
+}
+
+.product-proof-strip span {
+  margin-bottom: 40px;
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.product-proof-strip strong {
+  margin-bottom: 8px;
+  font-family: var(--display);
+  font-size: 1.12rem;
+  line-height: 1.15;
+}
+
+.product-proof-strip small {
+  color: #afc0cc;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
 .preview {
   margin: 0;
 }
@@ -1171,8 +1226,15 @@ summary:focus-visible {
 
 .preview-frame img {
   width: 100%;
+  height: auto;
   background: var(--white);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+}
+
+.preview-request .preview-frame img {
+  aspect-ratio: 2.25 / 1;
+  object-fit: cover;
+  object-position: top left;
 }
 
 .preview figcaption {
@@ -2085,6 +2147,25 @@ footer p {
     grid-template-columns: 1fr 1fr;
   }
 
+  .product-proof-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .product-proof-strip p {
+    min-height: 0;
+    padding: 22px 0;
+  }
+
+  .product-proof-strip p + p {
+    padding-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-left: 0;
+  }
+
+  .product-proof-strip span {
+    margin-bottom: 18px;
+  }
+
   .preview-trio .preview-cover {
     grid-row: 1 / 3;
   }
@@ -2141,7 +2222,7 @@ footer p {
   }
 
   h1 {
-    font-size: clamp(3.2rem, 17vw, 5rem);
+    font-size: clamp(3rem, 15.5vw, 4.7rem);
   }
 
   .fact-strip {
@@ -2150,6 +2231,7 @@ footer p {
 
   .hero-board {
     width: 95%;
+    min-height: 0;
     padding: 16px;
     transform: rotate(0.6deg);
   }
@@ -2266,6 +2348,15 @@ footer p {
 
   .product-view {
     padding-inline: 16px;
+  }
+
+  .product-proof-strip {
+    margin-top: -26px;
+    margin-bottom: 48px;
+  }
+
+  .preview-request .preview-frame img {
+    aspect-ratio: 1.35 / 1;
   }
 
   .preview-pair {

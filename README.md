@@ -24,8 +24,8 @@ The Pages project requires these production bindings before checkout is enabled:
 - Secret: `STRIPE_WEBHOOK_LIVE_SECRET` (live endpoint signing secret; add before launch)
 - Backward-compatible optional secret: `STRIPE_WEBHOOK_SECRETS` (comma-separated endpoint secrets)
 - Variable: `ALLOWED_PAYMENT_LINK_IDS` (comma-separated test/live Payment Link IDs)
-- Variable: `PRODUCT_OBJECT_KEY=China-Supplier-Vetting-Kit-v1.0.zip`
-- Variable: `PRODUCT_DOWNLOAD_NAME=China-Supplier-Vetting-Kit-v1.0.zip`
+- Variable: `PRODUCT_OBJECT_KEY=China-Supplier-Vetting-Kit-v1.2.zip`
+- Variable: `PRODUCT_DOWNLOAD_NAME=China-Supplier-Vetting-Kit-v1.2.zip`
 
 Configure Stripe to send `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, and `charge.refunded` to:
 
