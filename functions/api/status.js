@@ -17,6 +17,16 @@ export async function onRequestGet({ request, env }) {
     return json({ error: "Invalid order reference." }, 400);
   }
 
-  const entitlement = await env.ENTITLEMENTS.get(`entitlement:${sessionId}`);
-  return json({ ready: Boolean(entitlement) }, entitlement ? 200 : 202);
+  const entitlementValue = await env.ENTITLEMENTS.get(`entitlement:${sessionId}`);
+  if (!entitlementValue) return json({ ready: false }, 202);
+
+  try {
+    const entitlement = JSON.parse(entitlementValue);
+    return json({
+      ready: true,
+      productName: entitlement?.product?.label || "Your purchase",
+    });
+  } catch {
+    return json({ error: "Order delivery record is invalid." }, 503);
+  }
 }

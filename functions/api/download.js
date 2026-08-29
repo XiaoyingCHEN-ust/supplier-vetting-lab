@@ -20,8 +20,8 @@ export async function onRequestGet({ request, env }) {
     return json({ error: "Invalid order reference." }, 400);
   }
 
-  const entitlement = await env.ENTITLEMENTS.get(`entitlement:${sessionId}`);
-  if (!entitlement) {
+  const entitlementValue = await env.ENTITLEMENTS.get(`entitlement:${sessionId}`);
+  if (!entitlementValue) {
     return json(
       { error: "Payment confirmation is still pending." },
       425,
@@ -29,14 +29,30 @@ export async function onRequestGet({ request, env }) {
     );
   }
 
-  const objectKey = env.PRODUCT_OBJECT_KEY || "China-Supplier-Vetting-Kit-v1.2.zip";
+  let entitlement;
+  try {
+    entitlement = JSON.parse(entitlementValue);
+  } catch {
+    return json({ error: "Order delivery record is invalid." }, 503);
+  }
+
+  const product = entitlement?.product;
+  if (
+    !product ||
+    typeof product.objectKey !== "string" ||
+    typeof product.filename !== "string"
+  ) {
+    return json({ error: "Order product is unavailable." }, 503);
+  }
+
+  const objectKey = product.objectKey;
   const object = await env.PRODUCT_FILES.get(objectKey);
   if (!object) return json({ error: "Product file is unavailable." }, 503);
 
-  const filename = env.PRODUCT_DOWNLOAD_NAME || "China-Supplier-Vetting-Kit-v1.2.zip";
+  const filename = product.filename.replaceAll(/[\r\n"]/g, "_");
   const headers = new Headers();
   object.writeHttpMetadata(headers);
-  headers.set("content-type", "application/zip");
+  headers.set("content-type", product.contentType || "application/octet-stream");
   headers.set("content-disposition", `attachment; filename="${filename}"`);
   headers.set("content-length", String(object.size));
   headers.set("cache-control", "private, no-store, max-age=0");

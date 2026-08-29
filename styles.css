@@ -670,7 +670,7 @@ summary:focus-visible {
 
 .resource-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border: 2px solid var(--ink);
   background: var(--white);
   box-shadow: 12px 12px 0 rgba(11, 31, 51, 0.09);
@@ -707,7 +707,7 @@ summary:focus-visible {
 }
 
 .resource-grid strong {
-  max-width: 260px;
+  max-width: 240px;
   margin: 58px 0 12px;
   font-family: var(--display);
   font-size: 1.5rem;
@@ -2482,6 +2482,411 @@ footer p {
     font-size: 0.82rem;
     font-weight: 800;
     text-decoration: none;
+  }
+}
+
+/* Presentation background shop */
+.background-store-page {
+  background:
+    radial-gradient(circle at 15% 4%, rgba(19, 127, 120, 0.1), transparent 31rem),
+    var(--paper);
+}
+
+.background-store-page main {
+  width: min(100% - 48px, 1240px);
+  margin: 0 auto;
+}
+
+.background-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(420px, 1.14fr);
+  align-items: center;
+  gap: 64px;
+  min-height: 720px;
+  padding: 88px 0 108px;
+}
+
+.background-hero h1 {
+  max-width: 760px;
+  margin: 18px 0 24px;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(3.4rem, 6.1vw, 6.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+}
+
+.background-hero-deck {
+  max-width: 720px;
+  color: var(--slate);
+  font-size: 1.18rem;
+  line-height: 1.65;
+}
+
+.background-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 38px 0 0;
+  padding: 0;
+  border-block: 1px solid var(--line);
+  list-style: none;
+}
+
+.background-facts li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 17px 12px 17px 0;
+}
+
+.background-facts li + li {
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+
+.background-facts strong {
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1.35rem;
+}
+
+.background-facts span {
+  color: var(--slate);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.background-hero-preview {
+  position: relative;
+  margin: 0;
+  transform: rotate(1.2deg);
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  box-shadow: 18px 18px 0 rgba(11, 31, 51, 0.12);
+}
+
+.background-hero-preview::before,
+.background-hero-preview::after {
+  position: absolute;
+  z-index: 2;
+  content: "";
+  pointer-events: none;
+}
+
+.background-hero-preview::before {
+  inset: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.background-hero-preview::after {
+  top: -15px;
+  right: 36px;
+  width: 86px;
+  height: 32px;
+  background: rgba(233, 162, 59, 0.82);
+  transform: rotate(-3deg);
+}
+
+.background-hero-preview img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.background-hero-preview figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.background-hero-preview figcaption span {
+  color: var(--amber);
+}
+
+.background-gallery {
+  padding: 112px 0;
+  border-top: 1px solid var(--line);
+}
+
+.background-gallery .section-heading {
+  max-width: 820px;
+  margin-bottom: 52px;
+}
+
+.background-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px;
+}
+
+.background-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--white);
+  box-shadow: 0 18px 50px rgba(11, 31, 51, 0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.background-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 70px rgba(11, 31, 51, 0.14);
+}
+
+.background-card figure {
+  overflow: hidden;
+  margin: 0;
+  background: var(--ink);
+}
+
+.background-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 520ms ease;
+}
+
+.background-card:hover img {
+  transform: scale(1.025);
+}
+
+.background-card-copy {
+  padding: 27px 28px 30px;
+}
+
+.style-number {
+  color: var(--teal);
+  font-family: var(--mono);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.background-card h3 {
+  margin: 8px 0 10px;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1.75rem;
+}
+
+.background-card p {
+  min-height: 3.2em;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+.background-card-copy > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.background-card-copy > div strong {
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 0.95rem;
+}
+
+.background-card-copy .button {
+  flex: 0 0 auto;
+  padding: 11px 16px;
+  font-size: 0.78rem;
+}
+
+.background-bundle {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  gap: 70px;
+  align-items: center;
+  margin: 30px 0 118px;
+  padding: 68px;
+  color: var(--white);
+  background:
+    radial-gradient(circle at 72% 18%, rgba(19, 127, 120, 0.43), transparent 24rem),
+    var(--ink);
+  box-shadow: 14px 14px 0 var(--amber);
+}
+
+.background-bundle h2 {
+  max-width: 760px;
+  margin: 12px 0 18px;
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.background-bundle > div > p:not(.eyebrow) {
+  max-width: 760px;
+  color: #d7e2e9;
+  font-size: 1.04rem;
+  line-height: 1.65;
+}
+
+.background-bundle ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 22px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.background-bundle li {
+  position: relative;
+  padding-left: 21px;
+  color: #e9f1f5;
+}
+
+.background-bundle li::before {
+  position: absolute;
+  top: 0.45em;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  background: var(--amber);
+  content: "";
+}
+
+.bundle-price-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 34px;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.bundle-price-card > span,
+.bundle-price-card > small {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bundle-price-card > strong {
+  margin: 10px 0 4px;
+  font-family: var(--display);
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.bundle-price-card > strong sup {
+  font-size: 1.7rem;
+  vertical-align: top;
+}
+
+.bundle-price-card .button {
+  margin-top: 26px;
+  text-align: center;
+}
+
+.bundle-price-card p {
+  margin: 18px 0 0;
+  color: var(--slate);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.background-license {
+  padding: 34px 0 116px;
+}
+
+.license-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+}
+
+.license-grid > div {
+  padding: 26px;
+  border-top: 4px solid var(--teal);
+  background: var(--white);
+}
+
+.license-grid strong {
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1.15rem;
+}
+
+.license-grid p {
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .background-store-page main {
+    width: min(100% - 28px, 1240px);
+  }
+
+  .background-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 70px 0 90px;
+  }
+
+  .background-hero-preview {
+    transform: none;
+  }
+
+  .background-grid,
+  .background-bundle,
+  .license-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .background-bundle {
+    gap: 40px;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 620px) {
+  .background-hero h1 {
+    font-size: clamp(3rem, 15vw, 4.6rem);
+  }
+
+  .background-facts,
+  .background-bundle ul {
+    grid-template-columns: 1fr;
+  }
+
+  .background-facts li + li {
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .background-card-copy > div {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .background-card-copy .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .background-bundle {
+    padding: 30px 22px;
+    box-shadow: 8px 8px 0 var(--amber);
   }
 }
 

@@ -1,6 +1,6 @@
 # Supplier Vetting Lab
 
-Public product page and secure post-payment delivery flow for the China Supplier Vetting Kit.
+Public product pages and secure post-payment delivery for the China Supplier Vetting Kit and the Sourcing Presentation Background collection.
 
 The paid product files are intentionally not included in this repository. Only public marketing assets, policy pages, and the payment-verification code are published.
 
@@ -10,6 +10,7 @@ The paid product files are intentionally not included in this repository. Only p
 - `/alibaba-supplier-red-flags/` answers a high-intent supplier-risk question.
 - `/supplier-bank-beneficiary-check/` provides a payment-identity decision path.
 - `/landed-cost-calculator/` provides a browser-only landed-cost estimator.
+- `/presentation-backgrounds/` sells six individually downloadable PNG backgrounds and a six-image bundle with an editable PowerPoint template.
 - `/sitemap.xml` and `/robots.txt` expose the public discovery surface to search engines.
 
 Payment links use page-specific `client_reference_id` values so completed purchases can be attributed to the originating guide or call to action.
@@ -23,9 +24,23 @@ The Pages project requires these production bindings before checkout is enabled:
 - Secret: `STRIPE_WEBHOOK_TEST_SECRET` (test endpoint signing secret)
 - Secret: `STRIPE_WEBHOOK_LIVE_SECRET` (live endpoint signing secret; add before launch)
 - Backward-compatible optional secret: `STRIPE_WEBHOOK_SECRETS` (comma-separated endpoint secrets)
-- Variable: `ALLOWED_PAYMENT_LINK_IDS` (comma-separated test/live Payment Link IDs)
-- Variable: `PRODUCT_OBJECT_KEY=China-Supplier-Vetting-Kit-v1.2.zip`
-- Variable: `PRODUCT_DOWNLOAD_NAME=China-Supplier-Vetting-Kit-v1.2.zip`
+- Variable: `PRODUCT_CATALOG` (JSON object keyed by trusted Payment Link ID)
+
+Each catalog entry contains the exact amount in cents and the R2 object delivered after payment:
+
+```json
+{
+  "plink_example": {
+    "amount": 100,
+    "objectKey": "01-photorealistic-procurement.png",
+    "filename": "Supplier-Vetting-Background-01-Procurement-Desk.png",
+    "contentType": "image/png",
+    "label": "Procurement Desk background"
+  }
+}
+```
+
+The webhook grants access only when the signed checkout session's Payment Link, USD currency, paid state, and exact amount all match the trusted catalog. Product files remain private in R2 and are returned only through `/api/download` after entitlement verification.
 
 Configure Stripe to send `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, and `charge.refunded` to:
 

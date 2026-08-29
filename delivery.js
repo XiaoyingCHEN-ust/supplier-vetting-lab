@@ -25,7 +25,7 @@ async function waitForEntitlement() {
       const result = await response.json();
 
       if (response.ok && result.ready) {
-        statusElement.textContent = "Payment confirmed. Your download is ready.";
+        statusElement.textContent = `Payment confirmed. ${result.productName || "Your purchase"} is ready.`;
         statusElement.dataset.state = "ready";
         downloadLink.href = `/api/download?session_id=${encodedSessionId}`;
         downloadLink.hidden = false;

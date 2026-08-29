@@ -52,30 +52,50 @@ function json(body, status = 200) {
   });
 }
 
-function allowedPaymentLinks(env) {
-  return new Set(
-    (env.ALLOWED_PAYMENT_LINK_IDS || "")
-      .split(",")
-      .map((value) => value.trim())
-      .filter(Boolean),
-  );
+function parseProductCatalog(env) {
+  try {
+    const catalog = JSON.parse(env.PRODUCT_CATALOG || "{}");
+    if (!catalog || Array.isArray(catalog) || typeof catalog !== "object") return {};
+    return catalog;
+  } catch {
+    return {};
+  }
 }
 
-function sessionIsEligible(session, allowedLinks) {
-  return (
-    typeof session?.id === "string" &&
-    session.id.startsWith("cs_") &&
-    typeof session.payment_link === "string" &&
-    allowedLinks.has(session.payment_link) &&
-    session.currency === "usd" &&
-    session.amount_total === 1900
-  );
+function sessionProduct(session, catalog) {
+  if (
+    typeof session?.id !== "string" ||
+    !session.id.startsWith("cs_") ||
+    typeof session.payment_link !== "string" ||
+    session.currency !== "usd"
+  ) {
+    return null;
+  }
+
+  const product = catalog[session.payment_link];
+  if (
+    !product ||
+    !Number.isInteger(product.amount) ||
+    product.amount !== session.amount_total ||
+    typeof product.objectKey !== "string" ||
+    typeof product.filename !== "string"
+  ) {
+    return null;
+  }
+
+  return {
+    objectKey: product.objectKey,
+    filename: product.filename,
+    contentType: product.contentType || "application/octet-stream",
+    label: product.label || "Your purchase",
+  };
 }
 
-async function grantEntitlement(session, env) {
+async function grantEntitlement(session, product, env) {
   const entitlement = {
     sessionId: session.id,
     paymentIntent: session.payment_intent || null,
+    product,
     grantedAt: new Date().toISOString(),
   };
   const options = { expirationTtl: 60 * 60 * 24 * 365 };
@@ -134,9 +154,9 @@ export async function onRequestPost({ request, env }) {
     return json({ error: "Invalid JSON." }, 400);
   }
 
-  const allowedLinks = allowedPaymentLinks(env);
-  if (allowedLinks.size === 0) {
-    return json({ error: "No allowed Payment Link configured." }, 500);
+  const catalog = parseProductCatalog(env);
+  if (Object.keys(catalog).length === 0) {
+    return json({ error: "No product catalog configured." }, 500);
   }
 
   if (
@@ -144,11 +164,12 @@ export async function onRequestPost({ request, env }) {
     event.type === "checkout.session.async_payment_succeeded"
   ) {
     const session = event.data?.object;
+    const product = sessionProduct(session, catalog);
     if (
-      sessionIsEligible(session, allowedLinks) &&
+      product &&
       session.payment_status === "paid"
     ) {
-      await grantEntitlement(session, env);
+      await grantEntitlement(session, product, env);
     }
   }
 

@@ -44,7 +44,7 @@ const session = {
   payment_status: "paid",
   payment_intent: "pi_test_abc123",
   currency: "usd",
-  amount_total: 1900,
+  amount_total: 100,
 };
 
 test("verified payment grants status and download access", async () => {
@@ -54,16 +54,24 @@ test("verified payment grants status and download access", async () => {
     ENTITLEMENTS: kv,
     PRODUCT_FILES: {
       async get(key) {
-        assert.equal(key, "China-Supplier-Vetting-Kit-v1.2.zip");
+        assert.equal(key, "presentation-backgrounds/01-photorealistic-procurement.png");
         return {
-          body: "zip",
+          body: "png",
           size: 3,
           writeHttpMetadata() {},
         };
       },
     },
     STRIPE_WEBHOOK_TEST_SECRET: secret,
-    ALLOWED_PAYMENT_LINK_IDS: "plink_test_allowed",
+    PRODUCT_CATALOG: JSON.stringify({
+      plink_test_allowed: {
+        amount: 100,
+        objectKey: "presentation-backgrounds/01-photorealistic-procurement.png",
+        filename: "Supplier-Vetting-Background-01.png",
+        contentType: "image/png",
+        label: "Photorealistic procurement background",
+      },
+    }),
   };
 
   const event = { type: "checkout.session.completed", data: { object: session } };
@@ -75,15 +83,22 @@ test("verified payment grants status and download access", async () => {
     env,
   });
   assert.equal(statusResponse.status, 200);
-  assert.deepEqual(await statusResponse.json(), { ready: true });
+  assert.deepEqual(await statusResponse.json(), {
+    ready: true,
+    productName: "Photorealistic procurement background",
+  });
 
   const downloadResponse = await download({
     request: new Request("https://example.com/api/download?session_id=cs_test_abc123"),
     env,
   });
   assert.equal(downloadResponse.status, 200);
-  assert.equal(downloadResponse.headers.get("content-type"), "application/zip");
-  assert.equal(await downloadResponse.text(), "zip");
+  assert.equal(downloadResponse.headers.get("content-type"), "image/png");
+  assert.equal(
+    downloadResponse.headers.get("content-disposition"),
+    'attachment; filename="Supplier-Vetting-Background-01.png"',
+  );
+  assert.equal(await downloadResponse.text(), "png");
 });
 
 test("invalid signatures are rejected", async () => {
@@ -96,10 +111,79 @@ test("invalid signatures are rejected", async () => {
     env: {
       ENTITLEMENTS: new MemoryKV(),
       STRIPE_WEBHOOK_TEST_SECRET: "whsec_test_example",
-      ALLOWED_PAYMENT_LINK_IDS: "plink_test_allowed",
+      PRODUCT_CATALOG: JSON.stringify({ plink_test_allowed: { amount: 100 } }),
     },
   });
   assert.equal(response.status, 400);
+});
+
+test("an unexpected amount never grants download access", async () => {
+  const kv = new MemoryKV();
+  const secret = "whsec_test_example";
+  const event = {
+    type: "checkout.session.completed",
+    data: { object: { ...session, amount_total: 50 } },
+  };
+
+  const response = await webhook({
+    request: signedRequest(event, secret),
+    env: {
+      ENTITLEMENTS: kv,
+      STRIPE_WEBHOOK_TEST_SECRET: secret,
+      PRODUCT_CATALOG: JSON.stringify({
+        plink_test_allowed: {
+          amount: 100,
+          objectKey: "01-photorealistic-procurement.png",
+          filename: "Supplier-Vetting-Background-01.png",
+        },
+      }),
+    },
+  });
+
+  assert.equal(response.status, 200);
+  assert.equal(await kv.get("entitlement:cs_test_abc123"), null);
+});
+
+test("a second catalog product is delivered from its own R2 object", async () => {
+  const kv = new MemoryKV();
+  const secret = "whsec_test_example";
+  const bundleSession = {
+    ...session,
+    id: "cs_test_bundle123",
+    payment_link: "plink_test_bundle",
+    amount_total: 200,
+    payment_intent: "pi_test_bundle123",
+  };
+  const env = {
+    ENTITLEMENTS: kv,
+    PRODUCT_FILES: {
+      async get(key) {
+        assert.equal(key, "Supplier-Vetting-Presentation-Background-Pack-v1.0.zip");
+        return { body: "zip", size: 3, writeHttpMetadata() {} };
+      },
+    },
+    STRIPE_WEBHOOK_TEST_SECRET: secret,
+    PRODUCT_CATALOG: JSON.stringify({
+      plink_test_bundle: {
+        amount: 200,
+        objectKey: "Supplier-Vetting-Presentation-Background-Pack-v1.0.zip",
+        filename: "Supplier-Vetting-Presentation-Background-Pack-v1.0.zip",
+        contentType: "application/zip",
+        label: "Sourcing Presentation Background Pack",
+      },
+    }),
+  };
+
+  const event = { type: "checkout.session.completed", data: { object: bundleSession } };
+  assert.equal((await webhook({ request: signedRequest(event, secret), env })).status, 200);
+
+  const response = await download({
+    request: new Request("https://example.com/api/download?session_id=cs_test_bundle123"),
+    env,
+  });
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("content-type"), "application/zip");
+  assert.equal(await response.text(), "zip");
 });
 
 test("refund events revoke an existing entitlement", async () => {
@@ -117,7 +201,7 @@ test("refund events revoke an existing entitlement", async () => {
     env: {
       ENTITLEMENTS: kv,
       STRIPE_WEBHOOK_TEST_SECRET: secret,
-      ALLOWED_PAYMENT_LINK_IDS: "plink_test_allowed",
+      PRODUCT_CATALOG: JSON.stringify({ plink_test_allowed: { amount: 100 } }),
     },
   });
 
