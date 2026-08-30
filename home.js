@@ -59,6 +59,9 @@ const intentMatches = {
 
 const finderResult = document.querySelector("#finder-result");
 const coastReading = document.querySelector("#coast-reading");
+const resultGain = document.querySelector("#result-gain");
+const resultTradeoff = document.querySelector("#result-tradeoff");
+const resultFit = document.querySelector("#result-fit");
 
 function selectCoast(coastId) {
   const coast = coastProfiles[coastId] || coastProfiles.kata;
@@ -84,7 +87,10 @@ document.querySelector("#intent-finder")?.addEventListener("submit", (event) => 
   const coast = coastProfiles[coastId];
   selectCoast(coastId);
   finderResult.querySelector("h2").textContent = headline;
-  finderResult.querySelector("p").textContent = `${coast.summary} Start here, then check the hotel-level trade-offs in the Phuket preview.`;
+  finderResult.querySelector(".result-summary").textContent = `${coast.summary} Start here, then check the hotel-level trade-offs in the Phuket preview.`;
+  resultGain.textContent = coast.mood;
+  resultTradeoff.textContent = coast.check;
+  resultFit.textContent = coast.fit;
   finderResult.animate(
     [{ opacity: 0.45, transform: "translateY(8px)" }, { opacity: 1, transform: "translateY(0)" }],
     { duration: 360, easing: "cubic-bezier(.2,.7,.2,1)" },

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Find the Phuket beach and neighbourhood that fits your trip before comparing hotels, food and transport.">
+    <meta name="description" content="Avoid booking the right hotel on the wrong side of Phuket. Match your trip to an area before comparing hotels, food and transport.">
     <meta name="theme-color" content="#082f38">
     <meta property="og:title" content="Driftwise — Find your side of Phuket">
-    <meta property="og:description" content="A calm, evidence-led Phuket area finder for beach, comfort, food, value and airport access.">
+    <meta property="og:description" content="Run the free wrong-coast test, see the trade-off, then compare Phuket hotels with context.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://supplier-vetting-lab.pages.dev/">
     <meta property="og:image" content="https://supplier-vetting-lab.pages.dev/assets/travel/phuket-dawn.webp">
@@ -29,6 +29,7 @@
       </a>
       <nav aria-label="Primary navigation">
         <a href="#finder">Beach finder</a>
+        <a href="#difference">Why different</a>
         <a href="#atlas">Island atlas</a>
         <a href="#proof">How we review</a>
         <a href="presentation-backgrounds/">Phuket scenic art</a>
@@ -46,39 +47,79 @@
 
         <div class="hero-content">
           <p class="coordinate-line"><span>07.88° N</span><span>98.39° E</span><span>PHUKET · THAILAND</span></p>
-          <h1>Find the beach that fits <em>your</em> Phuket.</h1>
-          <p class="hero-deck">Start with how you want the trip to feel. We translate beach character, walkability, airport friction and repeated guest-review signals into a calmer place to begin.</p>
+          <h1>Don’t book the right hotel on the <em>wrong side</em> of Phuket.</h1>
+          <p class="hero-deck">Most hotel searches start with rooms. Driftwise starts one decision earlier—matching your days, nights and tolerance for island friction to the coast that makes sense.</p>
 
           <form class="intent-finder" id="intent-finder">
             <fieldset>
-              <legend>What matters most?</legend>
+              <legend>What would spoil the trip fastest?</legend>
               <div class="intent-options">
-                <label><input type="radio" name="intent" value="balanced" checked><span>First-trip balance</span></label>
-                <label><input type="radio" name="intent" value="quiet"><span>Quiet beach</span></label>
-                <label><input type="radio" name="intent" value="family"><span>Family ease</span></label>
-                <label><input type="radio" name="intent" value="nightlife"><span>Nightlife nearby</span></label>
-                <label><input type="radio" name="intent" value="food"><span>Food &amp; culture</span></label>
-                <label><input type="radio" name="intent" value="value"><span>Better value</span></label>
+                <label><input type="radio" name="intent" value="balanced" checked><span>Daily island traffic</span></label>
+                <label><input type="radio" name="intent" value="quiet"><span>Night noise</span></label>
+                <label><input type="radio" name="intent" value="family"><span>Difficult family walks</span></label>
+                <label><input type="radio" name="intent" value="nightlife"><span>Being far from nightlife</span></label>
+                <label><input type="radio" name="intent" value="food"><span>A thin local food scene</span></label>
+                <label><input type="radio" name="intent" value="value"><span>Paying for beach I won’t use</span></label>
               </div>
             </fieldset>
-            <button type="submit">Trace my route <span aria-hidden="true">↗</span></button>
+            <button type="submit">Run the wrong-coast test <span aria-hidden="true">↗</span></button>
           </form>
 
           <article class="finder-result" id="finder-result" aria-live="polite">
             <div class="result-marker" aria-hidden="true"><span></span></div>
             <div>
-              <small>YOUR STARTING COAST</small>
+              <small>LOWEST-REGRET STARTING COAST</small>
               <h2>Kata · beach days without Patong intensity</h2>
-              <p>Good for first stays, couples and families who want a usable beach with restaurants nearby. The trade-off is hilly walking and west-coast traffic.</p>
-              <a href="phuket/#preview">Preview the Phuket decision file <span aria-hidden="true">→</span></a>
+              <p class="result-summary">Good for first stays, couples and families who want a usable beach with restaurants nearby. The trade-off is hilly walking and west-coast traffic.</p>
+              <dl class="tradeoff-receipt" aria-label="Area trade-off summary">
+                <div><dt>KEEP</dt><dd id="result-gain">Balanced and family-friendly</dd></div>
+                <div><dt>ACCEPT</dt><dd id="result-tradeoff">Check the real walking route</dd></div>
+                <div><dt>BEST FOR</dt><dd id="result-fit">First stays · beach days</dd></div>
+              </dl>
+              <a href="phuket/#preview">See the hotel-level evidence <span aria-hidden="true">→</span></a>
             </div>
           </article>
 
           <div class="evidence-strip" aria-label="Research coverage">
-            <span><strong>6</strong> vetted stay profiles</span>
-            <span><strong>4</strong> decision areas</span>
-            <span><strong>13k+</strong> verified review signals</span>
+            <span><strong>6</strong> island bases compared</span>
+            <span><strong>3</strong> lenses: place · proof · trade-off</span>
+            <span><strong>0</strong> paid hotel placements</span>
           </div>
+        </div>
+      </section>
+
+      <section class="difference-section" id="difference">
+        <div class="difference-intro reveal">
+          <p class="eyebrow">THE WRONG-COAST TEST</p>
+          <h2>A room score cannot shorten the island.</h2>
+          <p>Our difference is simple: we do not begin with a “best hotels” list. We first remove the locations most likely to waste your time, disturb your sleep or make the trip harder than it needs to be.</p>
+        </div>
+
+        <div class="friction-ledger reveal">
+          <article class="ledger-lead">
+            <span>THE DRIFTWISE ORDER</span>
+            <h3>Fit → friction → hotel</h3>
+            <p>Choose the right side. Name the compromise. Only then compare the rooms.</p>
+            <a href="#finder">Run the free test <span aria-hidden="true">↑</span></a>
+          </article>
+          <article>
+            <span class="ledger-code">MAP PIN</span>
+            <h3>A short distance can still be a difficult walk.</h3>
+            <p>Hills, indirect entrances and heat can matter more than the number beside the pin.</p>
+            <small>CHECK · ROUTE · SHADE · SLOPE</small>
+          </article>
+          <article>
+            <span class="ledger-code">REVIEW SCORE</span>
+            <h3>A good average can hide your deal-breaker.</h3>
+            <p>We surface repeated themes such as noise, room size and location friction beside the benefit.</p>
+            <small>READ · PATTERN · NOT HYPE</small>
+          </article>
+          <article>
+            <span class="ledger-code">ROOM PRICE</span>
+            <h3>A cheaper room can spend the saving on transport.</h3>
+            <p>Value is judged against the days you actually plan—not against a room in isolation.</p>
+            <small>COMPARE · WHOLE TRIP · NOT ROOM</small>
+          </article>
         </div>
       </section>
 
