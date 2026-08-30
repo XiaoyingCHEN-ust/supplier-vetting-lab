@@ -43,6 +43,90 @@ body::before {
   pointer-events: none;
 }
 
+/* Thailand field-edition runway */
+.edition-hub {
+  position: relative;
+  padding: clamp(78px, 9vw, 138px) clamp(20px, 4.8vw, 82px) clamp(74px, 8vw, 122px);
+  overflow: hidden;
+  color: #17363a;
+  background:
+    radial-gradient(circle at 79% 2%, rgba(198, 154, 82, 0.18), transparent 25rem),
+    linear-gradient(115deg, rgba(31, 104, 104, 0.06), transparent 40%),
+    #f5f1e8;
+}
+
+.edition-hub::before {
+  position: absolute;
+  inset: 0;
+  opacity: 0.34;
+  background-image: linear-gradient(90deg, transparent 49.94%, rgba(17, 40, 45, 0.08) 50%, transparent 50.06%);
+  content: "";
+  pointer-events: none;
+}
+
+.edition-hub-head,
+.edition-runway,
+.edition-principle { position: relative; z-index: 1; max-width: 1660px; margin-right: auto; margin-left: auto; }
+
+.edition-hub-head { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr); column-gap: clamp(44px, 8vw, 142px); align-items: end; }
+.edition-index { grid-column: 1 / -1; display: flex; justify-content: space-between; margin: 0 0 34px; padding-bottom: 12px; color: #507174; border-bottom: 1px solid rgba(23, 54, 58, 0.22); font: 600 0.7rem/1 var(--utility); letter-spacing: 0.11em; }
+.edition-hub-head h1 { margin: 0; max-width: 980px; color: #102d34; font: 500 clamp(4.4rem, 7.3vw, 8.8rem)/0.84 var(--display); letter-spacing: -0.065em; }
+.edition-hub-head h1 em { color: #a3483b; font-weight: 400; }
+.edition-hub-head > p:last-child { max-width: 520px; margin: 0 0 8px; color: #5b7072; font-size: clamp(1rem, 0.3vw + 0.95rem, 1.18rem); line-height: 1.65; }
+
+.edition-runway { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 1.5vw, 24px); margin-top: clamp(58px, 7vw, 106px); }
+.edition-card { min-width: 0; min-height: clamp(510px, 47vw, 720px); overflow: hidden; background: #102d34; box-shadow: 0 30px 85px rgba(17, 40, 45, 0.15); }
+.edition-card a { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: inherit; padding: clamp(24px, 3.3vw, 56px); overflow: hidden; color: white; text-decoration: none; isolation: isolate; }
+.edition-card a::before { position: absolute; inset: 0; z-index: -2; background-position: center; background-size: cover; content: ""; transition: transform 900ms cubic-bezier(.2,.72,.2,1), filter 400ms ease; }
+.edition-card a::after { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(6, 31, 36, 0.18) 0%, rgba(6, 31, 36, 0.18) 28%, rgba(6, 31, 36, 0.9) 100%); content: ""; }
+.edition-card-phuket a::before { background-image: url("assets/travel/phuket-dawn.webp"); }
+.edition-card-bangkok a::before { background-image: url("assets/travel/bangkok/bangkok-river-blue-hour.jpg"); }
+.edition-card a:hover::before,
+.edition-card a:focus-visible::before { filter: saturate(1.08); transform: scale(1.035); }
+.edition-card a:focus-visible { outline: 4px solid #e6b758; outline-offset: -4px; }
+.edition-number,
+.edition-card div > p { font: 600 0.72rem/1.2 var(--utility); letter-spacing: 0.12em; }
+.edition-number { align-self: flex-start; padding: 10px 12px; color: #f5f1e8; border: 1px solid rgba(255,255,255,.5); background: rgba(6,31,36,.25); backdrop-filter: blur(10px); }
+.edition-card div > p { margin: 0 0 17px; color: #e6b758; }
+.edition-card h2 { max-width: 760px; margin: 0; color: white; font: 500 clamp(3.1rem, 4.6vw, 6.1rem)/0.88 var(--display); letter-spacing: -0.055em; }
+.edition-card ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 25px 0 28px; padding: 0; list-style: none; }
+.edition-card li { padding: 7px 10px; color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.24); font: 500 0.7rem/1 var(--utility); }
+.edition-card strong { display: flex; justify-content: space-between; align-items: center; min-height: 48px; padding-top: 16px; color: white; border-top: 1px solid rgba(255,255,255,.42); font-size: 0.95rem; }
+.edition-card strong span { color: #e6b758; font-size: 1.25rem; }
+
+.edition-principle { display: grid; grid-template-columns: auto auto minmax(34px, 1fr) auto minmax(34px, 1fr) auto auto; gap: 18px; align-items: center; margin-top: 34px; padding: 20px 0; border-top: 1px solid rgba(23,54,58,.2); border-bottom: 1px solid rgba(23,54,58,.2); }
+.edition-principle span,
+.edition-principle small { color: #6b7d7e; font: 600 0.64rem/1.4 var(--utility); letter-spacing: 0.08em; }
+.edition-principle strong { color: #17363a; font: 500 clamp(1rem, 1.2vw, 1.35rem)/1 var(--display); }
+.edition-principle i { height: 1px; background: linear-gradient(90deg, #c69a52, rgba(198,154,82,.15)); }
+.edition-principle small { text-align: right; }
+
+@media (max-width: 1180px) {
+  .home-header nav { display: flex; gap: 18px; }
+  .home-header nav a { font-size: 0.72rem; }
+  .edition-hub-head { grid-template-columns: 1fr; }
+  .edition-hub-head > p:last-child { margin-top: 30px; }
+}
+
+@media (max-width: 980px) {
+  .home-header nav { display: none; }
+  .edition-runway { grid-template-columns: 1fr; }
+  .edition-card { min-height: clamp(480px, 82vw, 670px); }
+  .edition-principle { grid-template-columns: auto 1fr; }
+  .edition-principle i { display: none; }
+  .edition-principle small { grid-column: 1 / -1; text-align: left; }
+}
+
+@media (max-width: 620px) {
+  .edition-hub { padding-right: 16px; padding-left: 16px; }
+  .edition-index { gap: 14px; font-size: 0.58rem; }
+  .edition-hub-head h1 { font-size: clamp(3.35rem, 15.5vw, 5rem); }
+  .edition-card { min-height: 520px; }
+  .edition-card h2 { font-size: clamp(3rem, 13.5vw, 4.5rem); }
+  .edition-card ul { display: grid; width: fit-content; }
+  .edition-principle { gap: 12px; }
+}
+
 ::selection { color: white; background: var(--lagoon); }
 
 a { color: inherit; }
@@ -1317,4 +1401,27 @@ button, input { font: inherit; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* Readability pass: public evidence must remain legible on every viewport. */
+.map-area-art figcaption { font-size: 0.72rem; }
+.place-signal-top > div > span { font-size: 0.66rem; }
+.place-signal-top > div > p { font-size: 0.82rem; }
+.signal-pair span { font-size: 0.61rem; }
+.signal-pair p { font-size: 0.86rem; }
+.place-signal-meta span,
+.place-signal-meta a { font-size: 0.72rem; }
+.map-tradeoffs dt { font-size: 0.67rem; }
+.map-tradeoffs dd { font-size: 0.8rem; }
+.map-evidence-note { font-size: 0.72rem; }
+.area-story-card > div > span { font-size: 0.66rem; }
+.area-story-card p { font-size: 0.9rem; line-height: 1.55; }
+.area-story-card dt { font-size: 0.62rem; }
+.area-story-card dd { font-size: 0.8rem; line-height: 1.45; }
+.area-story-card a { min-height: 44px; align-items: center; font-size: 0.84rem; }
+.art-disclosure { font-size: 0.7rem; }
+
+@media (min-width: 981px) and (max-width: 1260px) {
+  .home-header nav { display: flex; gap: 16px; }
+  .home-header nav a { font-size: 0.7rem; }
 }

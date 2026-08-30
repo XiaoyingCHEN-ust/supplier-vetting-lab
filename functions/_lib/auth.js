@@ -1,7 +1,15 @@
 const encoder = new TextEncoder();
 
 export const GUIDE_ID = "phuket-2026-v1";
+export const GUIDE_CATALOG = Object.freeze({
+  [GUIDE_ID]: Object.freeze({ objectKey: "Phuket-Travel-Brief-v1.json" }),
+  "bangkok-2026-v1": Object.freeze({ objectKey: "Bangkok-Travel-Brief-v1.json" }),
+});
 export const AUTH_COOKIE = "driftwise_session";
+
+export function isSupportedGuideId(guideId) {
+  return Object.hasOwn(GUIDE_CATALOG, guideId);
+}
 
 function bytesToBase64Url(bytes) {
   let binary = "";
@@ -114,13 +122,15 @@ export async function currentAccount(request, env) {
   }
 }
 
-export async function hasGuideAccess(request, env, sessionId = "") {
+export async function hasGuideAccess(request, env, guideId = GUIDE_ID, sessionId = "") {
+  if (!env.ENTITLEMENTS || !isSupportedGuideId(guideId)) return { allowed: false };
+
   if (/^cs_(?:(?:test|live)_)?[A-Za-z0-9]+$/.test(sessionId)) {
     const value = await env.ENTITLEMENTS.get(`entitlement:${sessionId}`);
     if (value) {
       try {
         const entitlement = JSON.parse(value);
-        if (entitlement?.product?.guideId === GUIDE_ID) {
+        if (entitlement?.product?.guideId === guideId) {
           return { allowed: true, source: "purchase", entitlement };
         }
       } catch {
@@ -130,7 +140,7 @@ export async function hasGuideAccess(request, env, sessionId = "") {
   }
 
   const signedIn = await currentAccount(request, env);
-  if (signedIn?.account?.guideIds?.includes(GUIDE_ID)) {
+  if (signedIn?.account?.guideIds?.includes(guideId)) {
     return { allowed: true, source: "account", account: signedIn.account };
   }
   return { allowed: false };

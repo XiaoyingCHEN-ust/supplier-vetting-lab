@@ -1,13 +1,14 @@
 # Driftwise Travel
 
-Public travel pages, private guide access, and secure post-payment delivery for Driftwise Travel and Phuket Scenic Studio.
+Public travel pages, private guide access, and secure post-payment delivery for Driftwise Travel's Bangkok and Phuket field editions and Phuket Scenic Studio.
 
 The paid product files are intentionally not included in this repository. Only public marketing assets, policy pages, and the payment-verification code are published.
 
 ## Public acquisition pages
 
-- `/` is the price-free Driftwise Travel discovery page with a wrong-coast test and interactive Phuket decision map.
+- `/` is the price-free Driftwise Travel discovery hub for the Bangkok city and Phuket coast field editions; the Phuket decision map continues below the destination runway.
 - `/phuket/` is the dated Phuket preview, currency calculator, account entry, and paid in-browser guide.
+- `/bangkok/` is the dated Bangkok preview with a six-district Route Loom, hotel and food signals, daypart and transport planning, account entry, and paid in-browser guide.
 - `/phuket-scenic-studio/` presents individually downloadable, watermarked-preview Phuket scenic backgrounds grouped by coast and district.
 - `/sitemap.xml` and `/robots.txt` expose the public discovery surface to search engines.
 
@@ -38,7 +39,7 @@ Each catalog entry contains the exact amount in cents and the R2 object delivere
 }
 ```
 
-The webhook grants access only when the signed checkout session's Payment Link, USD currency, paid state, and exact amount all match the trusted catalog. Product files remain private in R2. Downloads are returned through `/api/download`; the Phuket guide is returned through `/api/guide` after a valid purchase session or account login.
+The webhook grants access only when the signed checkout session's Payment Link, USD currency, paid state, and exact amount all match the trusted catalog. Product files remain private in R2. Downloads are returned through `/api/download`; the Bangkok and Phuket guides are returned through an allowlisted `/api/guide` request after a valid purchase session or account login.
 
 Guide purchasers can register from the completed-payment URL. Passwords are PBKDF2-hashed, account entitlements do not expire, and sign-in sessions use secure HTTP-only cookies.
 
@@ -50,6 +51,6 @@ Download products redirect to:
 
 `https://driftwise-travel.pages.dev/delivery.html?session_id={CHECKOUT_SESSION_ID}`
 
-The Phuket guide can redirect to `/phuket/?session_id={CHECKOUT_SESSION_ID}#guide`. The root page also safely forwards an existing guide checkout session to that path.
+The Phuket guide redirects to `/phuket/?session_id={CHECKOUT_SESSION_ID}#guide`; the Bangkok guide redirects to `/bangkok/?session_id={CHECKOUT_SESSION_ID}#guide`. Accounts keep each guide entitlement separately and can safely hold both.
 
 Before changing payment or delivery code, run `npm test` and complete a Stripe sandbox download check.

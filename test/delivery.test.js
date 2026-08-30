@@ -294,3 +294,179 @@ test("a paid travel guide can be read, registered, and reopened from an account"
   assert.equal(accountGuide.status, 200);
   assert.equal((await accountGuide.json()).access, "account");
 });
+
+test("a paid Bangkok guide uses its fixed R2 object and persists on its own account", async () => {
+  const kv = new MemoryKV();
+  const secret = "whsec_test_example";
+  const bangkokSession = {
+    ...session,
+    id: "cs_test_bangkok123",
+    payment_link: "plink_test_bangkok",
+    amount_total: 200,
+    payment_intent: "pi_test_bangkok123",
+    customer_details: { email: "bangkok-reader@example.com" },
+  };
+  const guideData = {
+    meta: { id: "bangkok-2026-v1", title: "Bangkok Stay, Eat & Move Brief" },
+    areas: [],
+  };
+  const requestedObjects = [];
+  const env = {
+    ENTITLEMENTS: kv,
+    PRODUCT_FILES: {
+      async get(key) {
+        requestedObjects.push(key);
+        if (key !== "Bangkok-Travel-Brief-v1.json") return null;
+        return { async text() { return JSON.stringify(guideData); } };
+      },
+    },
+    STRIPE_WEBHOOK_TEST_SECRET: secret,
+    PRODUCT_CATALOG: JSON.stringify({
+      plink_test_bangkok: {
+        amount: 200,
+        objectKey: "Bangkok-Travel-Brief-v1.json",
+        filename: "Bangkok-Travel-Brief-v1.json",
+        contentType: "application/json",
+        label: "Bangkok Stay, Eat & Move Brief — 2026",
+        guideId: "bangkok-2026-v1",
+        accessType: "guide",
+      },
+    }),
+  };
+
+  const paidEvent = { type: "checkout.session.completed", data: { object: bangkokSession } };
+  assert.equal((await webhook({ request: signedRequest(paidEvent, secret), env })).status, 200);
+
+  const paidGuide = await guide({
+    request: new Request(
+      "https://example.com/api/guide?guide_id=bangkok-2026-v1&session_id=cs_test_bangkok123",
+    ),
+    env,
+  });
+  assert.equal(paidGuide.status, 200);
+  assert.deepEqual((await paidGuide.json()).guide, guideData);
+  assert.deepEqual(requestedObjects, ["Bangkok-Travel-Brief-v1.json"]);
+
+  const wrongGuide = await guide({
+    request: new Request("https://example.com/api/guide?session_id=cs_test_bangkok123"),
+    env,
+  });
+  assert.equal(wrongGuide.status, 425);
+  assert.deepEqual(requestedObjects, ["Bangkok-Travel-Brief-v1.json"]);
+
+  const registration = await accountAction({
+    request: new Request("https://example.com/api/account", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        action: "register",
+        sessionId: "cs_test_bangkok123",
+        password: "a-long-bangkok-password",
+      }),
+    }),
+    env,
+  });
+  assert.equal(registration.status, 201);
+  const cookie = registration.headers.get("set-cookie").split(";")[0];
+
+  const bangkokAccount = await accountStatus({
+    request: new Request("https://example.com/api/account?guide_id=bangkok-2026-v1", {
+      headers: { cookie },
+    }),
+    env,
+  });
+  assert.deepEqual(await bangkokAccount.json(), {
+    signedIn: true,
+    email: "bangkok-reader@example.com",
+    guideAccess: true,
+  });
+
+  const phuketAccount = await accountStatus({
+    request: new Request("https://example.com/api/account", { headers: { cookie } }),
+    env,
+  });
+  assert.deepEqual(await phuketAccount.json(), {
+    signedIn: true,
+    email: "bangkok-reader@example.com",
+    guideAccess: false,
+  });
+
+  const accountGuide = await guide({
+    request: new Request("https://example.com/api/guide?guide_id=bangkok-2026-v1", {
+      headers: { cookie },
+    }),
+    env,
+  });
+  assert.equal(accountGuide.status, 200);
+  assert.equal((await accountGuide.json()).access, "account");
+});
+
+test("guide access rejects unauthorised and unknown guide requests before R2", async () => {
+  let objectReads = 0;
+  const env = {
+    ENTITLEMENTS: new MemoryKV(),
+    PRODUCT_FILES: {
+      async get() {
+        objectReads += 1;
+        throw new Error("R2 should not be read");
+      },
+    },
+  };
+
+  const unauthorized = await guide({
+    request: new Request("https://example.com/api/guide?guide_id=bangkok-2026-v1"),
+    env,
+  });
+  assert.equal(unauthorized.status, 401);
+
+  const unknown = await guide({
+    request: new Request(
+      "https://example.com/api/guide?guide_id=Bangkok-Travel-Brief-v1.json&session_id=cs_test_abc123",
+    ),
+    env,
+  });
+  assert.equal(unknown.status, 404);
+  assert.deepEqual(await unknown.json(), { error: "Unknown guide." });
+
+  const inheritedName = await guide({
+    request: new Request("https://example.com/api/guide?guide_id=toString"),
+    env,
+  });
+  assert.equal(inheritedName.status, 404);
+  assert.equal(objectReads, 0);
+});
+
+test("the webhook does not grant an unlisted guide id", async () => {
+  const kv = new MemoryKV();
+  const secret = "whsec_test_example";
+  const event = {
+    type: "checkout.session.completed",
+    data: {
+      object: {
+        ...session,
+        id: "cs_test_unknown123",
+        payment_link: "plink_test_unknown",
+        payment_intent: "pi_test_unknown123",
+      },
+    },
+  };
+  const response = await webhook({
+    request: signedRequest(event, secret),
+    env: {
+      ENTITLEMENTS: kv,
+      STRIPE_WEBHOOK_TEST_SECRET: secret,
+      PRODUCT_CATALOG: JSON.stringify({
+        plink_test_unknown: {
+          amount: 100,
+          objectKey: "Private-Object.json",
+          filename: "Private-Object.json",
+          guideId: "unlisted-guide",
+          accessType: "guide",
+        },
+      }),
+    },
+  });
+
+  assert.equal(response.status, 200);
+  assert.equal(await kv.get("entitlement:cs_test_unknown123"), null);
+});

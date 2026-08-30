@@ -6,6 +6,7 @@ import {
   createLoginSession,
   currentAccount,
   emailKey,
+  isSupportedGuideId,
   normalizeEmail,
   passwordRecord,
   sessionCookie,
@@ -44,12 +45,14 @@ async function rateLimited(request, env, email) {
 
 export async function onRequestGet({ request, env }) {
   if (!env.ENTITLEMENTS) return json({ error: "Account access is not configured." }, 503);
+  const guideId = new URL(request.url).searchParams.get("guide_id") || GUIDE_ID;
+  if (!isSupportedGuideId(guideId)) return json({ error: "Unknown guide." }, 404);
   const signedIn = await currentAccount(request, env);
   if (!signedIn) return json({ signedIn: false });
   return json({
     signedIn: true,
     email: signedIn.account.email,
-    guideAccess: signedIn.account.guideIds?.includes(GUIDE_ID) || false,
+    guideAccess: signedIn.account.guideIds?.includes(guideId) || false,
   });
 }
 
@@ -79,18 +82,33 @@ export async function onRequestPost({ request, env }) {
       return json({ error: "The order record is invalid." }, 503);
     }
     const email = normalizeEmail(entitlement.customerEmail);
-    if (entitlement?.product?.guideId !== GUIDE_ID || !email.includes("@")) {
+    const guideId = entitlement?.product?.guideId;
+    if (!isSupportedGuideId(guideId) || !email.includes("@")) {
       return json({ error: "This order cannot create a guide account." }, 403);
     }
 
     const key = await emailKey(email);
-    if (await env.ENTITLEMENTS.get(key)) {
-      return json({ error: "An account already exists for this payment email. Sign in instead." }, 409);
+    const existingAccountValue = await env.ENTITLEMENTS.get(key);
+    if (existingAccountValue) {
+      try {
+        const existingAccount = JSON.parse(existingAccountValue);
+        const guideIds = Array.isArray(existingAccount.guideIds)
+          ? existingAccount.guideIds.filter((id) => isSupportedGuideId(id))
+          : [];
+        if (!guideIds.includes(guideId)) guideIds.push(guideId);
+        await env.ENTITLEMENTS.put(
+          key,
+          JSON.stringify({ ...existingAccount, guideIds, updatedAt: new Date().toISOString() }),
+        );
+      } catch {
+        return json({ error: "Account data is unavailable." }, 503);
+      }
+      return json({ error: "This purchase was added to your existing account. Sign in instead." }, 409);
     }
     const account = {
       email,
       password: await passwordRecord(body.password),
-      guideIds: [GUIDE_ID],
+      guideIds: [guideId],
       createdAt: new Date().toISOString(),
     };
     await env.ENTITLEMENTS.put(key, JSON.stringify(account));
@@ -102,6 +120,10 @@ export async function onRequestPost({ request, env }) {
     );
   }
 
+  const guideId = body.guideId || GUIDE_ID;
+  if (!isSupportedGuideId(guideId)) {
+    return json({ error: "Unknown guide." }, 404);
+  }
   const email = normalizeEmail(body.email);
   if (!email.includes("@") || await rateLimited(request, env, email)) {
     return json({ error: "Email or password is incorrect." }, 401);
@@ -121,7 +143,7 @@ export async function onRequestPost({ request, env }) {
   }
   const token = await createLoginSession(env, key);
   return json(
-    { signedIn: true, email: account.email, guideAccess: account.guideIds?.includes(GUIDE_ID) || false },
+    { signedIn: true, email: account.email, guideAccess: account.guideIds?.includes(guideId) || false },
     200,
     { "set-cookie": sessionCookie(token) },
   );

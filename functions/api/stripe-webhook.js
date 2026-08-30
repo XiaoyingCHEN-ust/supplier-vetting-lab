@@ -1,3 +1,5 @@
+import { isSupportedGuideId } from "../_lib/auth.js";
+
 const encoder = new TextEncoder();
 
 function hexToBytes(value) {
@@ -83,13 +85,17 @@ function sessionProduct(session, catalog) {
     return null;
   }
 
+  const guideId = typeof product.guideId === "string" ? product.guideId : null;
+  const accessType = typeof product.accessType === "string" ? product.accessType : "download";
+  if (accessType === "guide" && !isSupportedGuideId(guideId)) return null;
+
   return {
     objectKey: product.objectKey,
     filename: product.filename,
     contentType: product.contentType || "application/octet-stream",
     label: product.label || "Your purchase",
-    guideId: typeof product.guideId === "string" ? product.guideId : null,
-    accessType: typeof product.accessType === "string" ? product.accessType : "download",
+    guideId,
+    accessType,
   };
 }
 
