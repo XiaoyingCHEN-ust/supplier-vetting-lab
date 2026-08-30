@@ -6,104 +6,230 @@ if (/^cs_(?:(?:test|live)_)?[A-Za-z0-9]+$/.test(paymentSession)) {
 const destinationMaps = {
   phuket: {
     name: "Phuket",
-    reviewedOn: "30 Aug 2026",
+    reviewedOn: "31 Aug 2026",
     areas: {
       "nai-yang": {
-    name: "Nai Yang Beach",
-    region: "NORTHWEST COAST",
-    sequence: "01 / 06",
-    coordinates: [8.0909, 98.2980],
-    labelSide: "right",
-    summary: "For a quiet landing, short airport transfer and a beach beside Sirinat National Park. It is a poor base if most of your plans sit around Patong or the southern viewpoints.",
-    mood: "Quiet and low-friction",
-    fit: "Late arrivals · slow travel",
-    check: "Longer trips to the south",
-    hotel: {
-      name: "Dewa Phuket Resort & Villas",
-      score: "8.5",
-      reviewCount: 897,
-      reviewPattern: "Staff, comfort, beach proximity, airport convenience and a relaxed setting are the recurring strengths.",
-      source: "https://www.booking.com/hotel/th/dewa-phuket.html",
-    },
-  },
-  patong: {
-    name: "Patong Beach",
-    region: "CENTRAL WEST COAST",
-    sequence: "02 / 06",
-    coordinates: [7.8965, 98.2968],
-    labelSide: "left",
-    summary: "The highest-convenience choice for nightlife, shopping and a dense range of restaurants. Choose it deliberately: central access comes with traffic, crowds and a greater chance of street noise.",
-    mood: "Busy and highly connected",
-    fit: "Nightlife · short first visits",
-    check: "Room position affects noise",
-    hotel: {
-      name: "Hotel Clover Patong Phuket",
-      score: "8.9",
-      reviewCount: 4280,
-      reviewPattern: "Verified reviews are strongest on location, cleanliness, comfort, staff and the rooftop pool experience.",
-      source: "https://www.booking.com/hotel/th/surf-patong.html",
-    },
-  },
-  kata: {
-    name: "Kata Beach",
-    region: "SOUTHWEST COAST",
-    sequence: "03 / 06",
-    coordinates: [7.8210, 98.2987],
-    labelSide: "left",
-    summary: "A practical first beach stay for couples and families who want restaurants nearby without Patong intensity. Hills and indirect hotel entrances can make a short map distance feel longer.",
-    mood: "Balanced and family-friendly",
-    fit: "First stays · beach days",
-    check: "Check the real walking route",
-    hotel: {
-      name: "OZO Phuket",
-      score: "8.8",
-      reviewCount: 1582,
-      reviewPattern: "Guests consistently value the location, helpful staff, family facilities, beach access and breakfast variety.",
-      source: "https://www.booking.com/hotel/th/ozo-phuket.html",
-    },
-  },
-  karon: {
-    name: "Karon Beach",
-    region: "WEST COAST",
-    sequence: "04 / 06",
-    coordinates: [7.8474, 98.2937],
-    labelSide: "left",
-    summary: "A long open beach with more breathing room than central Patong. It suits travellers who accept a more spread-out district and plan their evening transport instead of expecting everything on one block.",
-    mood: "Open beach and more space",
-    fit: "Long walks · relaxed couples",
-    check: "The district is spread out",
-    hotel: null,
-  },
-  "nai-harn": {
-    name: "Nai Harn Beach",
-    region: "SOUTH COAST",
-    sequence: "05 / 06",
-    coordinates: [7.7790, 98.3065],
-    labelSide: "right",
-    summary: "A scenic southern option for travellers who care more about the beach and a slower day than nightlife access. It is less convenient for airport runs and repeated trips to Patong or Old Town.",
-    mood: "Scenic and slower",
-    fit: "Beach-first · repeat visitors",
-    check: "Less convenient without a plan",
-    hotel: null,
-  },
-  "old-town": {
-    name: "Phuket Old Town",
-    region: "SOUTHEAST INTERIOR",
-    sequence: "06 / 06",
-    coordinates: [7.8834, 98.3873],
-    labelSide: "right",
-    summary: "The strongest cultural base for architecture, cafés and local food, with a walkable core. It is not a beach stay: every west-coast beach day adds time and transport planning.",
-    mood: "Cultural and walkable",
-    fit: "Food · architecture · short stays",
-    check: "No beach outside the door",
-    hotel: {
-      name: "The Memory at On On Hotel",
-      score: "9.2",
-      reviewCount: 1977,
-      reviewPattern: "Location, staff, cleanliness, value and the historic atmosphere lead the verified-review pattern.",
-      source: "https://www.booking.com/hotel/th/the-memory-at-on-on.html",
-    },
-  },
+        name: "Nai Yang Beach",
+        region: "NORTHWEST COAST",
+        sequence: "01 / 06",
+        coordinates: [8.0909, 98.2980],
+        labelSide: "right",
+        art: {
+          src: "assets/presentation-backgrounds/hero/nai-yang-cover.jpg",
+          alt: "AI-created editorial artwork inspired by a quiet morning on Nai Yang Beach",
+        },
+        summary: "For a quiet landing, short airport transfer and a beach beside Sirinat National Park. It is a poor base if most of your plans sit around Patong or the southern viewpoints.",
+        mood: "Quiet and low-friction",
+        fit: "Late arrivals · slow travel",
+        check: "Longer trips to the south",
+        hotel: {
+          name: "Dewa Phuket Resort & Villas",
+          score: "8.5",
+          scale: "10",
+          platform: "Booking.com",
+          reviewCount: 897,
+          category: "Resort · airport ease",
+          reviewPattern: "Verified-stay scores are strongest for staff, comfort, airport convenience and the Nai Yang beach location.",
+          watchOut: "The resort price band and longer journeys to Patong or the south are the practical trade-offs.",
+          source: "https://www.booking.com/hotel/th/dewa-phuket.html?came_from_hotel_review=1&keep_landing=1",
+        },
+        food: {
+          name: "Sea Almond Chilled Restaurant & Bar",
+          score: "4.3",
+          scale: "5",
+          platform: "Tripadvisor",
+          reviewCount: 479,
+          category: "Beachfront seafood · sunset",
+          reviewPattern: "Public reviews often praise the sea view, sunset setting, relaxed atmosphere and friendly service.",
+          watchOut: "Choose it for beachside atmosphere; confirm the current menu, prices and service conditions before making it the trip's special meal.",
+          source: "https://www.tripadvisor.com.sg/Restaurant_Review-g1215773-d2617387-Reviews-Sea_Almond_Chilled_Restaurant_Bar-Nai_Yang_Sakhu_Thalang_District_Phuket.html",
+        },
+      },
+      patong: {
+        name: "Patong Beach",
+        region: "CENTRAL WEST COAST",
+        sequence: "02 / 06",
+        coordinates: [7.8965, 98.2968],
+        labelSide: "left",
+        art: {
+          src: "assets/travel/atlas/patong-after-rain.jpg",
+          alt: "AI-created editorial artwork inspired by Patong after tropical rain at blue hour",
+        },
+        summary: "The highest-convenience choice for nightlife, shopping and a dense range of restaurants. Choose it deliberately: central access comes with traffic, crowds and a greater chance of street noise.",
+        mood: "Busy and highly connected",
+        fit: "Nightlife · short first visits",
+        check: "Room position affects noise",
+        hotel: {
+          name: "Hotel Clover Patong Phuket",
+          score: "8.9",
+          scale: "10",
+          platform: "Booking.com",
+          reviewCount: 4280,
+          category: "Boutique · walk-first base",
+          reviewPattern: "Verified-stay scores are strongest for location, staff, comfort, cleanliness and the rooftop-pool experience.",
+          watchOut: "This is a central urban base rather than a secluded resort; room outlook and street activity vary by position.",
+          source: "https://www.booking.com/hotel/th/surf-patong.html",
+        },
+        food: {
+          name: "Baan Rim Pa",
+          score: "4.1",
+          scale: "5",
+          platform: "Tripadvisor",
+          reviewCount: 2647,
+          category: "Thai · bay-view dinner",
+          reviewPattern: "Public reviews repeatedly mention the Kalim Bay outlook, polished setting, service and evening atmosphere.",
+          watchOut: "It sits above the local-casual price level and normally needs a short ride from central Patong; check the latest menu and table position.",
+          source: "https://www.tripadvisor.com/Restaurant_Review-g297930-d1073248-Reviews-Baan_Rim_Pa-Patong_Kathu_Phuket.html",
+        },
+      },
+      kata: {
+        name: "Kata Beach",
+        region: "SOUTHWEST COAST",
+        sequence: "03 / 06",
+        coordinates: [7.8210, 98.2987],
+        labelSide: "left",
+        art: {
+          src: "assets/presentation-backgrounds/hero/kata-cover.jpg",
+          alt: "AI-created layered-paper artwork inspired by Kata Bay",
+        },
+        summary: "A practical first beach stay for couples and families who want restaurants nearby without Patong intensity. Hills and indirect hotel entrances can make a short map distance feel longer.",
+        mood: "Balanced and family-friendly",
+        fit: "First stays · beach days",
+        check: "Check the real walking route",
+        hotel: {
+          name: "OZO Phuket",
+          score: "8.8",
+          scale: "10",
+          platform: "Booking.com",
+          reviewCount: 1578,
+          category: "Family · short beach walk",
+          reviewPattern: "Verified stays repeatedly value the location, staff, family pools, children’s facilities and beach access.",
+          watchOut: "The active family atmosphere is not designed for maximum privacy or a secluded couples-only stay.",
+          source: "https://www.booking.com/hotel/th/ozo-phuket.html?came_from_hotel_review=1&keep_landing=1",
+        },
+        food: {
+          name: "The Boathouse Restaurant",
+          score: "4.4",
+          scale: "5",
+          platform: "Tripadvisor",
+          reviewCount: 1929,
+          category: "Beachfront Thai + international",
+          reviewPattern: "Public reviews frequently highlight the direct Kata Beach setting, service, presentation and long sunset meals.",
+          watchOut: "This is premium beachfront dining; deposits or minimum-spend rules may apply for some dates or group sizes, so confirm first.",
+          source: "https://www.tripadvisor.co.uk/Restaurant_Review-g1210687-d1142927-Reviews-The_Boathouse_Restaurant-Kata_Beach_Karon_Phuket.html",
+        },
+      },
+      karon: {
+        name: "Karon Beach",
+        region: "WEST COAST",
+        sequence: "04 / 06",
+        coordinates: [7.8474, 98.2937],
+        labelSide: "left",
+        art: {
+          src: "assets/travel/atlas/karon-first-light.jpg",
+          alt: "AI-created layered-paper artwork inspired by Karon Beach at first light",
+        },
+        summary: "A long open beach with more breathing room than central Patong. It suits travellers who accept a more spread-out district and plan evening transport instead of expecting everything on one block.",
+        mood: "Open beach and more space",
+        fit: "Long walks · relaxed couples",
+        check: "The district is spread out",
+        hotel: {
+          name: "Avista Grande Phuket Karon – MGallery",
+          score: "8.9",
+          scale: "10",
+          platform: "Booking.com",
+          reviewCount: 990,
+          category: "Boutique resort · couples + families",
+          reviewPattern: "Verified-stay scores are strongest for staff, cleanliness, comfort, breakfast, rooms and the pool.",
+          watchOut: "It is close to Karon Beach but not built directly on the sand; confirm the walking route for the room and entrance you book.",
+          source: "https://www.booking.com/hotel/th/avista-grande-phuket-karon.html?came_from_hotel_review=1&keep_landing=1",
+        },
+        food: {
+          name: "EAT Bar & Grill",
+          score: "4.8",
+          scale: "5",
+          platform: "Tripadvisor",
+          reviewCount: 2567,
+          category: "Grill · sunset dinner",
+          reviewPattern: "Public reviews consistently emphasize steak preparation, attentive staff, cocktails and the elevated coastal outlook.",
+          watchOut: "Prices sit above local casual dining. Check the live menu and reserve if the sunset view is important.",
+          source: "https://www.tripadvisor.com/Restaurant_Review-g1215780-d7264891-Reviews-Eat_Bar_Grill-Karon_Phuket.html",
+        },
+      },
+      "nai-harn": {
+        name: "Nai Harn Beach",
+        region: "SOUTH COAST",
+        sequence: "05 / 06",
+        coordinates: [7.7790, 98.3065],
+        labelSide: "right",
+        art: {
+          src: "assets/travel/atlas/nai-harn-slow-sunset.jpg",
+          alt: "AI-created watercolor and linocut artwork inspired by a slow Nai Harn sunset",
+        },
+        summary: "A scenic southern option for travellers who care more about the beach and a slower day than nightlife access. It is less convenient for airport runs and repeated trips to Patong or Old Town.",
+        mood: "Scenic and slower",
+        fit: "Beach-first · repeat visitors",
+        check: "Less convenient without a plan",
+        hotel: {
+          name: "The Nai Harn",
+          score: "9.2",
+          scale: "10",
+          platform: "Booking.com",
+          reviewCount: 1161,
+          category: "Luxury · bay-view retreat",
+          reviewPattern: "Verified stays repeatedly value staff, cleanliness, comfort, breakfast, terraces and the bay-and-beach location.",
+          watchOut: "The hillside layout and high-end spending level matter; south-island seclusion also increases airport and Patong transfer time.",
+          source: "https://www.booking.com/hotel/th/the-nai-harn.html",
+        },
+        food: {
+          name: "Rock Salt",
+          score: "4.8",
+          scale: "5",
+          platform: "Tripadvisor",
+          reviewCount: 3929,
+          category: "Seafood · Mediterranean · sunset",
+          reviewPattern: "Public reviews repeatedly praise the sea view, service, seafood and beach-edge sunset setting.",
+          watchOut: "It is a high-end hotel restaurant. Confirm spice preferences, current prices and any reservation deposit before going.",
+          source: "https://www.tripadvisor.co.uk/Restaurant_Review-g1231757-d10521879-Reviews-Rock_Salt-Nai_Harn_Rawai_Phuket.html",
+        },
+      },
+      "old-town": {
+        name: "Phuket Old Town",
+        region: "SOUTHEAST INTERIOR",
+        sequence: "06 / 06",
+        coordinates: [7.8834, 98.3873],
+        labelSide: "right",
+        art: {
+          src: "assets/presentation-backgrounds/hero/old-town-cover.jpg",
+          alt: "AI-created editorial artwork inspired by Phuket Old Town after rain",
+        },
+        summary: "The strongest cultural base for architecture, cafés and local food, with a walkable core. It is not a beach stay: every west-coast beach day adds time and transport planning.",
+        mood: "Cultural and walkable",
+        fit: "Food · architecture · short stays",
+        check: "No beach outside the door",
+        hotel: {
+          name: "The Memory at On On Hotel",
+          score: "9.3",
+          scale: "10",
+          platform: "Booking.com",
+          reviewCount: 1984,
+          category: "Heritage · walkable Old Town",
+          reviewPattern: "Verified-stay scores are strongest for location, staff, cleanliness, comfort, value and the historic atmosphere.",
+          watchOut: "A heritage building has character rather than resort facilities; wooden floors and the central setting may matter to light sleepers.",
+          source: "https://www.booking.com/hotel/th/the-memory-at-on-on.html",
+        },
+        food: {
+          name: "One Chun Cafe & Restaurant",
+          score: "4.3",
+          scale: "5",
+          platform: "Tripadvisor",
+          reviewCount: 643,
+          category: "Southern Thai · MICHELIN Bib Gourmand 2026",
+          reviewPattern: "Public reviews often value the local Phuket flavours, vintage setting, family recipes and accessible price point.",
+          watchOut: "Queues and slower service can appear at busy times, and MICHELIN lists it as cash only; verify current payment options locally.",
+          source: "https://www.tripadvisor.com/Restaurant_Review-g2315818-d5818564-Reviews-One_Chun_Cafe_and_Restaurant-Talat_Yai_Phuket_Town_Phuket.html",
+        },
+      },
     },
   },
 };
@@ -168,26 +294,66 @@ const mapAreaSummary = document.querySelector("#map-area-summary");
 const mapBestFit = document.querySelector("#map-best-fit");
 const mapTradeoff = document.querySelector("#map-tradeoff");
 const mapMood = document.querySelector("#map-mood");
-const hotelSignal = document.querySelector("#hotel-signal");
-const mapHotelScore = document.querySelector("#map-hotel-score");
-const mapHotelName = document.querySelector("#map-hotel-name");
-const mapHotelPattern = document.querySelector("#map-hotel-pattern");
-const mapHotelCount = document.querySelector("#map-hotel-count");
-const mapHotelSource = document.querySelector("#map-hotel-source");
+const mapArt = document.querySelector("#map-art");
+const mapArtCaption = document.querySelector("#map-art-caption");
+const mapLensKicker = document.querySelector("#map-lens-kicker");
+const mapPlaceScore = document.querySelector("#map-place-score");
+const mapPlaceName = document.querySelector("#map-place-name");
+const mapPlaceCategory = document.querySelector("#map-place-category");
+const mapPlacePositive = document.querySelector("#map-place-positive");
+const mapPlaceWatch = document.querySelector("#map-place-watch");
+const mapPlaceCount = document.querySelector("#map-place-count");
+const mapPlaceSource = document.querySelector("#map-place-source");
 const mapReset = document.querySelector("#map-reset");
+const mapLayerButtons = document.querySelectorAll("[data-map-layer]");
 let phuketLeafletMap = null;
 let phuketOutlineLayer = null;
+let activeMapLayer = "hotel";
+let activeCoastId = "kata";
+
+const layerLabels = {
+  hotel: "STAY LENS",
+  food: "EAT LENS",
+  area: "BEACH LENS",
+};
 
 function showWholeIsland() {
   if (!phuketLeafletMap || !phuketOutlineLayer) return;
-  phuketLeafletMap.fitBounds(phuketOutlineLayer.getBounds(), { padding: [44, 44] });
+  phuketLeafletMap.fitBounds(phuketOutlineLayer.getBounds(), { padding: [56, 56] });
+}
+
+function areaLensFor(coast) {
+  return {
+    name: coast.name,
+    score: "AREA",
+    scale: "FIT",
+    platform: "Driftwise area lens",
+    reviewCount: null,
+    category: coast.mood,
+    reviewPattern: `Best for ${coast.fit.toLowerCase()}. ${coast.summary}`,
+    watchOut: coast.check,
+    source: "https://www.tourismthailand.org/Articles/phuket",
+  };
+}
+
+function setMapLayer(layer) {
+  if (!layerLabels[layer]) return;
+  activeMapLayer = layer;
+  mapCanvas?.setAttribute("data-layer", layer);
+  mapLayerButtons.forEach((button) => {
+    const isActive = button.dataset.mapLayer === layer;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+  selectCoast(activeCoastId);
 }
 
 function renderMapMarkers() {
   if (!mapCanvas) return;
   if (!window.L) {
     mapCanvas.classList.add("is-unavailable");
-    mapCanvas.querySelector(".map-loading").textContent = "The detailed map could not load. Refresh the page or use the area comparison beside it.";
+    const loadingMessage = mapCanvas.querySelector(".map-loading");
+    if (loadingMessage) loadingMessage.textContent = "The detailed map could not load. Refresh the page or use the six area summaries below it.";
     return;
   }
 
@@ -208,20 +374,20 @@ function renderMapMarkers() {
   }).addTo(phuketLeafletMap);
 
   L.polygon(phuketOutline, {
-    color: "#f1bd5d",
-    weight: 12,
-    opacity: 0.38,
+    color: "#edbb60",
+    weight: 7,
+    opacity: 0.2,
     fill: false,
     interactive: false,
     lineJoin: "round",
   }).addTo(phuketLeafletMap);
 
   phuketOutlineLayer = L.polygon(phuketOutline, {
-    color: "#073843",
-    weight: 4,
-    opacity: 0.96,
-    fillColor: "#5cb2a4",
-    fillOpacity: 0.12,
+    color: "#06343a",
+    weight: 2.5,
+    opacity: 0.95,
+    fillColor: "#77b8aa",
+    fillOpacity: 0.08,
     interactive: false,
     lineJoin: "round",
   }).addTo(phuketLeafletMap);
@@ -230,13 +396,13 @@ function renderMapMarkers() {
   // materialises marker elements after a map has a centre and zoom level.
   showWholeIsland();
 
-  Object.entries(coastProfiles).forEach(([areaId, coast]) => {
+  Object.entries(coastProfiles).forEach(([areaId, coast], index) => {
     const marker = L.marker(coast.coordinates, {
       icon: L.divIcon({
         className: "map-pin",
-        html: `<span class="map-pin-dot" aria-hidden="true"><i></i></span><span class="map-pin-label">${coast.name}</span>`,
-        iconSize: [24, 24],
-        iconAnchor: [12, 20],
+        html: `<span class="map-pin-dot" aria-hidden="true"><i>${String(index + 1).padStart(2, "0")}</i></span><span class="map-pin-label">${coast.name}</span>`,
+        iconSize: [30, 30],
+        iconAnchor: [15, 26],
       }),
       keyboard: true,
       riseOnHover: true,
@@ -248,17 +414,18 @@ function renderMapMarkers() {
     markerElement.dataset.mapArea = areaId;
     markerElement.dataset.labelSide = coast.labelSide;
     markerElement.setAttribute("role", "button");
-    markerElement.setAttribute("aria-label", `Show ${coast.name} review sample and trade-offs`);
-    marker.on("click", () => selectCoast(areaId));
+    markerElement.setAttribute("aria-label", `Show ${coast.name} stay, food and area evidence`);
+    marker.on("click", () => selectCoast(areaId, { focus: true }));
   });
 
   window.addEventListener("resize", () => phuketLeafletMap?.invalidateSize(), { passive: true });
 }
 
-function selectCoast(coastId) {
+function selectCoast(coastId, { focus = false } = {}) {
   const coast = coastProfiles[coastId] || coastProfiles.kata;
+  activeCoastId = coastProfiles[coastId] ? coastId : "kata";
   document.querySelectorAll("[data-map-area]").forEach((button) => {
-    const isActive = button.dataset.mapArea === coastId;
+    const isActive = button.dataset.mapArea === activeCoastId;
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
@@ -270,22 +437,34 @@ function selectCoast(coastId) {
   mapBestFit.textContent = coast.fit;
   mapTradeoff.textContent = coast.check;
   mapMood.textContent = coast.mood;
+  if (mapArt) {
+    mapArt.src = coast.art.src;
+    mapArt.alt = coast.art.alt;
+  }
+  if (mapArtCaption) mapArtCaption.textContent = `${coast.name} · AI-CREATED EDITORIAL ATMOSPHERE, NOT PROPERTY PHOTOGRAPHY`;
 
-  if (coast.hotel) {
-    hotelSignal.classList.remove("is-empty");
-    mapHotelScore.innerHTML = `${coast.hotel.score}<small>/10</small>`;
-    mapHotelName.textContent = coast.hotel.name;
-    mapHotelPattern.textContent = coast.hotel.reviewPattern;
-    mapHotelCount.textContent = `${coast.hotel.reviewCount.toLocaleString()} verified reviews · reviewed ${activeDestination.reviewedOn}`;
-    mapHotelSource.href = coast.hotel.source;
-    mapHotelSource.hidden = false;
+  const signal = activeMapLayer === "area" ? areaLensFor(coast) : coast[activeMapLayer];
+  mapLensKicker.textContent = `${layerLabels[activeMapLayer]} · ${signal.platform.toUpperCase()}`;
+  mapPlaceScore.innerHTML = activeMapLayer === "area"
+    ? `${signal.score}<small>${signal.scale}</small>`
+    : `${signal.score}<small>/${signal.scale}</small>`;
+  mapPlaceName.textContent = signal.name;
+  mapPlaceCategory.textContent = signal.category;
+  mapPlacePositive.textContent = signal.reviewPattern;
+  mapPlaceWatch.textContent = signal.watchOut;
+  if (activeMapLayer === "area") {
+    mapPlaceCount.textContent = `PLACE PROFILE · REVIEWED ${activeDestination.reviewedOn.toUpperCase()}`;
   } else {
-    hotelSignal.classList.add("is-empty");
-    mapHotelScore.innerHTML = "NEXT<small>EDITION</small>";
-    mapHotelName.textContent = "Named hotel coverage is being added";
-    mapHotelPattern.textContent = `${coast.name} has a free area profile now. The current edition does not publish a named hotel here, so no review score is invented.`;
-    mapHotelCount.textContent = "AREA PROFILE LIVE · HOTEL SAMPLE PENDING";
-    mapHotelSource.hidden = true;
+    const reviewLabel = signal.platform === "Booking.com" ? "verified-stay reviews" : "public reviews";
+    mapPlaceCount.textContent = `${signal.reviewCount.toLocaleString()} ${reviewLabel} · checked ${activeDestination.reviewedOn}`;
+  }
+  mapPlaceSource.href = signal.source;
+  mapPlaceSource.textContent = activeMapLayer === "area"
+    ? "Open destination source ↗"
+    : `Check current ${signal.platform} page ↗`;
+
+  if (focus && phuketLeafletMap) {
+    phuketLeafletMap.flyTo(coast.coordinates, 12, { duration: 0.7 });
   }
 
   mapReading.animate(
@@ -297,13 +476,23 @@ function selectCoast(coastId) {
 renderMapMarkers();
 selectCoast("kata");
 mapReset?.addEventListener("click", showWholeIsland);
+mapLayerButtons.forEach((button) => {
+  button.addEventListener("click", () => setMapLayer(button.dataset.mapLayer));
+});
+document.querySelectorAll("[data-story-area]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    selectCoast(link.dataset.storyArea, { focus: true });
+    document.querySelector("#atlas")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
 
 document.querySelector("#intent-finder")?.addEventListener("submit", (event) => {
   event.preventDefault();
   const intent = new FormData(event.currentTarget).get("intent") || "balanced";
   const [coastId, headline] = intentMatches[intent] || intentMatches.balanced;
   const coast = coastProfiles[coastId];
-  selectCoast(coastId);
+  selectCoast(coastId, { focus: true });
   finderResult.querySelector("h2").textContent = headline;
   finderResult.querySelector(".result-summary").textContent = `${coast.summary} Start here, then check the hotel-level trade-offs in the Phuket preview.`;
   resultGain.textContent = coast.mood;

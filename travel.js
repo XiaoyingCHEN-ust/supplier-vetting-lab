@@ -23,6 +23,22 @@ const publicAreas = {
     mobility: "Smart Bus corridor; check the walk from stop to lobby.",
     fit: "Families · couples · first beach stay",
   },
+  karon: {
+    name: "Karon",
+    signal: "Long beach + space",
+    summary: "A longer west-coast beach and a calmer evening rhythm than Patong. The area is spread out, so the exact hotel position still decides how walkable the stay feels.",
+    band: "฿3,000–8,500",
+    mobility: "Smart Bus corridor; check the final walk and whether daily plans sit in Kata or Patong.",
+    fit: "Long beach walks · couples · repeat visitors",
+  },
+  "nai-harn": {
+    name: "Nai Harn",
+    signal: "Scenic + slow",
+    summary: "A quieter southern bay for beach time, sunsets and a slower pace. It works best when the trip can accept longer airport and nightlife transfers.",
+    band: "฿3,500–12,000",
+    mobility: "Plan taxis or a rental for wider island days; public transport coverage is less convenient.",
+    fit: "Quiet couples · scenic stays · slow travel",
+  },
   "old-town": {
     name: "Phuket Old Town",
     signal: "Food + culture",
@@ -137,7 +153,7 @@ document.querySelector("#destination-search")?.addEventListener("submit", (event
     const terms = `${key} ${publicAreas[key].name}`.toLowerCase();
     return query && (terms.includes(query) || query.includes(publicAreas[key].name.toLowerCase()));
   });
-  const phuketTerms = ["phuket", "普吉", "kata", "patong", "nai yang", "old town", "thailand", "泰国"];
+  const phuketTerms = ["phuket", "普吉", "kata", "karon", "patong", "nai yang", "nai harn", "old town", "thailand", "泰国"];
 
   if (query && !directMatch && !phuketTerms.some((term) => query.includes(term))) {
     searchAnswer.innerHTML = `

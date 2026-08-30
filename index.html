@@ -3,24 +3,75 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Avoid booking the right hotel on the wrong side of Phuket. Match your trip to an area before comparing hotels, food and transport.">
+    <meta name="description" content="Find where to stay and eat in Phuket. Compare Patong, Kata, Karon, Nai Yang, Nai Harn and Old Town by hotel reviews, food, beach access and trip friction.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#082f38">
-    <meta property="og:title" content="Driftwise — Find your side of Phuket">
-    <meta property="og:description" content="Run the free wrong-coast test, see the trade-off, then compare Phuket hotels with context.">
+    <meta property="og:title" content="Where to stay and eat in Phuket | Driftwise Travel">
+    <meta property="og:description" content="Explore a six-area Phuket map with dated hotel and food review patterns, location trade-offs and original travel artwork.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://driftwise-travel.pages.dev/">
     <meta property="og:image" content="https://driftwise-travel.pages.dev/assets/travel/phuket-dawn.webp">
+    <meta property="og:image:alt" content="Original editorial view of an Andaman bay at dawn">
+    <meta property="og:site_name" content="Driftwise Travel">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://driftwise-travel.pages.dev/">
-    <title>Driftwise — Find your side of Phuket</title>
+    <title>Where to Stay & Eat in Phuket: Hotel Map | Driftwise Travel</title>
     <link rel="icon" href="assets/brand-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="home.css">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
     <script src="home.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://driftwise-travel.pages.dev/#website",
+            "url": "https://driftwise-travel.pages.dev/",
+            "name": "Driftwise Travel",
+            "publisher": { "@id": "https://driftwise-travel.pages.dev/#organization" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://driftwise-travel.pages.dev/#organization",
+            "name": "Driftwise Travel",
+            "url": "https://driftwise-travel.pages.dev/",
+            "email": "xiaoyingchen0829@163.com",
+            "description": "Independent, evidence-led Phuket travel decision guides and original scenic artwork."
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://driftwise-travel.pages.dev/#webpage",
+            "url": "https://driftwise-travel.pages.dev/",
+            "name": "Where to Stay and Eat in Phuket",
+            "isPartOf": { "@id": "https://driftwise-travel.pages.dev/#website" },
+            "about": {
+              "@type": "TouristDestination",
+              "name": "Phuket",
+              "address": { "@type": "PostalAddress", "addressRegion": "Phuket", "addressCountry": "TH" }
+            },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "ItemList",
+            "name": "Six Phuket areas compared",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Nai Yang Beach" },
+              { "@type": "ListItem", "position": 2, "name": "Patong Beach" },
+              { "@type": "ListItem", "position": 3, "name": "Kata Beach" },
+              { "@type": "ListItem", "position": 4, "name": "Karon Beach" },
+              { "@type": "ListItem", "position": 5, "name": "Nai Harn Beach" },
+              { "@type": "ListItem", "position": 6, "name": "Phuket Old Town" }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -33,7 +84,7 @@
       <nav aria-label="Primary navigation">
         <a href="#finder">Beach finder</a>
         <a href="#difference">Why different</a>
-        <a href="#atlas">Island atlas</a>
+        <a href="#atlas">Hotel + food map</a>
         <a href="#proof">How we review</a>
         <a href="phuket-scenic-studio/">Phuket scenic art</a>
       </nav>
@@ -128,9 +179,9 @@
 
       <section class="atlas-section" id="atlas">
         <div class="section-intro reveal">
-          <p class="eyebrow">CLICKABLE PHUKET DECISION MAP</p>
-          <h2>Put every beach on the same island.</h2>
-          <p>Tap a point to compare area fit, trade-offs and a dated public hotel-review sample. Zoom into real roads and coastlines, then return to the whole-island view before choosing a base.</p>
+          <p class="eyebrow">THE ANDAMAN FIELD ATLAS</p>
+          <h2>Stay, eat and choose your coast in one view.</h2>
+          <p>Tap a numbered area, then switch between one hotel sample, one food sample and the beach fit. Every public rating stays attached to its platform and 31 August 2026 evidence date.</p>
         </div>
 
         <div class="map-explorer reveal" data-destination="phuket">
@@ -138,42 +189,89 @@
             <div class="phuket-map" id="phuket-map" role="region" aria-label="OpenStreetMap of Phuket with six selectable Driftwise area markers">
               <p class="map-loading">Loading detailed island map…</p>
             </div>
+            <div class="map-layer-controls" role="group" aria-label="Choose map evidence layer">
+              <span>MAP LENS</span>
+              <button class="is-active" type="button" data-map-layer="hotel" aria-pressed="true">Stay</button>
+              <button type="button" data-map-layer="food" aria-pressed="false">Eat</button>
+              <button type="button" data-map-layer="area" aria-pressed="false">Beaches</button>
+            </div>
             <button class="map-reset" id="map-reset" type="button" aria-label="Return the map to the whole Phuket island view">Whole island</button>
-            <div class="map-field-label" aria-hidden="true"><span>PHUKET MAIN ISLAND</span><strong>Choose an area</strong></div>
-            <div class="map-legend" aria-hidden="true"><span><i></i> Driftwise area</span><span><b></b> Island outline</span></div>
-            <p class="map-note">DETAILED MAP · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a> · PINS ARE PLANNING REFERENCES</p>
+            <div class="map-legend" aria-hidden="true"><span><i></i> Select a numbered area</span><span><b></b> Phuket outline</span></div>
+            <p class="map-note">DETAILED MAP · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a> · PINS ARE PLANNING REFERENCES, NOT PROPERTY LOCATIONS</p>
           </div>
 
           <article class="map-reading" id="map-reading" aria-live="polite">
-            <div class="map-reading-head">
-              <p class="eyebrow">SELECTED AREA · WEST COAST</p>
-              <span class="map-sequence" id="map-sequence">03 / 06</span>
+            <figure class="map-area-art">
+              <img id="map-art" src="assets/presentation-backgrounds/hero/kata-cover.jpg" width="960" height="540" alt="AI-created editorial artwork inspired by a calm morning on Kata Beach">
+              <figcaption id="map-art-caption">Kata Beach · AI-CREATED EDITORIAL ATMOSPHERE, NOT PROPERTY PHOTOGRAPHY</figcaption>
+            </figure>
+            <div class="map-reading-body">
+              <div class="map-reading-head">
+                <p class="eyebrow">SELECTED AREA · SOUTHWEST COAST</p>
+                <span class="map-sequence" id="map-sequence">03 / 06</span>
+              </div>
+              <h3 id="map-area-name">Kata Beach</h3>
+              <p class="map-area-summary" id="map-area-summary">A practical first beach base for couples and families who want restaurants nearby without Patong intensity.</p>
+
+              <section class="place-signal" aria-label="Dated public place review sample">
+                <div class="place-signal-top">
+                  <div><span id="map-lens-kicker">STAY LENS · BOOKING.COM</span><p id="map-place-category">Family hotel · beach access</p></div>
+                  <strong id="map-place-score">8.8<small>/10</small></strong>
+                </div>
+                <h4 id="map-place-name">OZO Phuket</h4>
+                <div class="signal-pair">
+                  <div class="signal-positive"><span>TRAVELLERS REPEAT</span><p id="map-place-positive">Verified-stay scores are strongest for location, staff and family facilities.</p></div>
+                  <div class="signal-watch"><span>PAUSE BEFORE BOOKING</span><p id="map-place-watch">It is lively and family-oriented rather than secluded.</p></div>
+                </div>
+                <div class="place-signal-meta">
+                  <span id="map-place-count">1,578 verified-stay reviews · checked 31 Aug 2026</span>
+                  <a id="map-place-source" href="https://www.booking.com/hotel/th/ozo-phuket.html" target="_blank" rel="noreferrer">Check current Booking.com page ↗</a>
+                </div>
+              </section>
+
+              <dl class="map-tradeoffs">
+                <div><dt>Best fit</dt><dd id="map-best-fit">First stays · beach days</dd></div>
+                <div><dt>Accept</dt><dd id="map-tradeoff">Check the real walking route</dd></div>
+                <div><dt>Area signal</dt><dd id="map-mood">Balanced and family-friendly</dd></div>
+              </dl>
+              <a class="map-cta" href="phuket/#preview">Open the six-area comparison preview <span aria-hidden="true">↗</span></a>
+              <p class="map-evidence-note">Ratings and review counts change. Links open the current platform page; Driftwise receives no hotel placement fee.</p>
             </div>
-            <h3 id="map-area-name">Kata Beach</h3>
-            <p class="map-area-summary" id="map-area-summary">A practical first beach base for couples and families who want restaurants nearby without Patong intensity.</p>
-
-            <section class="hotel-signal" id="hotel-signal" aria-label="Dated public hotel review sample">
-              <div class="hotel-signal-top">
-                <span>DATED PUBLIC HOTEL SAMPLE</span>
-                <strong id="map-hotel-score">8.8<small>/10</small></strong>
-              </div>
-              <h4 id="map-hotel-name">OZO Phuket</h4>
-              <p id="map-hotel-pattern">Guests consistently value the location, helpful staff, family facilities, beach access and breakfast variety.</p>
-              <div class="hotel-signal-meta">
-                <span id="map-hotel-count">1,582 verified reviews · reviewed 30 Aug 2026</span>
-                <a id="map-hotel-source" href="https://www.booking.com/hotel/th/ozo-phuket.html" target="_blank" rel="noreferrer">Check current listing ↗</a>
-              </div>
-            </section>
-
-            <dl class="map-tradeoffs">
-              <div><dt>Best fit</dt><dd id="map-best-fit">First stays · beach days</dd></div>
-              <div><dt>Accept</dt><dd id="map-tradeoff">Check the real walking route</dd></div>
-              <div><dt>Area signal</dt><dd id="map-mood">Balanced and family-friendly</dd></div>
-            </dl>
-            <a class="map-cta" href="phuket/#preview">Open the hotel comparison preview <span aria-hidden="true">↗</span></a>
-            <p class="map-evidence-note">Scores and review counts change. Always confirm the latest listing, room terms and route before booking.</p>
           </article>
         </div>
+
+        <div class="area-story-intro reveal">
+          <p class="eyebrow">SIX BASES, TWELVE PUBLIC SIGNALS</p>
+          <h3>A fast first read before the room tabs multiply.</h3>
+          <p>These are editorial starting points, not rankings. Food and hotel scores remain separate because a rating from one platform should never be blended with another.</p>
+        </div>
+        <div class="area-story-grid">
+          <article class="area-story-card reveal">
+            <img src="assets/presentation-backgrounds/hero/nai-yang-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created quiet dawn scene inspired by Nai Yang Beach">
+            <div><span>01 · QUIET ARRIVAL</span><h3>Nai Yang</h3><p>Short airport transfer and a slower beach rhythm beside Sirinat National Park.</p><dl><div><dt>Stay sample</dt><dd>Dewa · Booking.com 8.5/10 · 897</dd></div><div><dt>Eat sample</dt><dd>Sea Almond · Tripadvisor 4.3/5 · 479</dd></div></dl><a href="#atlas" data-story-area="nai-yang">Focus on the map →</a></div>
+          </article>
+          <article class="area-story-card reveal">
+            <img src="assets/travel/atlas/patong-after-rain.jpg" width="960" height="540" loading="lazy" alt="AI-created Patong street scene after tropical rain at blue hour">
+            <div><span>02 · MAXIMUM CONVENIENCE</span><h3>Patong</h3><p>Keep nightlife, shopping and restaurants close—while choosing the room position carefully.</p><dl><div><dt>Stay sample</dt><dd>Hotel Clover · Booking.com 8.9/10 · 4,280</dd></div><div><dt>Eat sample</dt><dd>Baan Rim Pa · Tripadvisor 4.1/5 · 2,647</dd></div></dl><a href="#atlas" data-story-area="patong">Focus on the map →</a></div>
+          </article>
+          <article class="area-story-card reveal">
+            <img src="assets/presentation-backgrounds/hero/kata-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created calm coastal morning inspired by Kata Beach">
+            <div><span>03 · BALANCED FIRST STAY</span><h3>Kata</h3><p>A usable beach and nearby dining without Patong’s full intensity.</p><dl><div><dt>Stay sample</dt><dd>OZO Phuket · Booking.com 8.8/10 · 1,578</dd></div><div><dt>Eat sample</dt><dd>The Boathouse · Tripadvisor 4.4/5 · 1,929</dd></div></dl><a href="#atlas" data-story-area="kata">Focus on the map →</a></div>
+          </article>
+          <article class="area-story-card reveal">
+            <img src="assets/travel/atlas/karon-first-light.jpg" width="960" height="540" loading="lazy" alt="AI-created layered-paper sunrise inspired by Karon Beach">
+            <div><span>04 · LONGER BEACH</span><h3>Karon</h3><p>More breathing room and a long west-coast beach, with less density than Patong.</p><dl><div><dt>Stay sample</dt><dd>Avista Grande · Booking.com 8.9/10 · 990</dd></div><div><dt>Eat sample</dt><dd>EAT Bar & Grill · Tripadvisor 4.8/5 · 2,567</dd></div></dl><a href="#atlas" data-story-area="karon">Focus on the map →</a></div>
+          </article>
+          <article class="area-story-card reveal">
+            <img src="assets/travel/atlas/nai-harn-slow-sunset.jpg" width="960" height="540" loading="lazy" alt="AI-created watercolor and linocut sunset inspired by Nai Harn Beach">
+            <div><span>05 · SLOWER SOUTH</span><h3>Nai Harn</h3><p>A scenic bay and quiet evenings for travellers who can accept longer transfers.</p><dl><div><dt>Stay sample</dt><dd>The Nai Harn · Booking.com 9.2/10 · 1,161</dd></div><div><dt>Eat sample</dt><dd>Rock Salt · Tripadvisor 4.8/5 · 3,929</dd></div></dl><a href="#atlas" data-story-area="nai-harn">Focus on the map →</a></div>
+          </article>
+          <article class="area-story-card reveal">
+            <img src="assets/presentation-backgrounds/hero/old-town-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created heritage streetscape inspired by Phuket Old Town">
+            <div><span>06 · FOOD + HERITAGE</span><h3>Old Town</h3><p>Trade daily beach access for walkable food, architecture and stronger city-room value.</p><dl><div><dt>Stay sample</dt><dd>Memory at On On · Booking.com 9.3/10 · 1,984</dd></div><div><dt>Eat sample</dt><dd>One Chun · Tripadvisor 4.3/5 · 643</dd></div></dl><a href="#atlas" data-story-area="old-town">Focus on the map →</a></div>
+          </article>
+        </div>
+        <p class="art-disclosure reveal">All six area visuals are original AI-created editorial artwork. They show atmosphere, not a specific hotel, restaurant or documentary condition.</p>
       </section>
 
       <section class="file-section" id="preview">
@@ -201,6 +299,22 @@
           </ul>
           <a class="primary-link" href="phuket/">Open the free preview <span aria-hidden="true">↗</span></a>
           <p class="quiet-note">No hotel pays for placement. We do not book rooms or promise live prices.</p>
+        </div>
+      </section>
+
+      <section class="scenic-bridge" aria-labelledby="scenic-title">
+        <div class="scenic-bridge-copy reveal">
+          <p class="eyebrow">PHUKET, REIMAGINED</p>
+          <h2 id="scenic-title">Take the island mood into the story you tell.</h2>
+          <p>The same visual language now runs through the guide and the scenic studio: original Phuket-inspired 16:9 artwork for travel decks, moodboards and digital stories.</p>
+          <a href="phuket-scenic-studio/#gallery">Browse the scenic image library <span aria-hidden="true">↗</span></a>
+          <small>Low-resolution cover excerpts shown here. The shop keeps watermarked sales previews and delivers clean licensed files after purchase.</small>
+        </div>
+        <div class="scenic-filmstrip reveal" aria-label="Selected Phuket-inspired artwork">
+          <figure class="scenic-tile scenic-tile-wide"><img src="assets/presentation-backgrounds/hero/promthep-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created sunset artwork inspired by Promthep Cape"><figcaption><span>01</span> Promthep afterglow</figcaption></figure>
+          <figure class="scenic-tile"><img src="assets/presentation-backgrounds/hero/old-town-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created heritage streetscape inspired by Phuket Old Town"><figcaption><span>02</span> Old Town rhythm</figcaption></figure>
+          <figure class="scenic-tile"><img src="assets/presentation-backgrounds/hero/phang-nga-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created limestone bay artwork inspired by a Phang Nga excursion"><figcaption><span>03</span> Bay excursion</figcaption></figure>
+          <figure class="scenic-tile scenic-tile-wide"><img src="assets/travel/atlas/nai-harn-slow-sunset.jpg" width="960" height="540" loading="lazy" alt="AI-created watercolor and linocut sunset inspired by Nai Harn"><figcaption><span>04</span> Nai Harn slow sunset</figcaption></figure>
         </div>
       </section>
 
