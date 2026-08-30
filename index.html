@@ -3,267 +3,179 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Compare Phuket areas, hotel comfort, public review patterns, food and transport before choosing where to stay.">
-    <meta name="theme-color" content="#0a343d">
-    <meta property="og:title" content="Driftwise Phuket — Stay, eat and move with context">
-    <meta property="og:description" content="A calm, evidence-led Phuket travel brief for choosing an area and hotel before you book.">
+    <meta name="description" content="Find the Phuket beach and neighbourhood that fits your trip before comparing hotels, food and transport.">
+    <meta name="theme-color" content="#082f38">
+    <meta property="og:title" content="Driftwise — Find your side of Phuket">
+    <meta property="og:description" content="A calm, evidence-led Phuket area finder for beach, comfort, food, value and airport access.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://supplier-vetting-lab.pages.dev/">
     <meta property="og:image" content="https://supplier-vetting-lab.pages.dev/assets/travel/phuket-dawn.webp">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://supplier-vetting-lab.pages.dev/">
-    <title>Driftwise Phuket — Hotel, food and transport review brief</title>
+    <title>Driftwise — Find your side of Phuket</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="travel.css">
-    <script src="travel.js" defer></script>
+    <link rel="stylesheet" href="home.css">
+    <script src="home.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="travel-header">
-      <a class="travel-brand" href="./" aria-label="Driftwise home">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span><strong>DRIFTWISE</strong><small>PHUKET · EDITION 01</small></span>
+    <header class="home-header">
+      <a class="home-brand" href="./" aria-label="Driftwise home">
+        <span class="brand-orbit" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>DRIFTWISE</strong><small>PHUKET · FIELD EDITION</small></span>
       </a>
       <nav aria-label="Primary navigation">
-        <a href="#area-fit">Area fit</a>
-        <a href="#snapshot">Free snapshot</a>
-        <a href="#guide">Full brief</a>
-        <a href="#method">Method</a>
+        <a href="#finder">Beach finder</a>
+        <a href="#atlas">Island atlas</a>
+        <a href="#proof">How we review</a>
         <a href="presentation-backgrounds/">Image shop</a>
       </nav>
-      <button class="header-account" type="button" data-open-auth>Sign in</button>
+      <a class="header-login" href="phuket/?login=1#guide">Reader sign in</a>
     </header>
 
     <main id="main">
-      <section class="travel-hero">
-        <div class="hero-photo" role="img" aria-label="An editorial, geography-inspired view of a tropical Andaman bay at dawn">
-          <span class="photo-note">Original editorial visual · not a hotel photograph</span>
+      <section class="home-hero" id="finder">
+        <div class="hero-scene" role="img" aria-label="Original editorial view of a tropical Andaman bay at dawn">
+          <div class="tidal-orbit tidal-orbit-one" aria-hidden="true"></div>
+          <div class="tidal-orbit tidal-orbit-two" aria-hidden="true"></div>
+          <p class="scene-caption">Original editorial visual · not a hotel photograph</p>
         </div>
-        <div class="hero-panel">
-          <p class="route-label"><span>07.88° N</span><span>98.39° E</span><span>Reviewed 30 Aug 2026</span></p>
-          <h1>Choose the right <em>part</em> of Phuket before the right hotel.</h1>
-          <p class="hero-intro">A small, researched travel brief that compares where to stay, what comfort costs, how guests describe the experience, and what transport changes the decision.</p>
 
-          <form class="destination-search" id="destination-search" role="search">
-            <label>
-              <span>Country</span>
-              <select id="country" name="country">
-                <option value="thailand">Thailand</option>
-              </select>
-            </label>
-            <label class="destination-field">
-              <span>Destination or area</span>
-              <input id="destination" name="destination" list="phuket-areas" value="Phuket" autocomplete="off" placeholder="Try Phuket, Kata or Old Town">
-              <datalist id="phuket-areas">
-                <option value="Phuket"></option>
-                <option value="Patong"></option>
-                <option value="Kata"></option>
-                <option value="Phuket Old Town"></option>
-                <option value="Nai Yang"></option>
-              </datalist>
-            </label>
-            <label>
-              <span>Priority</span>
-              <select id="priority" name="priority">
-                <option value="balanced">Balanced first stay</option>
-                <option value="budget">Lower room cost</option>
-                <option value="quiet">Quiet and comfort</option>
-                <option value="food">Food and local culture</option>
-                <option value="nightlife">Nightlife and convenience</option>
-              </select>
-            </label>
-            <button type="submit">Find my base <span aria-hidden="true">↗</span></button>
+        <div class="hero-content">
+          <p class="coordinate-line"><span>07.88° N</span><span>98.39° E</span><span>PHUKET · THAILAND</span></p>
+          <h1>Find the beach that fits <em>your</em> Phuket.</h1>
+          <p class="hero-deck">Start with how you want the trip to feel. We translate beach character, walkability, airport friction and repeated guest-review signals into a calmer place to begin.</p>
+
+          <form class="intent-finder" id="intent-finder">
+            <fieldset>
+              <legend>What matters most?</legend>
+              <div class="intent-options">
+                <label><input type="radio" name="intent" value="balanced" checked><span>First-trip balance</span></label>
+                <label><input type="radio" name="intent" value="quiet"><span>Quiet beach</span></label>
+                <label><input type="radio" name="intent" value="family"><span>Family ease</span></label>
+                <label><input type="radio" name="intent" value="nightlife"><span>Nightlife nearby</span></label>
+                <label><input type="radio" name="intent" value="food"><span>Food &amp; culture</span></label>
+                <label><input type="radio" name="intent" value="value"><span>Better value</span></label>
+              </div>
+            </fieldset>
+            <button type="submit">Trace my route <span aria-hidden="true">↗</span></button>
           </form>
 
-          <div class="search-answer" id="search-answer" aria-live="polite">
-            <span class="answer-pin" aria-hidden="true"></span>
+          <article class="finder-result" id="finder-result" aria-live="polite">
+            <div class="result-marker" aria-hidden="true"><span></span></div>
             <div>
-              <small>STARTING POINT</small>
-              <strong>Kata gives a first-time visitor the cleanest balance.</strong>
-              <p>Beach access and restaurants without committing to Patong's full intensity. Expect mid-range planning bands and west-coast traffic.</p>
+              <small>YOUR STARTING COAST</small>
+              <h2>Kata · beach days without Patong intensity</h2>
+              <p>Good for first stays, couples and families who want a usable beach with restaurants nearby. The trade-off is hilly walking and west-coast traffic.</p>
+              <a href="phuket/#preview">Preview the Phuket decision file <span aria-hidden="true">→</span></a>
             </div>
-          </div>
+          </article>
 
-          <ul class="hero-proof" aria-label="Guide coverage">
-            <li><strong>6</strong><span>hotel shortlists</span></li>
-            <li><strong>13.6k+</strong><span>verified reviews read</span></li>
-            <li><strong>4</strong><span>area profiles</span></li>
-            <li><strong>US$2</strong><span>lifetime web access</span></li>
-          </ul>
+          <div class="evidence-strip" aria-label="Research coverage">
+            <span><strong>6</strong> vetted stay profiles</span>
+            <span><strong>4</strong> decision areas</span>
+            <span><strong>13k+</strong> verified review signals</span>
+          </div>
         </div>
       </section>
 
-      <section class="area-section" id="area-fit">
-        <div class="section-heading">
-          <p class="section-kicker">AREA FIT · FREE</p>
-          <h2>Four bases. Four different holidays.</h2>
-          <p>Hotel ratings do not tell you how much time you will lose crossing the island. Start with the trip you actually want.</p>
+      <section class="atlas-section" id="atlas">
+        <div class="section-intro reveal">
+          <p class="eyebrow">THE ISLAND IS NOT ONE EXPERIENCE</p>
+          <h2>Choose a coast before a room.</h2>
+          <p>A short map distance can still mean traffic, hills or an expensive cross-island trip. These six starting points answer different kinds of holidays.</p>
         </div>
 
-        <div class="route-selector" aria-label="Select a Phuket area">
-          <span class="route-line" aria-hidden="true"></span>
-          <button class="route-stop" type="button" data-area="nai-yang">
-            <span>01</span><strong>Nai Yang</strong><small>Quiet + airport</small>
+        <div class="coastline-board reveal" aria-label="Phuket beach and area guide">
+          <div class="coastline-thread" aria-hidden="true"><i></i></div>
+          <button class="coast-card is-active" type="button" data-coast="nai-yang">
+            <span class="coast-index">NORTH · 01</span><strong>Nai Yang</strong><small>Quiet · airport ease</small>
           </button>
-          <button class="route-stop" type="button" data-area="patong">
-            <span>02</span><strong>Patong</strong><small>Energy + access</small>
+          <button class="coast-card" type="button" data-coast="patong">
+            <span class="coast-index">WEST · 02</span><strong>Patong</strong><small>Energy · convenience</small>
           </button>
-          <button class="route-stop is-active" type="button" data-area="kata">
-            <span>03</span><strong>Kata</strong><small>Beach + balance</small>
+          <button class="coast-card" type="button" data-coast="kata">
+            <span class="coast-index">WEST · 03</span><strong>Kata</strong><small>Balance · family ease</small>
           </button>
-          <button class="route-stop" type="button" data-area="old-town">
-            <span>04</span><strong>Old Town</strong><small>Food + culture</small>
+          <button class="coast-card" type="button" data-coast="karon">
+            <span class="coast-index">WEST · 04</span><strong>Karon</strong><small>Long beach · breathing room</small>
+          </button>
+          <button class="coast-card" type="button" data-coast="nai-harn">
+            <span class="coast-index">SOUTH · 05</span><strong>Nai Harn</strong><small>Scenic · slower pace</small>
+          </button>
+          <button class="coast-card" type="button" data-coast="old-town">
+            <span class="coast-index">EAST · 06</span><strong>Old Town</strong><small>Food · architecture</small>
           </button>
         </div>
 
-        <article class="area-reading" id="area-reading">
-          <div class="area-reading-main">
-            <p class="area-overline">CURRENT READING</p>
-            <h3>Kata <span>Beach + balance</span></h3>
-            <p>Couples and families get a good beach, restaurants and a calmer evening than Patong. Hills, heat and scattered entrances can make a short map distance feel longer.</p>
+        <article class="coast-reading reveal" id="coast-reading">
+          <div>
+            <p class="eyebrow">CURRENT READING</p>
+            <h3>Nai Yang</h3>
+            <p>For a quiet landing, short airport transfer and a beach beside Sirinat National Park. It is a poor base if most of your plans sit around Patong or the southern viewpoints.</p>
           </div>
           <dl>
-            <div><dt>Planning band</dt><dd>฿3,200–9,000</dd></div>
-            <div><dt>Mobility note</dt><dd>Smart Bus corridor; check the walk from stop to lobby.</dd></div>
-            <div><dt>Best fit</dt><dd>Families · couples · first beach stay</dd></div>
+            <div><dt>Beach mood</dt><dd>Quiet and low-friction</dd></div>
+            <div><dt>Best for</dt><dd>Late arrivals · slow travel</dd></div>
+            <div><dt>Reality check</dt><dd>Longer trips to the south</dd></div>
           </dl>
         </article>
       </section>
 
-      <section class="snapshot-section" id="snapshot">
-        <div class="snapshot-intro">
-          <p class="section-kicker">MARKET SNAPSHOT · FREE</p>
-          <h2>Enough signal to plan. No fake precision.</h2>
-          <p>These are broad planning bands, not live room quotes. Exact prices change with dates, room type, tax, cancellation terms and demand.</p>
+      <section class="file-section" id="preview">
+        <div class="file-visual reveal" aria-hidden="true">
+          <div class="file-sheet file-sheet-back"></div>
+          <div class="file-sheet file-sheet-mid"></div>
+          <div class="file-sheet file-sheet-front">
+            <span>DRIFTWISE / PHUKET</span>
+            <p>BEACH FIT</p><i></i>
+            <p>HOTEL SIGNAL</p><i></i>
+            <p>VALUE LENS</p><i></i>
+            <p>MOVE + EAT</p><i></i>
+            <strong>PRIVATE READING VIEW</strong>
+          </div>
         </div>
-        <div class="snapshot-grid">
-          <article class="stat-card stat-score">
-            <span>Median shortlist score</span>
-            <strong>8.9<small>/10</small></strong>
-            <p>Across six selected properties using current Booking.com scores.</p>
-          </article>
-          <article class="stat-card">
-            <span>Observed planning span</span>
-            <strong>฿1.1k<small>—9k</small></strong>
-            <p>Per room, per night; wide enough to make the area choice matter.</p>
-          </article>
-          <article class="stat-card">
-            <span>Airport–west coast bus</span>
-            <strong>฿100</strong>
-            <p>Current flat fare published by Phuket Smart Bus.</p>
-          </article>
-          <article class="stat-card stat-note">
-            <span>Best free insight</span>
-            <p><strong>Do not compare Patong and Old Town as if they offer the same trip.</strong> A cheaper room can become a more expensive itinerary once cross-island transport is added.</p>
-          </article>
-        </div>
-
-        <div class="preview-table" aria-label="Preview of the hotel comparison fields">
-          <div class="preview-row preview-head">
-            <span>Hotel</span><span>Area</span><span>Score</span><span>Planning band</span><span>Decision</span>
-          </div>
-          <div class="preview-row">
-            <span>Value-led social stay</span><span>Patong</span><span>8.3</span><span>฿1,100–3,000</span><span>Best for solo travel</span>
-          </div>
-          <div class="preview-row is-obscured" aria-hidden="true">
-            <span>Central comfort pick</span><span>Patong</span><span>8.9</span><span>฿2,800–5,800</span><span>Strong walk-first base</span>
-          </div>
-          <div class="preview-row is-obscured" aria-hidden="true">
-            <span>Design-led retreat</span><span>Kata</span><span>9.4</span><span>฿4,000–9,000</span><span>Comfort splurge</span>
-          </div>
-          <div class="table-lock"><span aria-hidden="true">⌁</span> Names, review patterns and trade-offs unlock in the full brief.</div>
+        <div class="file-copy reveal">
+          <p class="eyebrow">PHUKET DECISION FILE · PREVIEW AVAILABLE</p>
+          <h2>See what the score leaves out.</h2>
+          <p>The preview shows our fields, one sample decision and the evidence date. The full reading view adds named hotels, beach proximity, repeated review patterns, watch-outs, currency conversion and practical ways to reduce wasted transport.</p>
+          <ul>
+            <li>Hotel-to-beach fit, not just a map pin</li>
+            <li>Real review patterns summarized without copying guest text</li>
+            <li>Thai baht ranges with approximate RMB and US dollar views</li>
+            <li>Value filters for families, quiet stays and short trips</li>
+          </ul>
+          <a class="primary-link" href="phuket/">Open the free preview <span aria-hidden="true">↗</span></a>
+          <p class="quiet-note">No hotel pays for placement. We do not book rooms or promise live prices.</p>
         </div>
       </section>
 
-      <section class="guide-section" id="guide">
-        <div class="guide-shell" id="guide-paywall">
-          <div class="guide-offer">
-            <p class="section-kicker">PHUKET BRIEF · VERSION 1.0</p>
-            <h2>Read the whole decision file in your browser.</h2>
-            <p class="offer-copy">One payment unlocks the current Phuket edition for life. Register with the email used at checkout and return from any device.</p>
-            <ul class="offer-list">
-              <li><span>06</span>Named hotels with review consensus and watch-outs</li>
-              <li><span>04</span>Area profiles with price and mobility trade-offs</li>
-              <li><span>05</span>Food stops selected from current Michelin coverage</li>
-              <li><span>04</span>Transport decisions and a simple three-day structure</li>
-            </ul>
-            <div class="offer-buy">
-              <div><strong>US$2</strong><span>tax included · one time</span></div>
-              <a class="travel-button" href="https://buy.stripe.com/5kQ7sE0mFenu1eU9X50sU0i?client_reference_id=phuket_home_v1">Unlock the Phuket brief <span aria-hidden="true">↗</span></a>
-            </div>
-            <p class="offer-fine">Secure checkout by Stripe Managed Payments. Digital document, view-only, permanent access. No booking is made and no hotel pays for placement.</p>
-            <button class="returning-link" type="button" data-open-auth>Already purchased? Sign in</button>
-          </div>
-          <div class="guide-peek" aria-hidden="true">
-            <div class="peek-top"><span>DRIFTWISE / PHUKET</span><span>PRIVATE READING VIEW</span></div>
-            <div class="peek-card">
-              <span class="peek-tag">HOTEL 04 · KATA</span>
-              <h3>Why it works</h3>
-              <p>A hotel should earn its place by matching a traveller, not by winning every score.</p>
-              <div class="peek-meter"><i style="--value: 94%"></i></div>
-              <dl><div><dt>Comfort</dt><dd>High</dd></div><div><dt>Quiet</dt><dd>Good</dd></div><div><dt>Value</dt><dd>Strong</dd></div></dl>
-            </div>
-            <div class="peek-card is-muted">
-              <span class="peek-tag">REVIEW CONSENSUS</span>
-              <p>What recent guests repeat—and the trade-off that disappears inside one average score.</p>
-            </div>
-            <div class="peek-lock"><span>UNLOCKED AFTER PAYMENT</span></div>
-          </div>
+      <section class="proof-section" id="proof">
+        <div class="section-intro reveal">
+          <p class="eyebrow">EDITORIAL SAFETY</p>
+          <h2>Useful without pretending to know everything.</h2>
         </div>
-
-        <div class="purchase-status" id="purchase-status" hidden aria-live="polite"></div>
-
-        <section class="account-setup" id="account-setup" hidden>
-          <div>
-            <p class="section-kicker">PAYMENT CONFIRMED</p>
-            <h2>Save permanent access.</h2>
-            <p>Create a password for the email used at checkout. You can keep reading now even if you skip this step, but an account lets you return on another device.</p>
-          </div>
-          <form id="register-form">
-            <label><span>Create password</span><input name="password" type="password" minlength="10" maxlength="128" autocomplete="new-password" required></label>
-            <label><span>Confirm password</span><input name="confirmPassword" type="password" minlength="10" maxlength="128" autocomplete="new-password" required></label>
-            <button type="submit">Create my permanent account</button>
-            <p class="form-message" data-register-message aria-live="polite"></p>
-          </form>
-        </section>
-
-        <section class="unlocked-guide" id="unlocked-guide" hidden aria-live="polite">
-          <div class="unlocked-heading">
-            <p class="section-kicker">PURCHASED EDITION</p>
-            <h2>Your Phuket decision file</h2>
-            <p id="guide-meta">Loading the current edition…</p>
-          </div>
-          <div id="premium-guide-content"></div>
-        </section>
-      </section>
-
-      <section class="method-section" id="method">
-        <div class="section-heading">
-          <p class="section-kicker">HOW THIS IS BUILT</p>
-          <h2>Public evidence, edited into decisions.</h2>
+        <div class="proof-grid">
+          <article class="reveal"><span>REVIEW PATTERNS</span><h3>Consensus, not quotation</h3><p>We summarize themes that recur across verified stays. Individual guest wording, photographs and hotel descriptions are not republished.</p></article>
+          <article class="reveal"><span>DATED EVIDENCE</span><h3>Every edition has a date</h3><p>Scores, counts, fares and exchange rates are dated and linked. Readers are told to confirm the final conditions before booking.</p></article>
+          <article class="reveal"><span>VISIBLE TRADE-OFFS</span><h3>Every pick includes a pause</h3><p>Noise, hills, room size, distance or location friction appears beside the benefit. That keeps the guide independent and easier to trust.</p></article>
         </div>
-        <div class="method-grid">
-          <article><span>01</span><h3>Separate area from property</h3><p>We first ask what the neighbourhood changes: beach access, noise, food density, airport friction and cross-island travel.</p></article>
-          <article><span>02</span><h3>Read patterns, not one comment</h3><p>Scores and repeated verified-review themes are summarized. We do not copy individual guest reviews or present one anecdote as consensus.</p></article>
-          <article><span>03</span><h3>Show the trade-off</h3><p>Every shortlist entry includes a reason to choose it and a reason to pause. A recommendation without a watch-out is advertising.</p></article>
-          <article><span>04</span><h3>Date the evidence</h3><p>This edition was reviewed on 30 August 2026. Links remain available so readers can confirm the newest score, price and timetable.</p></article>
-        </div>
-        <div class="public-sources">
-          <p>Core public sources</p>
-          <a href="https://www.tourismthailand.org/Trip-Planner/Suggestion-Detail/recommended-route-for-one-day-3" target="_blank" rel="noreferrer">Tourism Authority of Thailand <span>↗</span></a>
-          <a href="https://phuketsmartbus.com/payment/" target="_blank" rel="noreferrer">Phuket Smart Bus <span>↗</span></a>
-          <a href="https://guide.michelin.com/en/phuket-region/phuket/restaurants/bib-gourmand" target="_blank" rel="noreferrer">Michelin Guide Phuket <span>↗</span></a>
-          <a href="https://www.booking.com/region/th/phuket.html" target="_blank" rel="noreferrer">Booking.com verified reviews <span>↗</span></a>
+        <div class="source-ribbon reveal">
+          <span>PUBLIC SOURCES</span>
+          <a href="https://www.tourismthailand.org/Destinations/Provinces/Phuket/350?pubDate=20250802" target="_blank" rel="noreferrer">Tourism Authority of Thailand ↗</a>
+          <a href="https://phuketsmartbus.com/payment/" target="_blank" rel="noreferrer">Phuket Smart Bus ↗</a>
+          <a href="https://guide.michelin.com/en/phuket-region/phuket/restaurants/bib-gourmand" target="_blank" rel="noreferrer">Michelin Guide ↗</a>
+          <a href="https://www.booking.com/region/th/phuket.html" target="_blank" rel="noreferrer">Verified hotel reviews ↗</a>
         </div>
       </section>
     </main>
 
-    <footer class="travel-footer">
+    <footer class="home-footer">
       <div><strong>DRIFTWISE</strong><span>A small travel decision studio.</span></div>
-      <p>Independent planning information—not a booking agent, hotel inspection, safety guarantee or live price service. Confirm current details before purchase or travel.</p>
+      <p>Independent planning information—not a booking agent, inspection, safety guarantee or live-price service.</p>
       <nav aria-label="Footer navigation">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
@@ -271,19 +183,6 @@
         <a href="mailto:xiaoyingchen0829@163.com">Contact</a>
       </nav>
     </footer>
-
-    <dialog class="auth-dialog" id="auth-dialog">
-      <button class="dialog-close" type="button" aria-label="Close sign-in window" data-close-auth>×</button>
-      <p class="section-kicker">RETURNING READER</p>
-      <h2>Sign in to your brief.</h2>
-      <p>Use the payment email and password you created after checkout.</p>
-      <form id="login-form">
-        <label><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
-        <label><span>Password</span><input name="password" type="password" minlength="10" maxlength="128" autocomplete="current-password" required></label>
-        <button type="submit">Sign in and open the guide</button>
-        <p class="form-message" data-login-message aria-live="polite"></p>
-      </form>
-      <p class="auth-help">Paid but never created a password? Open the payment-complete page from your Stripe receipt, or contact <a href="mailto:xiaoyingchen0829@163.com">support</a> with the receipt email.</p>
-    </dialog>
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"43b0181a73314e14aa9a6540e9725717"}'></script>
   </body>
 </html>

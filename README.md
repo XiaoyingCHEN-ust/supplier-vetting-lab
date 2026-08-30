@@ -6,7 +6,8 @@ The paid product files are intentionally not included in this repository. Only p
 
 ## Public acquisition pages
 
-- `/` is the Phuket travel-review landing page, free area matcher, account entry, and paid in-browser guide.
+- `/` is the price-free Driftwise discovery page with a beach and trip-intent matcher.
+- `/phuket/` is the dated Phuket preview, currency calculator, account entry, and paid in-browser guide.
 - `/presentation-backgrounds/` sells individually downloadable PNG backgrounds and a six-image business bundle with an editable PowerPoint template.
 - `/sitemap.xml` and `/robots.txt` expose the public discovery surface to search engines.
 
@@ -45,8 +46,10 @@ Configure Stripe to send `checkout.session.completed`, `checkout.session.async_p
 
 `https://supplier-vetting-lab.pages.dev/api/stripe-webhook`
 
-Set each Payment Link's post-payment redirect to:
+Download products redirect to:
 
 `https://supplier-vetting-lab.pages.dev/delivery.html?session_id={CHECKOUT_SESSION_ID}`
+
+The Phuket guide can redirect to `/phuket/?session_id={CHECKOUT_SESSION_ID}#guide`. The root page also safely forwards an existing guide checkout session to that path.
 
 Before changing payment or delivery code, run `npm test` and complete a Stripe sandbox download check.

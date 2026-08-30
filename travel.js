@@ -41,7 +41,29 @@ const searchRecommendations = {
   nightlife: ["patong", "Patong keeps nightlife, beach and dining inside one busy district."],
 };
 
-const state = { signedIn: false, guide: null, paymentSessionId: "" };
+const state = { signedIn: false, guide: null, paymentSessionId: "", currency: "THB", areaFilter: "all", lensFilter: "all" };
+const currencyDefinitions = [
+  { code: "THB", country: "Thailand", prefix: "฿", thbPerUnit: 1 },
+  { code: "CNY", country: "China", prefix: "¥", legacyRate: "thbPerCny" },
+  { code: "USD", country: "United States", prefix: "US$", legacyRate: "thbPerUsd" },
+  { code: "HKD", country: "Hong Kong", prefix: "HK$" },
+  { code: "SGD", country: "Singapore", prefix: "S$" },
+  { code: "EUR", country: "Eurozone", prefix: "€" },
+  { code: "GBP", country: "United Kingdom", prefix: "£" },
+  { code: "AUD", country: "Australia", prefix: "A$" },
+  { code: "JPY", country: "Japan", prefix: "JP¥" },
+  { code: "MYR", country: "Malaysia", prefix: "RM" },
+  { code: "CAD", country: "Canada", prefix: "CA$" },
+];
+const publicFx = {
+  asOf: "2026-08-28",
+  rates: {
+    USD: { thbPerUnit: 32.9197 }, CNY: { thbPerUnit: 4.8986 }, HKD: { thbPerUnit: 4.2 },
+    SGD: { thbPerUnit: 25.9143 }, EUR: { thbPerUnit: 38.3426 }, GBP: { thbPerUnit: 44.7439 },
+    AUD: { thbPerUnit: 23.6762 }, JPY: { thbPerUnit: 0.206613 }, MYR: { thbPerUnit: 8.1858 },
+    CAD: { thbPerUnit: 23.7244 },
+  },
+};
 const areaReading = document.querySelector("#area-reading");
 const searchAnswer = document.querySelector("#search-answer");
 const paywall = document.querySelector("#guide-paywall");
@@ -67,6 +89,22 @@ function safeUrl(value) {
   } catch {
     return "#";
   }
+}
+
+function moneyValue(thb, currency, fx) {
+  const amount = Number(thb);
+  if (!Number.isFinite(amount)) return "—";
+  const definition = currencyDefinitions.find((item) => item.code === currency) || currencyDefinitions[0];
+  const rate = definition.thbPerUnit
+    || Number(fx?.rates?.[currency]?.thbPerUnit)
+    || Number(definition.legacyRate && fx?.[definition.legacyRate]);
+  if (!Number.isFinite(rate) || rate <= 0) return `฿${Math.round(amount).toLocaleString()}`;
+  return `${definition.prefix}${Math.round(amount / rate).toLocaleString()}`;
+}
+
+function priceBand(hotel, currency, fx) {
+  if (!hotel.priceThb || !fx) return hotel.priceBand;
+  return `${moneyValue(hotel.priceThb.low, currency, fx)}–${moneyValue(hotel.priceThb.high, currency, fx)}`;
 }
 
 function selectArea(areaId) {
@@ -120,6 +158,21 @@ document.querySelector("#destination-search")?.addEventListener("submit", (event
     <p>${escapeHtml(area.summary)} Planning band: ${escapeHtml(area.band)}.</p></div>`;
 });
 
+const fxAmount = document.querySelector("#fx-amount");
+const fxCurrency = document.querySelector("#fx-currency");
+const fxOutput = document.querySelector("#fx-output");
+function updateFxPreview() {
+  if (!fxAmount || !fxOutput) return;
+  const thb = Math.max(0, Number(fxAmount.value) || 0);
+  const currency = fxCurrency?.value || "CNY";
+  const definition = currencyDefinitions.find((item) => item.code === currency) || currencyDefinitions[1];
+  fxOutput.innerHTML = `<strong>≈ ${escapeHtml(moneyValue(thb, currency, publicFx))}</strong><span>${escapeHtml(definition.country)} · ${escapeHtml(currency)} · rate dated ${escapeHtml(publicFx.asOf)}</span>`;
+}
+document.querySelector("#fx-calculator")?.addEventListener("submit", (event) => event.preventDefault());
+fxAmount?.addEventListener("input", updateFxPreview);
+fxCurrency?.addEventListener("change", updateFxPreview);
+updateFxPreview();
+
 function setPurchaseStatus(message, stateName = "loading") {
   purchaseStatus.hidden = false;
   purchaseStatus.dataset.state = stateName;
@@ -134,13 +187,14 @@ async function responseJson(response) {
   }
 }
 
-function hotelCard(hotel, index) {
+function hotelCard(hotel, index, currency, fx) {
   return `
-    <article class="hotel-card" data-hotel-area="${escapeHtml(hotel.areaId)}">
+    <article class="hotel-card" data-hotel-area="${escapeHtml(hotel.areaId)}" data-hotel-lenses="${escapeHtml((hotel.lenses || []).join(" "))}">
       <div class="hotel-score-panel">
         <span>HOTEL ${String(index + 1).padStart(2, "0")} · ${escapeHtml(hotel.area)}</span>
         <strong>${escapeHtml(hotel.score)}</strong>
-        <small>${Number(hotel.reviewCount).toLocaleString()} verified reviews · planning ${escapeHtml(hotel.priceBand)}</small>
+        <small>${Number(hotel.reviewCount).toLocaleString()} verified reviews</small>
+        <b>${escapeHtml(priceBand(hotel, currency, fx))}<em> planning range</em></b>
       </div>
       <div class="hotel-card-content">
         <div class="hotel-card-top"><h3>${escapeHtml(hotel.name)}</h3><span>VALUE ${escapeHtml(hotel.value)}/5 · QUIET ${escapeHtml(hotel.quiet)}/5</span></div>
@@ -149,6 +203,8 @@ function hotelCard(hotel, index) {
           <section><h4>Why it works</h4><p>${escapeHtml(hotel.whyItWorks)}</p></section>
           <section><h4>Review consensus</h4><p>${escapeHtml(hotel.reviewPattern)}</p></section>
           <section><h4>Watch for</h4><p>${escapeHtml(hotel.watchFor)}</p></section>
+          <section><h4>Beach proximity</h4><p>${escapeHtml(hotel.beachProximity || "Confirm the current route on the live listing.")}</p></section>
+          <section><h4>Value move</h4><p>${escapeHtml(hotel.valueMove || "Compare the final room, tax and cancellation terms for your exact dates.")}</p></section>
           <section><h4>Best fit</h4><p>${escapeHtml(hotel.bestFor.join(" · "))}</p></section>
         </div>
         <p class="hotel-decision">${escapeHtml(hotel.decision)}</p>
@@ -170,24 +226,73 @@ function compactCard(item, type) {
     </article>`;
 }
 
+function beachCard(beach, hotelsById) {
+  const nearby = (beach.nearbyHotelIds || []).map((id) => hotelsById.get(id)?.name).filter(Boolean);
+  return `
+    <article class="beach-match-card">
+      <small>BEACH / AREA MATCH</small>
+      <h4>${escapeHtml(beach.name)}</h4>
+      <p>${escapeHtml(beach.bestFor)}</p>
+      <dl>
+        <div><dt>Shortlist nearby</dt><dd>${escapeHtml(nearby.length ? nearby.join(" · ") : "No named hotel in this edition")}</dd></div>
+        <div><dt>Reality check</dt><dd>${escapeHtml(beach.watchFor)}</dd></div>
+      </dl>
+    </article>`;
+}
+
+function applyHotelFilters() {
+  premiumContent.querySelectorAll("[data-hotel-area]").forEach((card) => {
+    const areaMatch = state.areaFilter === "all" || card.dataset.hotelArea === state.areaFilter;
+    const lensMatch = state.lensFilter === "all" || card.dataset.hotelLenses.split(" ").includes(state.lensFilter);
+    card.hidden = !(areaMatch && lensMatch);
+  });
+}
+
 function renderGuide(guide) {
   state.guide = guide;
   paywall.hidden = true;
   unlockedGuide.hidden = false;
   document.querySelector("#guide-meta").textContent = `${guide.meta.edition} · evidence reviewed ${guide.meta.reviewedOn} · ${guide.meta.notice}`;
-  const filters = [
+  const areaFilters = [
     ["all", "All 6"],
     ["patong", "Patong"],
     ["kata", "Kata"],
     ["old-town", "Old Town"],
     ["nai-yang", "Nai Yang"],
   ];
+  const lensFilters = [
+    ["all", "Any trip"],
+    ["beach", "Beach nearby"],
+    ["value", "Better value"],
+    ["quiet", "Quieter stay"],
+    ["family", "Family ease"],
+  ];
+  const fx = guide.meta.fx || publicFx;
+  const hotelsById = new Map(guide.hotels.map((hotel) => [hotel.id, hotel]));
 
   premiumContent.innerHTML = `
-    <div class="premium-toolbar" aria-label="Filter hotel shortlist">
-      ${filters.map(([id, label], index) => `<button type="button" class="${index === 0 ? "is-active" : ""}" data-hotel-filter="${id}">${label}</button>`).join("")}
+    <div class="premium-controls">
+      <div><span class="toolbar-label">Area</span><div class="premium-toolbar" aria-label="Filter hotel shortlist by area">
+        ${areaFilters.map(([id, label]) => `<button type="button" class="${state.areaFilter === id ? "is-active" : ""}" data-area-filter="${id}">${label}</button>`).join("")}
+      </div></div>
+      <div><span class="toolbar-label">What matters</span><div class="premium-toolbar" aria-label="Filter hotel shortlist by trip priority">
+        ${lensFilters.map(([id, label]) => `<button type="button" class="${state.lensFilter === id ? "is-active" : ""}" data-lens-filter="${id}">${label}</button>`).join("")}
+      </div></div>
+      <div><span class="toolbar-label">Planning currency</span><div class="currency-switch" aria-label="Show planning ranges in another currency">
+        ${currencyDefinitions.map(({ code, country }) => `<button type="button" class="${state.currency === code ? "is-active" : ""}" data-currency="${code}" aria-label="Show prices in ${escapeHtml(country)} ${code}">${code}</button>`).join("")}
+      </div></div>
     </div>
-    <div class="hotel-stack">${guide.hotels.map(hotelCard).join("")}</div>
+    <p class="fx-note">Approximate middle-rate conversion dated ${escapeHtml(fx.asOf)} from <a href="${safeUrl(fx.source)}" target="_blank" rel="noreferrer">${escapeHtml(fx.sourceLabel || "the published exchange-rate source")} ↗</a>. Your bank or card rate will differ.</p>
+    <section class="guide-subsection beach-match-section">
+      <h3>Start with the beach or area</h3>
+      <p class="subsection-intro">Nearby means practical fit, not a guarantee of a direct entrance. Confirm the current walking route and property access before booking.</p>
+      <div class="beach-match-grid">${(guide.beaches || []).map((beach) => beachCard(beach, hotelsById)).join("")}</div>
+    </section>
+    <section class="guide-subsection hotel-decision-section">
+      <h3>Compare the stay—not just the score</h3>
+      <p class="subsection-intro">“Better value” is an editorial comparison of fit, review pattern and planning band. It is not a live discount or promotion.</p>
+      <div class="hotel-stack">${guide.hotels.map((hotel, index) => hotelCard(hotel, index, state.currency, fx)).join("")}</div>
+    </section>
     <section class="guide-subsection">
       <h3>Eat with a reason</h3>
       <div class="compact-cards">${guide.food.map((item) => compactCard(item, "food")).join("")}</div>
@@ -202,15 +307,27 @@ function renderGuide(guide) {
         <article><span>${escapeHtml(item.day)}</span><h4>${escapeHtml(item.theme)}</h4><p>${escapeHtml(item.plan)}</p></article>`).join("")}</div>
     </section>`;
 
-  premiumContent.querySelectorAll("[data-hotel-filter]").forEach((button) => {
+  premiumContent.querySelectorAll("[data-area-filter]").forEach((button) => {
     button.addEventListener("click", () => {
-      const filter = button.dataset.hotelFilter;
-      premiumContent.querySelectorAll("[data-hotel-filter]").forEach((item) => item.classList.toggle("is-active", item === button));
-      premiumContent.querySelectorAll("[data-hotel-area]").forEach((card) => {
-        card.hidden = filter !== "all" && card.dataset.hotelArea !== filter;
-      });
+      state.areaFilter = button.dataset.areaFilter;
+      premiumContent.querySelectorAll("[data-area-filter]").forEach((item) => item.classList.toggle("is-active", item === button));
+      applyHotelFilters();
     });
   });
+  premiumContent.querySelectorAll("[data-lens-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.lensFilter = button.dataset.lensFilter;
+      premiumContent.querySelectorAll("[data-lens-filter]").forEach((item) => item.classList.toggle("is-active", item === button));
+      applyHotelFilters();
+    });
+  });
+  premiumContent.querySelectorAll("[data-currency]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.currency = button.dataset.currency;
+      renderGuide(guide);
+    });
+  });
+  applyHotelFilters();
 }
 
 async function loadGuide(sessionId = "", retry = false) {
@@ -263,7 +380,7 @@ document.querySelectorAll("[data-open-auth]").forEach((button) => {
   button.addEventListener("click", async () => {
     if (state.signedIn) {
       await fetch("/api/account", { method: "DELETE", credentials: "same-origin" });
-      window.location.assign("/");
+      window.location.assign("/phuket/");
       return;
     }
     authDialog.showModal();
@@ -330,16 +447,21 @@ document.querySelector("#register-form")?.addEventListener("submit", async (even
     state.signedIn = true;
     accountSetup.hidden = true;
     updateAccountButtons();
-    history.replaceState({}, "", "/#guide");
+    history.replaceState({}, "", "/phuket/#guide");
   } catch {
     message.textContent = "The account service is temporarily unavailable.";
   }
 });
 
 async function initializeAccess() {
-  const sessionId = new URLSearchParams(window.location.search).get("session_id") || "";
+  const query = new URLSearchParams(window.location.search);
+  const sessionId = query.get("session_id") || "";
   state.paymentSessionId = /^cs_(?:(?:test|live)_)?[A-Za-z0-9]+$/.test(sessionId) ? sessionId : "";
   await checkAccount();
+  if (query.get("login") === "1" && !state.signedIn) {
+    authDialog?.showModal();
+    history.replaceState({}, "", "/phuket/#guide");
+  }
   if (state.paymentSessionId) {
     setPurchaseStatus("Payment received. Preparing your permanent reading access…");
     await loadGuide(state.paymentSessionId, true);
