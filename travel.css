@@ -678,7 +678,7 @@ a {
 
 .fx-calculator {
   display: grid;
-  grid-template-columns: 1.2fr 0.42fr 0.55fr 0.62fr;
+  grid-template-columns: 1.05fr 0.42fr 1.25fr;
   gap: 28px;
   align-items: end;
   margin-top: 54px;
@@ -688,15 +688,18 @@ a {
   box-shadow: var(--shadow);
 }
 
+.fx-copy { grid-row: 1 / 4; }
+
 .fx-calculator h3 {
   max-width: 620px;
   margin: 0;
   font: 500 clamp(2rem, 3.4vw, 3.8rem)/0.98 var(--display);
 }
 
-.fx-calculator label { display: grid; gap: 8px; }
+.fx-calculator label { display: grid; align-self: start; gap: 8px; }
 
 .fx-calculator label span,
+.fx-country-picker > span,
 .fx-calculator > p {
   color: var(--sea-glass);
   font: 0.56rem/1.4 var(--utility);
@@ -704,8 +707,7 @@ a {
   text-transform: uppercase;
 }
 
-.fx-calculator input,
-.fx-calculator select {
+.fx-calculator input {
   width: 100%;
   padding: 13px 14px;
   border: 1px solid rgba(255, 255, 255, 0.28);
@@ -714,13 +716,39 @@ a {
   font: inherit;
 }
 
-.fx-calculator select {
-  color-scheme: dark;
-  cursor: pointer;
+.fx-country-picker { min-width: 0; }
+
+.fx-country-options {
+  display: flex;
+  max-width: 100%;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 2px 2px 8px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(145, 201, 189, 0.55) rgba(255, 255, 255, 0.08);
 }
+
+.fx-country-options button {
+  min-width: 91px;
+  flex: 0 0 auto;
+  padding: 9px 10px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  text-align: left;
+}
+
+.fx-country-options button b,
+.fx-country-options button small { display: block; }
+.fx-country-options button b { font: 600 0.72rem var(--utility); }
+.fx-country-options button small { margin-top: 4px; font-size: 0.62rem; }
+.fx-country-options button.is-active { color: var(--deep); border-color: var(--sand); background: var(--sand); }
 
 .fx-calculator output {
   display: grid;
+  align-self: center;
   gap: 5px;
   padding-bottom: 10px;
 }
@@ -1528,8 +1556,10 @@ a {
   .public-sources { grid-template-columns: repeat(2, 1fr); }
   .public-sources p { grid-column: 1 / -1; }
   .method-grid { grid-template-columns: repeat(2, 1fr); }
-  .fx-calculator { grid-template-columns: 0.7fr 0.9fr 0.8fr; }
-  .fx-calculator > div { grid-column: 1 / -1; }
+  .fx-calculator { grid-template-columns: 0.75fr 1.25fr; }
+  .fx-copy { grid-row: auto; }
+  .fx-calculator > .fx-copy,
+  .fx-country-picker { grid-column: 1 / -1; }
   .fx-calculator > p { grid-column: 1 / -1; margin-top: 0; }
   .premium-controls { grid-template-columns: 1fr 1fr; }
   .premium-controls > div:last-child { grid-column: 1 / -1; }

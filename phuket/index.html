@@ -32,7 +32,7 @@
         <a href="#preview">Free preview</a>
         <a href="#guide">Full brief</a>
         <a href="#method">Method</a>
-        <a href="../presentation-backgrounds/">Image shop</a>
+        <a href="../presentation-backgrounds/">Phuket scenic art</a>
       </nav>
       <button class="header-account" type="button" data-open-auth>Sign in</button>
     </header>
@@ -162,25 +162,28 @@
         </div>
 
         <form class="fx-calculator" id="fx-calculator">
-          <div>
+          <div class="fx-copy">
             <p class="section-kicker">QUICK CURRENCY VIEW</p>
             <h3>Turn a Thai-baht planning amount into something familiar.</h3>
           </div>
           <label><span>Thai baht</span><input id="fx-amount" name="amount" type="number" min="100" max="1000000" step="100" value="3000" inputmode="decimal"></label>
-          <label><span>View as</span><select id="fx-currency" name="currency">
-            <option value="CNY">CNY · China</option>
-            <option value="USD">USD · United States</option>
-            <option value="HKD">HKD · Hong Kong</option>
-            <option value="SGD">SGD · Singapore</option>
-            <option value="EUR">EUR · Eurozone</option>
-            <option value="GBP">GBP · United Kingdom</option>
-            <option value="AUD">AUD · Australia</option>
-            <option value="JPY">JPY · Japan</option>
-            <option value="MYR">MYR · Malaysia</option>
-            <option value="CAD">CAD · Canada</option>
-            <option value="THB">THB · Thailand</option>
-          </select></label>
-          <output id="fx-output" for="fx-amount fx-currency"><strong>≈ ¥612</strong><span>China · CNY · rate dated 2026-08-28</span></output>
+          <div class="fx-country-picker">
+            <span>View as</span>
+            <div class="fx-country-options" role="group" aria-label="Choose a planning currency">
+              <button type="button" class="is-active" data-fx-currency="CNY" aria-pressed="true"><b>CNY</b><small>China</small></button>
+              <button type="button" data-fx-currency="USD" aria-pressed="false"><b>USD</b><small>United States</small></button>
+              <button type="button" data-fx-currency="HKD" aria-pressed="false"><b>HKD</b><small>Hong Kong</small></button>
+              <button type="button" data-fx-currency="SGD" aria-pressed="false"><b>SGD</b><small>Singapore</small></button>
+              <button type="button" data-fx-currency="EUR" aria-pressed="false"><b>EUR</b><small>Eurozone</small></button>
+              <button type="button" data-fx-currency="GBP" aria-pressed="false"><b>GBP</b><small>United Kingdom</small></button>
+              <button type="button" data-fx-currency="AUD" aria-pressed="false"><b>AUD</b><small>Australia</small></button>
+              <button type="button" data-fx-currency="JPY" aria-pressed="false"><b>JPY</b><small>Japan</small></button>
+              <button type="button" data-fx-currency="MYR" aria-pressed="false"><b>MYR</b><small>Malaysia</small></button>
+              <button type="button" data-fx-currency="CAD" aria-pressed="false"><b>CAD</b><small>Canada</small></button>
+              <button type="button" data-fx-currency="THB" aria-pressed="false"><b>THB</b><small>Thailand</small></button>
+            </div>
+          </div>
+          <output id="fx-output" for="fx-amount"><strong>≈ ¥612</strong><span>China · CNY · rate dated 2026-08-28</span></output>
           <p>Approximation only—not a card, cash or bank quote. Full access converts every hotel range in one tap.</p>
         </form>
 

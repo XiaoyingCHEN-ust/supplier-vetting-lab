@@ -1,6 +1,6 @@
 # Driftwise / Supplier Vetting Lab
 
-Public product pages, private guide access, and secure post-payment delivery for the Driftwise travel brief and the Presentation Background collection.
+Public product pages, private guide access, and secure post-payment delivery for the Driftwise travel brief and Phuket Scenic Studio.
 
 The paid product files are intentionally not included in this repository. Only public marketing assets, policy pages, and the payment-verification code are published.
 
@@ -8,7 +8,7 @@ The paid product files are intentionally not included in this repository. Only p
 
 - `/` is the price-free Driftwise discovery page with a beach and trip-intent matcher.
 - `/phuket/` is the dated Phuket preview, currency calculator, account entry, and paid in-browser guide.
-- `/presentation-backgrounds/` sells individually downloadable PNG backgrounds and a six-image business bundle with an editable PowerPoint template.
+- `/presentation-backgrounds/` presents individually downloadable, watermarked-preview Phuket scenic backgrounds grouped by coast and district.
 - `/sitemap.xml` and `/robots.txt` expose the public discovery surface to search engines.
 
 Payment links use page-specific `client_reference_id` values so completed purchases can be attributed to the originating guide or call to action.

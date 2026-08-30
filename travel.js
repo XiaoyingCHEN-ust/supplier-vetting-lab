@@ -159,18 +159,27 @@ document.querySelector("#destination-search")?.addEventListener("submit", (event
 });
 
 const fxAmount = document.querySelector("#fx-amount");
-const fxCurrency = document.querySelector("#fx-currency");
 const fxOutput = document.querySelector("#fx-output");
 function updateFxPreview() {
   if (!fxAmount || !fxOutput) return;
   const thb = Math.max(0, Number(fxAmount.value) || 0);
-  const currency = fxCurrency?.value || "CNY";
+  const currency = state.previewCurrency || "CNY";
   const definition = currencyDefinitions.find((item) => item.code === currency) || currencyDefinitions[1];
   fxOutput.innerHTML = `<strong>≈ ${escapeHtml(moneyValue(thb, currency, publicFx))}</strong><span>${escapeHtml(definition.country)} · ${escapeHtml(currency)} · rate dated ${escapeHtml(publicFx.asOf)}</span>`;
 }
 document.querySelector("#fx-calculator")?.addEventListener("submit", (event) => event.preventDefault());
 fxAmount?.addEventListener("input", updateFxPreview);
-fxCurrency?.addEventListener("change", updateFxPreview);
+document.querySelectorAll("[data-fx-currency]").forEach((button) => {
+  button.addEventListener("click", () => {
+    state.previewCurrency = button.dataset.fxCurrency;
+    document.querySelectorAll("[data-fx-currency]").forEach((item) => {
+      const active = item === button;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+    updateFxPreview();
+  });
+});
 updateFxPreview();
 
 function setPurchaseStatus(message, stateName = "loading") {
