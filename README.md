@@ -8,7 +8,7 @@ The paid product files are intentionally not included in this repository. Only p
 
 - `/` is the price-free Driftwise Travel discovery page with a wrong-coast test and interactive Phuket decision map.
 - `/phuket/` is the dated Phuket preview, currency calculator, account entry, and paid in-browser guide.
-- `/presentation-backgrounds/` presents individually downloadable, watermarked-preview Phuket scenic backgrounds grouped by coast and district.
+- `/phuket-scenic-studio/` presents individually downloadable, watermarked-preview Phuket scenic backgrounds grouped by coast and district.
 - `/sitemap.xml` and `/robots.txt` expose the public discovery surface to search engines.
 
 Payment links use page-specific `client_reference_id` values so completed purchases can be attributed to the originating guide or call to action.
