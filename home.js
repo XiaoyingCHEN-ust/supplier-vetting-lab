@@ -12,8 +12,7 @@ const destinationMaps = {
     name: "Nai Yang Beach",
     region: "NORTHWEST COAST",
     sequence: "01 / 06",
-    x: 34,
-    y: 15,
+    coordinates: [8.0909, 98.2980],
     labelSide: "right",
     summary: "For a quiet landing, short airport transfer and a beach beside Sirinat National Park. It is a poor base if most of your plans sit around Patong or the southern viewpoints.",
     mood: "Quiet and low-friction",
@@ -31,8 +30,7 @@ const destinationMaps = {
     name: "Patong Beach",
     region: "CENTRAL WEST COAST",
     sequence: "02 / 06",
-    x: 22,
-    y: 42,
+    coordinates: [7.8965, 98.2968],
     labelSide: "left",
     summary: "The highest-convenience choice for nightlife, shopping and a dense range of restaurants. Choose it deliberately: central access comes with traffic, crowds and a greater chance of street noise.",
     mood: "Busy and highly connected",
@@ -50,8 +48,7 @@ const destinationMaps = {
     name: "Kata Beach",
     region: "SOUTHWEST COAST",
     sequence: "03 / 06",
-    x: 28,
-    y: 61,
+    coordinates: [7.8210, 98.2987],
     labelSide: "left",
     summary: "A practical first beach stay for couples and families who want restaurants nearby without Patong intensity. Hills and indirect hotel entrances can make a short map distance feel longer.",
     mood: "Balanced and family-friendly",
@@ -69,8 +66,7 @@ const destinationMaps = {
     name: "Karon Beach",
     region: "WEST COAST",
     sequence: "04 / 06",
-    x: 23,
-    y: 52,
+    coordinates: [7.8474, 98.2937],
     labelSide: "left",
     summary: "A long open beach with more breathing room than central Patong. It suits travellers who accept a more spread-out district and plan their evening transport instead of expecting everything on one block.",
     mood: "Open beach and more space",
@@ -82,8 +78,7 @@ const destinationMaps = {
     name: "Nai Harn Beach",
     region: "SOUTH COAST",
     sequence: "05 / 06",
-    x: 44,
-    y: 83,
+    coordinates: [7.7790, 98.3065],
     labelSide: "right",
     summary: "A scenic southern option for travellers who care more about the beach and a slower day than nightlife access. It is less convenient for airport runs and repeated trips to Patong or Old Town.",
     mood: "Scenic and slower",
@@ -95,8 +90,7 @@ const destinationMaps = {
     name: "Phuket Old Town",
     region: "SOUTHEAST INTERIOR",
     sequence: "06 / 06",
-    x: 73,
-    y: 53,
+    coordinates: [7.8834, 98.3873],
     labelSide: "right",
     summary: "The strongest cultural base for architecture, cafés and local food, with a walkable core. It is not a beach stay: every west-coast beach day adds time and transport planning.",
     mood: "Cultural and walkable",
@@ -114,6 +108,42 @@ const destinationMaps = {
   },
 };
 
+// Main-island coastline adapted from OpenStreetMap relation 1162697 (ODbL),
+// simplified for a fast editorial overlay. Map attribution remains visible in Leaflet.
+const phuketOutline = [
+  [7.935602, 98.258038], [7.923438, 98.262123], [7.924892, 98.27427], [7.909186, 98.296473],
+  [7.886473, 98.289568], [7.886309, 98.272455], [7.893184, 98.264212], [7.8857, 98.260923],
+  [7.88004, 98.265372], [7.882064, 98.272068], [7.875984, 98.27569], [7.867822, 98.273384],
+  [7.856703, 98.290097], [7.833318, 98.294381], [7.824599, 98.289654], [7.819542, 98.297811],
+  [7.803942, 98.298752], [7.787851, 98.284731], [7.786882, 98.290954], [7.77566, 98.288186],
+  [7.776729, 98.30502], [7.758378, 98.302791], [7.759066, 98.315122], [7.770388, 98.319499],
+  [7.777532, 98.337373], [7.789104, 98.333203], [7.823305, 98.345441], [7.839166, 98.366277],
+  [7.842126, 98.375989], [7.805409, 98.38914], [7.814323, 98.39496], [7.799208, 98.408268],
+  [7.801016, 98.412482], [7.808249, 98.410572], [7.812001, 98.402208], [7.818712, 98.40628],
+  [7.824107, 98.400856], [7.829656, 98.405626], [7.835044, 98.402824], [7.837497, 98.410352],
+  [7.838236, 98.39733], [7.851965, 98.391716], [7.862806, 98.402382], [7.871504, 98.399793],
+  [7.878027, 98.410072], [7.871205, 98.414424], [7.886423, 98.413573], [7.887093, 98.419457],
+  [7.894785, 98.418208], [7.8967, 98.425945], [7.900342, 98.421227], [7.897675, 98.420551],
+  [7.897368, 98.417628], [7.903914, 98.422348], [7.91335, 98.411731], [7.926861, 98.413229],
+  [7.950266, 98.396107], [7.961404, 98.394041], [7.967953, 98.397709], [7.978675, 98.393063],
+  [7.991018, 98.40242], [7.990299, 98.415429], [7.983984, 98.421416], [7.987332, 98.425991],
+  [8.002048, 98.410778], [8.020664, 98.410112], [8.037118, 98.417593], [8.041266, 98.41491],
+  [8.04082, 98.421096], [8.048465, 98.417186], [8.039809, 98.430043], [8.040247, 98.432683],
+  [8.060982, 98.432073], [8.066771, 98.43676], [8.065818, 98.443312], [8.072248, 98.442415],
+  [8.071084, 98.436218], [8.075486, 98.434347], [8.086643, 98.434857], [8.092728, 98.440141],
+  [8.100813, 98.425225], [8.085662, 98.417705], [8.079007, 98.406158], [8.082955, 98.401386],
+  [8.079464, 98.396556], [8.085338, 98.386059], [8.09945, 98.376198], [8.118887, 98.373098],
+  [8.120364, 98.367321], [8.110943, 98.351554], [8.124059, 98.354182], [8.125158, 98.350171],
+  [8.11569, 98.345657], [8.143441, 98.347547], [8.145224, 98.342236], [8.170258, 98.338557],
+  [8.185831, 98.315809], [8.184541, 98.309083], [8.192825, 98.304665], [8.188896, 98.297063],
+  [8.191952, 98.302482], [8.193407, 98.303445], [8.191525, 98.299499], [8.197322, 98.302001],
+  [8.200578, 98.297505], [8.196828, 98.283625], [8.151603, 98.296229], [8.105771, 98.301144],
+  [8.087774, 98.296085], [8.078696, 98.273188], [8.071415, 98.270392], [8.056572, 98.277496],
+  [8.042553, 98.276676], [8.037941, 98.272078], [8.033579, 98.275891], [8.03484, 98.285859],
+  [7.99885, 98.291924], [7.984899, 98.284803], [7.987962, 98.270194], [7.982449, 98.276455],
+  [7.95483, 98.282509], [7.948953, 98.277319], [7.948545, 98.262362], [7.935602, 98.258038],
+];
+
 const activeDestination = destinationMaps.phuket;
 const coastProfiles = activeDestination.areas;
 
@@ -130,7 +160,7 @@ const finderResult = document.querySelector("#finder-result");
 const resultGain = document.querySelector("#result-gain");
 const resultTradeoff = document.querySelector("#result-tradeoff");
 const resultFit = document.querySelector("#result-fit");
-const mapMarkers = document.querySelector("#map-markers");
+const mapCanvas = document.querySelector("#phuket-map");
 const mapReading = document.querySelector("#map-reading");
 const mapSequence = document.querySelector("#map-sequence");
 const mapAreaName = document.querySelector("#map-area-name");
@@ -144,22 +174,85 @@ const mapHotelName = document.querySelector("#map-hotel-name");
 const mapHotelPattern = document.querySelector("#map-hotel-pattern");
 const mapHotelCount = document.querySelector("#map-hotel-count");
 const mapHotelSource = document.querySelector("#map-hotel-source");
+const mapReset = document.querySelector("#map-reset");
+let phuketLeafletMap = null;
+let phuketOutlineLayer = null;
+
+function showWholeIsland() {
+  if (!phuketLeafletMap || !phuketOutlineLayer) return;
+  phuketLeafletMap.fitBounds(phuketOutlineLayer.getBounds(), { padding: [44, 44] });
+}
 
 function renderMapMarkers() {
-  if (!mapMarkers) return;
-  Object.entries(coastProfiles).forEach(([areaId, coast]) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "map-pin";
-    button.dataset.mapArea = areaId;
-    button.dataset.labelSide = coast.labelSide;
-    button.style.left = `${coast.x}%`;
-    button.style.top = `${coast.y}%`;
-    button.setAttribute("aria-label", `Show ${coast.name} review sample and trade-offs`);
-    button.innerHTML = `<span class="map-pin-dot" aria-hidden="true"><i></i></span><span class="map-pin-label">${coast.name}</span>`;
-    button.addEventListener("click", () => selectCoast(areaId));
-    mapMarkers.append(button);
+  if (!mapCanvas) return;
+  if (!window.L) {
+    mapCanvas.classList.add("is-unavailable");
+    mapCanvas.querySelector(".map-loading").textContent = "The detailed map could not load. Refresh the page or use the area comparison beside it.";
+    return;
+  }
+
+  mapCanvas.querySelector(".map-loading")?.remove();
+  phuketLeafletMap = L.map(mapCanvas, {
+    attributionControl: true,
+    zoomControl: false,
+    scrollWheelZoom: false,
+    minZoom: 9,
+    maxZoom: 17,
   });
+
+  L.control.zoom({ position: "topright" }).addTo(phuketLeafletMap);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    minZoom: 9,
+    maxZoom: 17,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(phuketLeafletMap);
+
+  L.polygon(phuketOutline, {
+    color: "#f1bd5d",
+    weight: 12,
+    opacity: 0.38,
+    fill: false,
+    interactive: false,
+    lineJoin: "round",
+  }).addTo(phuketLeafletMap);
+
+  phuketOutlineLayer = L.polygon(phuketOutline, {
+    color: "#073843",
+    weight: 4,
+    opacity: 0.96,
+    fillColor: "#5cb2a4",
+    fillOpacity: 0.12,
+    interactive: false,
+    lineJoin: "round",
+  }).addTo(phuketLeafletMap);
+
+  // Establish the first view before creating DOM-backed markers. Leaflet only
+  // materialises marker elements after a map has a centre and zoom level.
+  showWholeIsland();
+
+  Object.entries(coastProfiles).forEach(([areaId, coast]) => {
+    const marker = L.marker(coast.coordinates, {
+      icon: L.divIcon({
+        className: "map-pin",
+        html: `<span class="map-pin-dot" aria-hidden="true"><i></i></span><span class="map-pin-label">${coast.name}</span>`,
+        iconSize: [24, 24],
+        iconAnchor: [12, 20],
+      }),
+      keyboard: true,
+      riseOnHover: true,
+      title: `Show ${coast.name}`,
+      alt: `${coast.name} area marker`,
+    }).addTo(phuketLeafletMap);
+
+    const markerElement = marker.getElement();
+    markerElement.dataset.mapArea = areaId;
+    markerElement.dataset.labelSide = coast.labelSide;
+    markerElement.setAttribute("role", "button");
+    markerElement.setAttribute("aria-label", `Show ${coast.name} review sample and trade-offs`);
+    marker.on("click", () => selectCoast(areaId));
+  });
+
+  window.addEventListener("resize", () => phuketLeafletMap?.invalidateSize(), { passive: true });
 }
 
 function selectCoast(coastId) {
@@ -203,6 +296,7 @@ function selectCoast(coastId) {
 
 renderMapMarkers();
 selectCoast("kata");
+mapReset?.addEventListener("click", showWholeIsland);
 
 document.querySelector("#intent-finder")?.addEventListener("submit", (event) => {
   event.preventDefault();

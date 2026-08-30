@@ -550,51 +550,125 @@ button, input { font: inherit; }
   position: relative;
   min-height: 760px;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 44%, rgba(139, 199, 187, 0.2), transparent 21rem),
-    repeating-radial-gradient(circle at 46% 46%, transparent 0 74px, rgba(139, 199, 187, 0.075) 75px 76px),
-    linear-gradient(150deg, #06333d, #041f27);
+  isolation: isolate;
+  background: #c5d9d8;
 }
 
-.island-map::before,
 .island-map::after {
   position: absolute;
-  z-index: 0;
-  color: rgba(255, 255, 255, 0.08);
-  font: 500 clamp(4rem, 8vw, 8rem)/1 var(--display);
-  letter-spacing: -0.05em;
-  content: "ANDAMAN";
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(3, 37, 45, 0.09), transparent 22%, transparent 74%, rgba(3, 37, 45, 0.15)),
+    radial-gradient(circle at 50% 42%, transparent 45%, rgba(3, 37, 45, 0.08));
+  content: "";
   pointer-events: none;
 }
 
-.island-map::before { top: 10%; left: -4%; transform: rotate(-90deg) translateX(-100%); transform-origin: left top; }
-.island-map::after { right: -2%; bottom: 7%; content: "SEA"; }
-
-.island-shape {
+.phuket-map {
   position: absolute;
-  inset: 3% 12%;
+  inset: 0;
   z-index: 1;
-  width: 76%;
-  height: 94%;
-  filter: drop-shadow(0 24px 45px rgba(0, 0, 0, 0.22));
+  font-family: var(--body);
+  background: #c5d9d8;
 }
 
-.map-depth { fill: url("#island-fill"); stroke: rgba(223, 245, 237, 0.72); stroke-width: 2; }
-.map-coast { fill: none; stroke: rgba(255, 255, 255, 0.58); stroke-width: 1.5; stroke-dasharray: 5 8; }
-.map-crossing { fill: none; stroke: rgba(6, 42, 50, 0.18); stroke-width: 1; }
+.map-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 40px;
+  color: var(--deep);
+  font: 600 0.62rem/1.6 var(--utility);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
 
-.map-markers { position: absolute; inset: 0; z-index: 3; }
+.phuket-map.is-unavailable .map-loading { background: linear-gradient(145deg, #d9e7e2, #bdd5d4); }
+
+.phuket-map .leaflet-tile-pane { filter: saturate(0.7) sepia(0.08) hue-rotate(116deg) brightness(0.97) contrast(0.98); }
+.phuket-map .leaflet-control-zoom { overflow: hidden; border: 0; border-radius: 0; box-shadow: 0 12px 30px rgba(4, 31, 39, 0.2); }
+.phuket-map .leaflet-control-zoom a { color: var(--deep); background: rgba(248, 246, 238, 0.94); border-color: rgba(6, 42, 50, 0.14); }
+.phuket-map .leaflet-control-zoom a:hover { color: white; background: var(--tidal); }
+.phuket-map .leaflet-control-attribution {
+  max-width: 48%;
+  padding: 4px 7px;
+  color: rgba(6, 42, 50, 0.72);
+  background: rgba(248, 246, 238, 0.82);
+  font: 0.46rem/1.35 var(--utility);
+  backdrop-filter: blur(8px);
+}
+.phuket-map .leaflet-control-attribution a { color: var(--tidal); }
+
+.map-reset {
+  position: absolute;
+  top: 82px;
+  right: 10px;
+  z-index: 700;
+  padding: 8px 10px;
+  color: var(--deep);
+  background: rgba(248, 246, 238, 0.94);
+  border: 1px solid rgba(6, 42, 50, 0.16);
+  box-shadow: 0 10px 24px rgba(4, 31, 39, 0.16);
+  font: 600 0.47rem/1 var(--utility);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.map-reset:hover,
+.map-reset:focus-visible { color: white; background: var(--tidal); outline: 0; }
+
+.map-field-label {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 700;
+  display: grid;
+  gap: 5px;
+  padding: 13px 15px;
+  color: white;
+  background: rgba(4, 31, 39, 0.9);
+  border-left: 3px solid var(--sun);
+  box-shadow: 0 12px 30px rgba(4, 31, 39, 0.2);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.map-field-label span { color: var(--sun); font: 600 0.46rem/1 var(--utility); letter-spacing: 0.1em; }
+.map-field-label strong { font: 500 1.18rem/1 var(--display); }
+
+.map-legend {
+  position: absolute;
+  bottom: 46px;
+  left: 18px;
+  z-index: 700;
+  display: flex;
+  gap: 12px;
+  padding: 9px 11px;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(4, 31, 39, 0.86);
+  font: 500 0.46rem/1 var(--utility);
+  letter-spacing: 0.045em;
+  backdrop-filter: blur(9px);
+  pointer-events: none;
+}
+
+.map-legend span { display: inline-flex; gap: 6px; align-items: center; }
+.map-legend i { width: 9px; height: 9px; background: var(--coral); border: 2px solid white; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); }
+.map-legend b { width: 14px; height: 0; border-top: 3px solid var(--sun); box-shadow: 0 2px 0 var(--deep); }
 
 .map-pin {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  padding: 0;
+  width: 24px;
+  height: 24px;
   border: 0;
   color: white;
   background: transparent;
   cursor: pointer;
-  transform: translate(-50%, -50%);
 }
 
 .map-pin-dot {
@@ -614,14 +688,14 @@ button, input { font: inherit; }
 
 .map-pin-label {
   position: absolute;
-  top: 50%;
-  left: 32px;
+  top: 12px;
+  left: 34px;
   width: max-content;
   max-width: 145px;
   padding: 7px 9px;
-  color: rgba(255, 255, 255, 0.86);
-  background: rgba(4, 31, 39, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(4, 31, 39, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   font: 500 0.57rem/1.2 var(--utility);
   letter-spacing: 0.035em;
   text-align: left;
@@ -632,15 +706,17 @@ button, input { font: inherit; }
 
 .map-pin[data-label-side="left"] .map-pin-label { right: 32px; left: auto; text-align: right; }
 .map-pin:hover .map-pin-dot,
-.map-pin.is-active .map-pin-dot { background: var(--sun); box-shadow: 0 0 0 10px rgba(232, 185, 94, 0.2), 0 7px 20px rgba(4, 31, 39, 0.34); transform: rotate(-45deg) scale(1.15); }
+.map-pin:focus-visible .map-pin-dot,
+.map-pin.is-active .map-pin-dot { background: var(--sun); box-shadow: 0 0 0 10px rgba(232, 185, 94, 0.28), 0 7px 20px rgba(4, 31, 39, 0.34); transform: rotate(-45deg) scale(1.15); }
 .map-pin:hover .map-pin-label,
+.map-pin:focus-visible .map-pin-label,
 .map-pin.is-active .map-pin-label { color: var(--deep); background: var(--sand); transform: translateY(-50%) translateX(3px); }
 .map-pin[data-label-side="left"]:hover .map-pin-label,
+.map-pin[data-label-side="left"]:focus-visible .map-pin-label,
 .map-pin[data-label-side="left"].is-active .map-pin-label { transform: translateY(-50%) translateX(-3px); }
 
-.map-compass { position: absolute; top: 28px; right: 30px; z-index: 2; display: grid; place-items: center; width: 54px; height: 54px; color: var(--glass); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 50%; font: 600 0.55rem/1 var(--utility); }
-.map-compass i { position: absolute; top: 8px; width: 1px; height: 14px; background: var(--coral); }
-.map-note { position: absolute; right: 25px; bottom: 20px; left: 25px; z-index: 2; margin: 0; color: rgba(255, 255, 255, 0.4); font: 0.47rem/1.4 var(--utility); letter-spacing: 0.07em; }
+.map-note { position: absolute; right: 190px; bottom: 14px; left: 18px; z-index: 700; margin: 0; color: rgba(4, 31, 39, 0.76); font: 600 0.42rem/1.4 var(--utility); letter-spacing: 0.055em; pointer-events: none; }
+.map-note a { color: var(--tidal); pointer-events: auto; }
 
 .map-reading {
   display: flex;
@@ -890,6 +966,11 @@ button, input { font: inherit; }
   .section-intro h2, .file-copy h2 { font-size: clamp(3.2rem, 14vw, 4.8rem); }
   .map-explorer { margin-top: 46px; }
   .island-map { min-height: 610px; }
+  .map-field-label { top: 12px; left: 12px; padding: 10px 12px; }
+  .map-field-label strong { font-size: 1rem; }
+  .map-legend { bottom: 42px; left: 10px; gap: 8px; padding: 7px 8px; }
+  .map-note { display: none; }
+  .phuket-map .leaflet-control-attribution { max-width: 72%; font-size: 0.4rem; }
   .map-reading { padding: 44px 20px; }
   .map-reading > h3 { font-size: clamp(3.2rem, 14vw, 4.8rem); }
   .map-pin-label { max-width: 112px; padding: 6px 7px; font-size: 0.5rem; }
