@@ -88,6 +88,8 @@ function sessionProduct(session, catalog) {
     filename: product.filename,
     contentType: product.contentType || "application/octet-stream",
     label: product.label || "Your purchase",
+    guideId: typeof product.guideId === "string" ? product.guideId : null,
+    accessType: typeof product.accessType === "string" ? product.accessType : "download",
   };
 }
 
@@ -95,23 +97,27 @@ async function grantEntitlement(session, product, env) {
   const entitlement = {
     sessionId: session.id,
     paymentIntent: session.payment_intent || null,
+    customerEmail: session.customer_details?.email || session.customer_email || null,
     product,
     grantedAt: new Date().toISOString(),
   };
   const options = { expirationTtl: 60 * 60 * 24 * 365 };
+  const entitlementKey = `entitlement:${session.id}`;
+  const entitlementValue = JSON.stringify(entitlement);
 
-  await env.ENTITLEMENTS.put(
-    `entitlement:${session.id}`,
-    JSON.stringify(entitlement),
-    options,
-  );
+  if (product.accessType === "guide") {
+    await env.ENTITLEMENTS.put(entitlementKey, entitlementValue);
+  } else {
+    await env.ENTITLEMENTS.put(entitlementKey, entitlementValue, options);
+  }
 
   if (session.payment_intent) {
-    await env.ENTITLEMENTS.put(
-      `payment-intent:${session.payment_intent}`,
-      session.id,
-      options,
-    );
+    const paymentIntentKey = `payment-intent:${session.payment_intent}`;
+    if (product.accessType === "guide") {
+      await env.ENTITLEMENTS.put(paymentIntentKey, session.id);
+    } else {
+      await env.ENTITLEMENTS.put(paymentIntentKey, session.id, options);
+    }
   }
 }
 

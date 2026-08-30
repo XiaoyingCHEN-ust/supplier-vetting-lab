@@ -5,6 +5,11 @@ import test from "node:test";
 import { onRequestGet as download } from "../functions/api/download.js";
 import { onRequestGet as status } from "../functions/api/status.js";
 import { onRequestPost as webhook } from "../functions/api/stripe-webhook.js";
+import {
+  onRequestGet as accountStatus,
+  onRequestPost as accountAction,
+} from "../functions/api/account.js";
+import { onRequestGet as guide } from "../functions/api/guide.js";
 
 class MemoryKV {
   constructor() {
@@ -208,4 +213,84 @@ test("refund events revoke an existing entitlement", async () => {
   assert.equal(response.status, 200);
   assert.equal(await kv.get("entitlement:cs_test_abc123"), null);
   assert.equal(await kv.get("payment-intent:pi_test_abc123"), null);
+});
+
+test("a paid travel guide can be read, registered, and reopened from an account", async () => {
+  const kv = new MemoryKV();
+  const secret = "whsec_test_example";
+  const guideSession = {
+    ...session,
+    id: "cs_test_phuket123",
+    payment_link: "plink_test_phuket",
+    amount_total: 200,
+    payment_intent: "pi_test_phuket123",
+    customer_details: { email: "reader@example.com" },
+  };
+  const guideData = {
+    meta: { id: "phuket-2026-v1", title: "Phuket Stay & Eat Brief" },
+    hotels: [],
+  };
+  const env = {
+    ENTITLEMENTS: kv,
+    PRODUCT_FILES: {
+      async get(key) {
+        assert.equal(key, "Phuket-Travel-Brief-v1.json");
+        return { async text() { return JSON.stringify(guideData); } };
+      },
+    },
+    STRIPE_WEBHOOK_TEST_SECRET: secret,
+    PRODUCT_CATALOG: JSON.stringify({
+      plink_test_phuket: {
+        amount: 200,
+        objectKey: "Phuket-Travel-Brief-v1.json",
+        filename: "Phuket-Travel-Brief-v1.json",
+        contentType: "application/json",
+        label: "Phuket Stay & Eat Brief — 2026",
+        guideId: "phuket-2026-v1",
+        accessType: "guide",
+      },
+    }),
+  };
+
+  const paidEvent = { type: "checkout.session.completed", data: { object: guideSession } };
+  assert.equal((await webhook({ request: signedRequest(paidEvent, secret), env })).status, 200);
+
+  const paidGuide = await guide({
+    request: new Request("https://example.com/api/guide?session_id=cs_test_phuket123"),
+    env,
+  });
+  assert.equal(paidGuide.status, 200);
+  assert.deepEqual((await paidGuide.json()).guide, guideData);
+
+  const registration = await accountAction({
+    request: new Request("https://example.com/api/account", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        action: "register",
+        sessionId: "cs_test_phuket123",
+        password: "a-long-reader-password",
+      }),
+    }),
+    env,
+  });
+  assert.equal(registration.status, 201);
+  const cookie = registration.headers.get("set-cookie").split(";")[0];
+
+  const signedIn = await accountStatus({
+    request: new Request("https://example.com/api/account", { headers: { cookie } }),
+    env,
+  });
+  assert.deepEqual(await signedIn.json(), {
+    signedIn: true,
+    email: "reader@example.com",
+    guideAccess: true,
+  });
+
+  const accountGuide = await guide({
+    request: new Request("https://example.com/api/guide", { headers: { cookie } }),
+    env,
+  });
+  assert.equal(accountGuide.status, 200);
+  assert.equal((await accountGuide.json()).access, "account");
 });

@@ -1,16 +1,13 @@
-# Supplier Vetting Lab
+# Driftwise / Supplier Vetting Lab
 
-Public product pages and secure post-payment delivery for the China Supplier Vetting Kit and the Sourcing Presentation Background collection.
+Public product pages, private guide access, and secure post-payment delivery for the Driftwise travel brief and the Presentation Background collection.
 
 The paid product files are intentionally not included in this repository. Only public marketing assets, policy pages, and the payment-verification code are published.
 
 ## Public acquisition pages
 
-- `/` includes the no-email five-point deposit gate and interactive product demonstration.
-- `/alibaba-supplier-red-flags/` answers a high-intent supplier-risk question.
-- `/supplier-bank-beneficiary-check/` provides a payment-identity decision path.
-- `/landed-cost-calculator/` provides a browser-only landed-cost estimator.
-- `/presentation-backgrounds/` sells six individually downloadable PNG backgrounds and a six-image bundle with an editable PowerPoint template.
+- `/` is the Phuket travel-review landing page, free area matcher, account entry, and paid in-browser guide.
+- `/presentation-backgrounds/` sells individually downloadable PNG backgrounds and a six-image business bundle with an editable PowerPoint template.
 - `/sitemap.xml` and `/robots.txt` expose the public discovery surface to search engines.
 
 Payment links use page-specific `client_reference_id` values so completed purchases can be attributed to the originating guide or call to action.
@@ -40,7 +37,9 @@ Each catalog entry contains the exact amount in cents and the R2 object delivere
 }
 ```
 
-The webhook grants access only when the signed checkout session's Payment Link, USD currency, paid state, and exact amount all match the trusted catalog. Product files remain private in R2 and are returned only through `/api/download` after entitlement verification.
+The webhook grants access only when the signed checkout session's Payment Link, USD currency, paid state, and exact amount all match the trusted catalog. Product files remain private in R2. Downloads are returned through `/api/download`; the Phuket guide is returned through `/api/guide` after a valid purchase session or account login.
+
+Guide purchasers can register from the completed-payment URL. Passwords are PBKDF2-hashed, account entitlements do not expire, and sign-in sessions use secure HTTP-only cookies.
 
 Configure Stripe to send `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, and `charge.refunded` to:
 

@@ -3,458 +3,287 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Compare 2–15 China suppliers, track evidence gaps, normalize landed cost, and send bilingual document requests before paying a deposit.">
-    <meta name="theme-color" content="#0b1f33">
-    <meta property="og:title" content="China Supplier Vetting Kit">
-    <meta property="og:description" content="Compare suppliers, expose evidence gaps, and estimate landed cost before you send a deposit.">
+    <meta name="description" content="Compare Phuket areas, hotel comfort, public review patterns, food and transport before choosing where to stay.">
+    <meta name="theme-color" content="#0a343d">
+    <meta property="og:title" content="Driftwise Phuket — Stay, eat and move with context">
+    <meta property="og:description" content="A calm, evidence-led Phuket travel brief for choosing an area and hotel before you book.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://supplier-vetting-lab.pages.dev/">
-    <meta property="og:image" content="https://supplier-vetting-lab.pages.dev/assets/preview-cover.png">
+    <meta property="og:image" content="https://supplier-vetting-lab.pages.dev/assets/travel/phuket-dawn.webp">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://supplier-vetting-lab.pages.dev/">
-    <title>China Supplier Vetting Kit — Supplier Vetting Lab</title>
-    <link rel="icon" href="assets/brand-mark.svg" type="image/svg+xml">
+    <title>Driftwise Phuket — Hotel, food and transport review brief</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=optional" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="app.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="travel.css">
+    <script src="travel.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header">
-      <a class="brand" href="./" aria-label="Supplier Vetting Lab home">
-        <img src="assets/brand-mark.svg" alt="" width="34" height="34">
-        <span>Supplier Vetting Lab</span>
+    <header class="travel-header">
+      <a class="travel-brand" href="./" aria-label="Driftwise home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>DRIFTWISE</strong><small>PHUKET · EDITION 01</small></span>
       </a>
       <nav aria-label="Primary navigation">
-        <a href="#deposit-gate">Free check</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#demo">Live demo</a>
-        <a href="#included">Inside the kit</a>
-        <a href="#resources">Guides</a>
-        <a href="presentation-backgrounds/">PPT backgrounds</a>
+        <a href="#area-fit">Area fit</a>
+        <a href="#snapshot">Free snapshot</a>
+        <a href="#guide">Full brief</a>
+        <a href="#method">Method</a>
+        <a href="presentation-backgrounds/">Image shop</a>
       </nav>
+      <button class="header-account" type="button" data-open-auth>Sign in</button>
     </header>
 
     <main id="main">
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow"><span>Field kit 01</span> · China sourcing</p>
-          <h1>Know what to verify<br>before you send a <em>deposit.</em></h1>
-          <p class="hero-deck">A linked Excel workbook and field guide for comparing 2–15 China suppliers, tracking evidence gaps, normalizing landed cost, and following up before money moves.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#deposit-gate">Run the free deposit gate <span aria-hidden="true">↓</span></a>
-            <a class="text-link" href="#launch">See the US$2 toolkit</a>
+      <section class="travel-hero">
+        <div class="hero-photo" role="img" aria-label="An editorial, geography-inspired view of a tropical Andaman bay at dawn">
+          <span class="photo-note">Original editorial visual · not a hotel photograph</span>
+        </div>
+        <div class="hero-panel">
+          <p class="route-label"><span>07.88° N</span><span>98.39° E</span><span>Reviewed 30 Aug 2026</span></p>
+          <h1>Choose the right <em>part</em> of Phuket before the right hotel.</h1>
+          <p class="hero-intro">A small, researched travel brief that compares where to stay, what comfort costs, how guests describe the experience, and what transport changes the decision.</p>
+
+          <form class="destination-search" id="destination-search" role="search">
+            <label>
+              <span>Country</span>
+              <select id="country" name="country">
+                <option value="thailand">Thailand</option>
+              </select>
+            </label>
+            <label class="destination-field">
+              <span>Destination or area</span>
+              <input id="destination" name="destination" list="phuket-areas" value="Phuket" autocomplete="off" placeholder="Try Phuket, Kata or Old Town">
+              <datalist id="phuket-areas">
+                <option value="Phuket"></option>
+                <option value="Patong"></option>
+                <option value="Kata"></option>
+                <option value="Phuket Old Town"></option>
+                <option value="Nai Yang"></option>
+              </datalist>
+            </label>
+            <label>
+              <span>Priority</span>
+              <select id="priority" name="priority">
+                <option value="balanced">Balanced first stay</option>
+                <option value="budget">Lower room cost</option>
+                <option value="quiet">Quiet and comfort</option>
+                <option value="food">Food and local culture</option>
+                <option value="nightlife">Nightlife and convenience</option>
+              </select>
+            </label>
+            <button type="submit">Find my base <span aria-hidden="true">↗</span></button>
+          </form>
+
+          <div class="search-answer" id="search-answer" aria-live="polite">
+            <span class="answer-pin" aria-hidden="true"></span>
+            <div>
+              <small>STARTING POINT</small>
+              <strong>Kata gives a first-time visitor the cleanest balance.</strong>
+              <p>Beach access and restaurants without committing to Patong's full intensity. Expect mid-range planning bands and west-coast traffic.</p>
+            </div>
           </div>
-          <p class="hero-assurance">Instant ZIP · eight linked Excel sheets · six bilingual scripts · one-time purchase</p>
-          <ul class="fact-strip" aria-label="Product facts">
-            <li><strong>15</strong><span>supplier slots</span></li>
-            <li><strong>8</strong><span>linked sheets</span></li>
-            <li><strong>6</strong><span>bilingual requests</span></li>
+
+          <ul class="hero-proof" aria-label="Guide coverage">
+            <li><strong>6</strong><span>hotel shortlists</span></li>
+            <li><strong>13.6k+</strong><span>verified reviews read</span></li>
+            <li><strong>4</strong><span>area profiles</span></li>
+            <li><strong>US$2</strong><span>lifetime web access</span></li>
           </ul>
         </div>
-
-        <div class="hero-board" aria-label="Supplier review workflow preview" data-hero-board>
-          <span class="board-scanner" aria-hidden="true"></span>
-          <div class="board-topline">
-            <span>Decision file / 2026</span>
-            <span class="status-dot">Review ready</span>
-          </div>
-          <div class="board-title">
-            <span class="board-index">SV–01</span>
-            <p>Supplier decision gate</p>
-          </div>
-          <ol class="evidence-rail">
-            <li>
-              <span class="rail-code">01</span>
-              <div><strong>Define</strong><small>Requirements & non-negotiables</small></div>
-              <span class="rail-state">Briefed</span>
-            </li>
-            <li>
-              <span class="rail-code">02</span>
-              <div><strong>Verify</strong><small>Claims, documents & evidence gaps</small></div>
-              <span class="rail-state warning">Check</span>
-            </li>
-            <li>
-              <span class="rail-code">03</span>
-              <div><strong>Compare</strong><small>Weighted score & landed cost</small></div>
-              <span class="rail-state">Modelled</span>
-            </li>
-          </ol>
-          <div class="board-verdict">
-            <span>Decision rule</span>
-            <strong>No evidence → no score.</strong>
-          </div>
-        </div>
       </section>
 
-      <section class="signal-band" aria-label="Purpose statement">
-        <p>Unit price is one line item.</p>
-        <p>Evidence quality is the decision.</p>
-      </section>
-
-      <section class="deposit-gate section" id="deposit-gate" data-deposit-gate>
-        <div class="gate-intro">
-          <p class="eyebrow">Free decision check · no email required</p>
-          <h2>Before you pay a deposit, clear five evidence gates.</h2>
-          <p>Tick only what you can support with a document, live check, sample, or written term. The result stays in your browser and does not verify the supplier.</p>
-          <div class="gate-progress" aria-hidden="true"><span data-gate-progress></span></div>
-          <p class="gate-count" aria-live="polite"><strong data-gate-count>0</strong> of 5 evidence gates cleared</p>
-        </div>
-
-        <form class="gate-console" data-gate-form>
-          <fieldset>
-            <legend class="visually-hidden">Supplier deposit evidence checks</legend>
-            <label class="gate-check">
-              <input type="checkbox" name="legal" data-gate-check>
-              <span class="gate-code">01</span>
-              <span><strong>Legal entity</strong><small>The registered company is active and matches the contracting party.</small></span>
-            </label>
-            <label class="gate-check">
-              <input type="checkbox" name="beneficiary" data-gate-check>
-              <span class="gate-code">02</span>
-              <span><strong>Bank beneficiary</strong><small>The account holder matches the legal entity, or the relationship is documented.</small></span>
-            </label>
-            <label class="gate-check">
-              <input type="checkbox" name="product" data-gate-check>
-              <span class="gate-code">03</span>
-              <span><strong>Product evidence</strong><small>A sample, live video, or traceable report supports this exact product.</small></span>
-            </label>
-            <label class="gate-check">
-              <input type="checkbox" name="compliance" data-gate-check>
-              <span class="gate-code">04</span>
-              <span><strong>Destination compliance</strong><small>Required tests, labels, and certificates apply to your destination market.</small></span>
-            </label>
-            <label class="gate-check">
-              <input type="checkbox" name="terms" data-gate-check>
-              <span class="gate-code">05</span>
-              <span><strong>Written terms</strong><small>Quote, Incoterm, quality standard, payment stages, and remedies are recorded.</small></span>
-            </label>
-          </fieldset>
-          <button class="button gate-run" type="submit">Generate deposit decision</button>
-        </form>
-
-        <aside class="clearance-slip" data-gate-result data-state="hold" aria-live="polite">
-          <div class="slip-topline"><span>SVL / deposit gate</span><span data-gate-date></span></div>
-          <p class="slip-label">Payment clearance</p>
-          <strong class="slip-verdict" data-gate-verdict>HOLD</strong>
-          <p class="slip-summary" data-gate-summary>Clear the checks you can prove, then generate a decision.</p>
-          <div class="slip-rule"><span>Cleared</span><strong data-gate-cleared>0 / 5</strong></div>
-          <div class="slip-rule"><span>Open evidence</span><strong data-gate-open>5</strong></div>
-          <p class="slip-next" data-gate-next>Start with the supplier's legal entity and intended bank beneficiary.</p>
-          <a class="slip-link" href="#launch">Organize the full review in the toolkit <span aria-hidden="true">→</span></a>
-        </aside>
-      </section>
-
-      <section class="demo section" id="demo">
+      <section class="area-section" id="area-fit">
         <div class="section-heading">
-          <p class="eyebrow">Interactive sample</p>
-          <h2>Watch evidence change the recommendation.</h2>
-          <p>Switch between three fictional candidates. The lowest quote does not win when identity, documents, or payment evidence is still unresolved.</p>
+          <p class="section-kicker">AREA FIT · FREE</p>
+          <h2>Four bases. Four different holidays.</h2>
+          <p>Hotel ratings do not tell you how much time you will lose crossing the island. Start with the trip you actually want.</p>
         </div>
 
-        <div class="decision-lab" data-decision-lab>
-          <div class="lab-toolbar">
-            <div>
-              <span class="lab-kicker">SVL / sample audit</span>
-              <strong>Supplier decision scanner</strong>
-            </div>
-            <button class="scan-button" type="button" data-run-audit>
-              <span class="scan-button-dot" aria-hidden="true"></span>
-              Run sample audit
-            </button>
-          </div>
-
-          <div class="supplier-tabs" role="tablist" aria-label="Fictional supplier candidates">
-            <button type="button" role="tab" aria-selected="true" data-supplier="pearl">
-              <span>01</span><strong>Pearl River Mfg.</strong><small>US$4.10 / unit</small>
-            </button>
-            <button type="button" role="tab" aria-selected="false" data-supplier="harbor">
-              <span>02</span><strong>Harbor Trade Co.</strong><small>US$3.35 / unit</small>
-            </button>
-            <button type="button" role="tab" aria-selected="false" data-supplier="fast">
-              <span>03</span><strong>FastSource Ltd.</strong><small>US$2.84 / unit</small>
-            </button>
-          </div>
-
-          <div class="lab-grid">
-            <article class="evidence-panel" aria-live="polite">
-              <div class="panel-heading">
-                <div>
-                  <span>Evidence file</span>
-                  <h3 data-demo-name>Pearl River Mfg.</h3>
-                </div>
-                <span class="source-chip" data-demo-source>Direct outreach</span>
-              </div>
-              <ul class="demo-checks" data-demo-checks>
-                <li data-check="legal"><span>Legal entity</span><strong>Verified</strong></li>
-                <li data-check="beneficiary"><span>Bank beneficiary</span><strong>Verified</strong></li>
-                <li data-check="documents"><span>Product documents</span><strong>Verified</strong></li>
-                <li data-check="sample"><span>Sample against brief</span><strong>Verified</strong></li>
-                <li data-check="terms"><span>Quote & Incoterm</span><strong>Verified</strong></li>
-              </ul>
-            </article>
-
-            <article class="verdict-panel" aria-live="polite">
-              <div class="score-wrap">
-                <div class="score-ring" data-score-ring style="--score: 82">
-                  <span data-score>82</span><small>/ 100</small>
-                </div>
-                <div>
-                  <span class="verdict-label">Evidence-weighted score</span>
-                  <strong class="verdict-status" data-demo-status>Strong candidate</strong>
-                </div>
-              </div>
-              <dl class="demo-metrics">
-                <div><dt>Evidence complete</dt><dd data-demo-complete>100%</dd></div>
-                <div><dt>Unresolved checks</dt><dd data-demo-risks>0</dd></div>
-                <div><dt>Lead time</dt><dd data-demo-lead>28 days</dd></div>
-              </dl>
-              <div class="next-action">
-                <span>Next controlled action</span>
-                <p data-demo-action>Confirm the production sample, final beneficiary, contract terms, and landed cost before payment.</p>
-              </div>
-            </article>
-          </div>
-
-          <p class="demo-disclaimer">Fictional sample data for demonstration only. The workbook organizes your evidence; it does not authenticate a supplier.</p>
+        <div class="route-selector" aria-label="Select a Phuket area">
+          <span class="route-line" aria-hidden="true"></span>
+          <button class="route-stop" type="button" data-area="nai-yang">
+            <span>01</span><strong>Nai Yang</strong><small>Quiet + airport</small>
+          </button>
+          <button class="route-stop" type="button" data-area="patong">
+            <span>02</span><strong>Patong</strong><small>Energy + access</small>
+          </button>
+          <button class="route-stop is-active" type="button" data-area="kata">
+            <span>03</span><strong>Kata</strong><small>Beach + balance</small>
+          </button>
+          <button class="route-stop" type="button" data-area="old-town">
+            <span>04</span><strong>Old Town</strong><small>Food + culture</small>
+          </button>
         </div>
+
+        <article class="area-reading" id="area-reading">
+          <div class="area-reading-main">
+            <p class="area-overline">CURRENT READING</p>
+            <h3>Kata <span>Beach + balance</span></h3>
+            <p>Couples and families get a good beach, restaurants and a calmer evening than Patong. Hills, heat and scattered entrances can make a short map distance feel longer.</p>
+          </div>
+          <dl>
+            <div><dt>Planning band</dt><dd>฿3,200–9,000</dd></div>
+            <div><dt>Mobility note</dt><dd>Smart Bus corridor; check the walk from stop to lobby.</dd></div>
+            <div><dt>Best fit</dt><dd>Families · couples · first beach stay</dd></div>
+          </dl>
+        </article>
       </section>
 
-      <section class="workflow section" id="workflow">
-        <div class="section-heading">
-          <p class="eyebrow">A repeatable review</p>
-          <h2>Turn scattered supplier claims into a decision trail.</h2>
-          <p>The kit keeps requirements, sources, scores, unresolved risks, and cost assumptions in one working file.</p>
+      <section class="snapshot-section" id="snapshot">
+        <div class="snapshot-intro">
+          <p class="section-kicker">MARKET SNAPSHOT · FREE</p>
+          <h2>Enough signal to plan. No fake precision.</h2>
+          <p>These are broad planning bands, not live room quotes. Exact prices change with dates, room type, tax, cancellation terms and demand.</p>
         </div>
-        <div class="workflow-grid">
-          <article>
-            <span class="step-label">Define</span>
-            <h3>Set the decision before the quotes arrive.</h3>
-            <p>Document product requirements, tolerances, certifications, order terms, and evidence standards before comparing candidates.</p>
+        <div class="snapshot-grid">
+          <article class="stat-card stat-score">
+            <span>Median shortlist score</span>
+            <strong>8.9<small>/10</small></strong>
+            <p>Across six selected properties using current Booking.com scores.</p>
           </article>
-          <article>
-            <span class="step-label">Verify</span>
-            <h3>Separate a claim from the proof behind it.</h3>
-            <p>Track entity details, documents, sources, payment warnings, and open questions without pretending uncertainty is a score.</p>
+          <article class="stat-card">
+            <span>Observed planning span</span>
+            <strong>฿1.1k<small>—9k</small></strong>
+            <p>Per room, per night; wide enough to make the area choice matter.</p>
           </article>
-          <article>
-            <span class="step-label">Compare</span>
-            <h3>See the trade-offs in one place.</h3>
-            <p>Compare up to 15 candidates with visible weights, evidence notes, risk penalties, and estimated landed cost per unit.</p>
+          <article class="stat-card">
+            <span>Airport–west coast bus</span>
+            <strong>฿100</strong>
+            <p>Current flat fare published by Phuket Smart Bus.</p>
+          </article>
+          <article class="stat-card stat-note">
+            <span>Best free insight</span>
+            <p><strong>Do not compare Patong and Old Town as if they offer the same trip.</strong> A cheaper room can become a more expensive itinerary once cross-island transport is added.</p>
           </article>
         </div>
-      </section>
 
-      <section class="product-view section" id="included">
-        <div class="section-heading compact">
-          <p class="eyebrow">Inside the files</p>
-          <h2>Built to be used during a real sourcing decision.</h2>
-        </div>
-
-        <div class="product-proof-strip" aria-label="Workbook workflow outcomes">
-          <p><span>01 / link</span><strong>Enter supplier details once.</strong><small>Names flow into comparison, risk, and request sheets.</small></p>
-          <p><span>02 / request</span><strong>Ask for evidence without rewriting emails.</strong><small>Copy six English–Chinese requests, then set follow-up dates.</small></p>
-          <p><span>03 / decide</span><strong>Keep the next open action visible.</strong><small>See the leading candidate, readiness gate, and unresolved work.</small></p>
-        </div>
-
-        <figure class="preview preview-wide">
-          <div class="preview-frame">
-            <img src="assets/preview-dashboard.png" alt="Decision dashboard showing the leading supplier, evidence completeness, readiness gate, and next action" width="1136" height="862" loading="lazy">
+        <div class="preview-table" aria-label="Preview of the hotel comparison fields">
+          <div class="preview-row preview-head">
+            <span>Hotel</span><span>Area</span><span>Score</span><span>Planning band</span><span>Decision</span>
           </div>
-          <figcaption>
-            <span>Decision dashboard</span>
-            <strong>See the leading candidate, readiness gate, and next unresolved action at a glance.</strong>
-          </figcaption>
-        </figure>
-
-        <figure class="preview preview-wide preview-request">
-          <div class="preview-frame">
-            <img src="assets/preview-request-tracker.png" alt="Request tracker with six bilingual evidence request scripts, follow-up dates, statuses, and evidence links" width="1824" height="1695" loading="lazy">
+          <div class="preview-row">
+            <span>Value-led social stay</span><span>Patong</span><span>8.3</span><span>฿1,100–3,000</span><span>Best for solo travel</span>
           </div>
-          <figcaption>
-            <span>New in version 1.2 / request tracker + scripts</span>
-            <strong>Copy a bilingual evidence request, assign a follow-up date, and keep the response beside the supplier record.</strong>
-          </figcaption>
-        </figure>
+          <div class="preview-row is-obscured" aria-hidden="true">
+            <span>Central comfort pick</span><span>Patong</span><span>8.9</span><span>฿2,800–5,800</span><span>Strong walk-first base</span>
+          </div>
+          <div class="preview-row is-obscured" aria-hidden="true">
+            <span>Design-led retreat</span><span>Kata</span><span>9.4</span><span>฿4,000–9,000</span><span>Comfort splurge</span>
+          </div>
+          <div class="table-lock"><span aria-hidden="true">⌁</span> Names, review patterns and trade-offs unlock in the full brief.</div>
+        </div>
+      </section>
 
-        <div class="preview-trio">
-          <figure class="preview preview-cover">
-            <div class="preview-frame">
-              <img src="assets/preview-cover.png" alt="China Supplier Vetting Kit guide and workbook cover" width="1547" height="2002" loading="lazy">
+      <section class="guide-section" id="guide">
+        <div class="guide-shell" id="guide-paywall">
+          <div class="guide-offer">
+            <p class="section-kicker">PHUKET BRIEF · VERSION 1.0</p>
+            <h2>Read the whole decision file in your browser.</h2>
+            <p class="offer-copy">One payment unlocks the current Phuket edition for life. Register with the email used at checkout and return from any device.</p>
+            <ul class="offer-list">
+              <li><span>06</span>Named hotels with review consensus and watch-outs</li>
+              <li><span>04</span>Area profiles with price and mobility trade-offs</li>
+              <li><span>05</span>Food stops selected from current Michelin coverage</li>
+              <li><span>04</span>Transport decisions and a simple three-day structure</li>
+            </ul>
+            <div class="offer-buy">
+              <div><strong>US$2</strong><span>tax included · one time</span></div>
+              <a class="travel-button" href="https://buy.stripe.com/5kQ7sE0mFenu1eU9X50sU0i?client_reference_id=phuket_home_v1">Unlock the Phuket brief <span aria-hidden="true">↗</span></a>
             </div>
-            <figcaption>
-              <span>Field guide</span>
-              <strong>An 11-page decision workflow.</strong>
-            </figcaption>
-          </figure>
-          <figure class="preview preview-comparison">
-            <div class="preview-frame">
-              <img src="assets/preview-comparison.png" alt="Supplier comparison workbook showing weighted scores, evidence notes, and automatically linked risk flags" width="3344" height="1047" loading="lazy">
+            <p class="offer-fine">Secure checkout by Stripe Managed Payments. Digital document, view-only, permanent access. No booking is made and no hotel pays for placement.</p>
+            <button class="returning-link" type="button" data-open-auth>Already purchased? Sign in</button>
+          </div>
+          <div class="guide-peek" aria-hidden="true">
+            <div class="peek-top"><span>DRIFTWISE / PHUKET</span><span>PRIVATE READING VIEW</span></div>
+            <div class="peek-card">
+              <span class="peek-tag">HOTEL 04 · KATA</span>
+              <h3>Why it works</h3>
+              <p>A hotel should earn its place by matching a traveller, not by winning every score.</p>
+              <div class="peek-meter"><i style="--value: 94%"></i></div>
+              <dl><div><dt>Comfort</dt><dd>High</dd></div><div><dt>Quiet</dt><dd>Good</dd></div><div><dt>Value</dt><dd>Strong</dd></div></dl>
             </div>
-            <figcaption>
-              <span>Workbook / comparison</span>
-              <strong>Enter supplier details once; risk counts now flow back automatically.</strong>
-            </figcaption>
-          </figure>
-          <figure class="preview preview-cost">
-            <div class="preview-frame">
-              <img src="assets/preview-cost.png" alt="Landed cost calculator covering freight, duty, testing, fees, and contingency" width="1120" height="1121" loading="lazy">
+            <div class="peek-card is-muted">
+              <span class="peek-tag">REVIEW CONSENSUS</span>
+              <p>What recent guests repeat—and the trade-off that disappears inside one average score.</p>
             </div>
-            <figcaption>
-              <span>Workbook / landed cost</span>
-              <strong>Model the cost that arrives after the quote.</strong>
-            </figcaption>
-          </figure>
+            <div class="peek-lock"><span>UNLOCKED AFTER PAYMENT</span></div>
+          </div>
         </div>
-      </section>
 
-      <section class="manifest section">
-        <div class="manifest-intro">
-          <p class="eyebrow">Download manifest</p>
-          <h2>One kit. Five working files.</h2>
-          <p>Use recent desktop Microsoft Excel for the intended workbook experience. LibreOffice Calc can open the file with possible minor differences; the editable guide works in Microsoft Word or compatible editors.</p>
-        </div>
-        <ul class="manifest-list">
-          <li><span>01</span><strong>Supplier Vetting Workbook</strong><small>XLSX · eight linked sheets</small></li>
-          <li><span>02</span><strong>Field Guide</strong><small>PDF · 11 pages</small></li>
-          <li><span>03</span><strong>Editable Field Guide</strong><small>DOCX</small></li>
-          <li><span>04</span><strong>Start Here</strong><small>TXT · quick setup</small></li>
-          <li><span>05</span><strong>License & Disclaimer</strong><small>TXT · one-business use</small></li>
-        </ul>
-      </section>
+        <div class="purchase-status" id="purchase-status" hidden aria-live="polite"></div>
 
-      <section class="boundary section">
-        <div>
-          <p class="eyebrow">Designed for</p>
-          <h2>Small teams making consequential supplier choices.</h2>
-        </div>
-        <ul class="chip-list">
-          <li>First-time importers</li>
-          <li>E-commerce operators</li>
-          <li>Product founders</li>
-          <li>Lean procurement teams</li>
-        </ul>
-        <div class="boundary-note">
-          <strong>This is a decision-support toolkit.</strong>
-          <p>It does not provide a supplier directory, source products for you, verify suppliers automatically, guarantee an outcome, or replace customs, legal, tax, compliance, or inspection advice.</p>
-        </div>
-      </section>
-
-      <section class="resource-index section" id="resources">
-        <div class="section-heading">
-          <p class="eyebrow">Buyer guides &amp; presentation assets</p>
-          <h2>Resolve the question—then present the decision clearly.</h2>
-          <p>Use the practical checks before sending money, and the presentation backgrounds when you need to brief a team or client.</p>
-        </div>
-        <div class="resource-grid">
-          <a href="alibaba-supplier-red-flags/">
-            <span>Risk check</span>
-            <strong>Alibaba supplier red flags</strong>
-            <small>Seven warning patterns and the evidence to request next.</small>
-          </a>
-          <a href="supplier-bank-beneficiary-check/">
-            <span>Payment check</span>
-            <strong>Bank beneficiary mismatch</strong>
-            <small>A decision path for company, personal, and third-party accounts.</small>
-          </a>
-          <a href="landed-cost-calculator/">
-            <span>Cost check</span>
-            <strong>Free landed-cost calculator</strong>
-            <small>Estimate the cost per saleable unit beyond the supplier quote.</small>
-          </a>
-          <a href="presentation-backgrounds/">
-            <span>Visual pack · new</span>
-            <strong>Sourcing presentation backgrounds</strong>
-            <small>Six original 16:9 styles, available individually or with an editable PPT template.</small>
-          </a>
-        </div>
-      </section>
-
-      <section class="launch section" id="launch">
-        <div class="launch-card">
+        <section class="account-setup" id="account-setup" hidden>
           <div>
-            <p class="eyebrow">Launch edition</p>
-            <h2>Make the next supplier comparison auditable.</h2>
-            <p>One-time purchase. The download unlocks after Stripe confirms payment. No subscription.</p>
+            <p class="section-kicker">PAYMENT CONFIRMED</p>
+            <h2>Save permanent access.</h2>
+            <p>Create a password for the email used at checkout. You can keep reading now even if you skip this step, but an account lets you return on another device.</p>
           </div>
-          <div class="price-block">
-            <span class="price-label">Launch price · version 1.2</span>
-            <strong><sup>$</sup>2</strong>
-            <a class="button button-primary" href="https://buy.stripe.com/28E5kw8Tb3IQf5K9X50sU08?client_reference_id=home_launch">Buy now — US$2</a>
-            <small>Secure checkout by Stripe/Link. Applicable sales tax or VAT is included; checkout may show a local-currency equivalent.</small>
+          <form id="register-form">
+            <label><span>Create password</span><input name="password" type="password" minlength="10" maxlength="128" autocomplete="new-password" required></label>
+            <label><span>Confirm password</span><input name="confirmPassword" type="password" minlength="10" maxlength="128" autocomplete="new-password" required></label>
+            <button type="submit">Create my permanent account</button>
+            <p class="form-message" data-register-message aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="unlocked-guide" id="unlocked-guide" hidden aria-live="polite">
+          <div class="unlocked-heading">
+            <p class="section-kicker">PURCHASED EDITION</p>
+            <h2>Your Phuket decision file</h2>
+            <p id="guide-meta">Loading the current edition…</p>
           </div>
-        </div>
+          <div id="premium-guide-content"></div>
+        </section>
       </section>
 
-      <section class="faq section" id="faq">
-        <div class="section-heading compact">
-          <p class="eyebrow">Before you buy</p>
-          <h2>Questions worth resolving.</h2>
+      <section class="method-section" id="method">
+        <div class="section-heading">
+          <p class="section-kicker">HOW THIS IS BUILT</p>
+          <h2>Public evidence, edited into decisions.</h2>
         </div>
-        <div class="faq-list">
-          <details>
-            <summary>Does the kit verify suppliers automatically?</summary>
-            <p>No. It organizes your checks, evidence, assumptions, and decision trail. Verification and professional review remain your responsibility.</p>
-          </details>
-          <details>
-            <summary>Is it only for suppliers found on Alibaba?</summary>
-            <p>No. Use it for candidates found through marketplaces, trade fairs, directories, referrals, or direct outreach.</p>
-          </details>
-          <details>
-            <summary>Does it include supplier contacts or recommendations?</summary>
-            <p>No. This is a buyer-managed decision toolkit, not a supplier directory, sourcing service, or list of endorsed factories.</p>
-          </details>
-          <details>
-            <summary>Can I change the scoring weights?</summary>
-            <p>Yes. The weights and risk penalty are visible in the workbook. Change them only when you understand how they affect the decision.</p>
-          </details>
-          <details>
-            <summary>Will the workbook work in Google Sheets?</summary>
-            <p>It is supplied as an XLSX file and designed for recent desktop versions of Microsoft Excel. LibreOffice Calc can open it, but minor formula or formatting differences may occur. Google Sheets is not a supported target.</p>
-          </details>
-          <details>
-            <summary>What do I need before I start?</summary>
-            <p>Bring at least two supplier candidates or quotes, your product and destination-market requirements, and a recent desktop version of Microsoft Excel. The kit gives you a process; it does not supply the candidates.</p>
-          </details>
-          <details>
-            <summary>What changed in version 1.2?</summary>
-            <p>Version 1.2 adds a linked request tracker with six copy-ready English–Chinese evidence requests, follow-up dates, statuses, evidence links, and next-action notes. It builds on the Decision Dashboard and linked risk counts added in version 1.1.</p>
-          </details>
-          <details>
-            <summary>Can I share or resell the files?</summary>
-            <p>The standard license covers personal use or internal use by one business. Redistribution, resale, sublicensing, and competing standalone products are not permitted.</p>
-          </details>
-          <details>
-            <summary>What support is included?</summary>
-            <p>Product support covers file-access issues and reproducible spreadsheet defects. Supplier selection, sourcing, negotiation, and compliance opinions are outside scope. <a href="mailto:xiaoyingchen0829@163.com?subject=Supplier%20Vetting%20Lab%20support">Email product support</a>, or use Link support for payment, order, or refund questions.</p>
-          </details>
+        <div class="method-grid">
+          <article><span>01</span><h3>Separate area from property</h3><p>We first ask what the neighbourhood changes: beach access, noise, food density, airport friction and cross-island travel.</p></article>
+          <article><span>02</span><h3>Read patterns, not one comment</h3><p>Scores and repeated verified-review themes are summarized. We do not copy individual guest reviews or present one anecdote as consensus.</p></article>
+          <article><span>03</span><h3>Show the trade-off</h3><p>Every shortlist entry includes a reason to choose it and a reason to pause. A recommendation without a watch-out is advertising.</p></article>
+          <article><span>04</span><h3>Date the evidence</h3><p>This edition was reviewed on 30 August 2026. Links remain available so readers can confirm the newest score, price and timetable.</p></article>
+        </div>
+        <div class="public-sources">
+          <p>Core public sources</p>
+          <a href="https://www.tourismthailand.org/Trip-Planner/Suggestion-Detail/recommended-route-for-one-day-3" target="_blank" rel="noreferrer">Tourism Authority of Thailand <span>↗</span></a>
+          <a href="https://phuketsmartbus.com/payment/" target="_blank" rel="noreferrer">Phuket Smart Bus <span>↗</span></a>
+          <a href="https://guide.michelin.com/en/phuket-region/phuket/restaurants/bib-gourmand" target="_blank" rel="noreferrer">Michelin Guide Phuket <span>↗</span></a>
+          <a href="https://www.booking.com/region/th/phuket.html" target="_blank" rel="noreferrer">Booking.com verified reviews <span>↗</span></a>
         </div>
       </section>
     </main>
 
-    <footer>
-      <div class="brand footer-brand">
-        <img src="assets/brand-mark.svg" alt="" width="30" height="30">
-        <span>Supplier Vetting Lab</span>
-      </div>
-      <p>Practical decision tools for small importers.</p>
-      <nav aria-label="Legal">
-        <a href="terms.html">Terms</a>
+    <footer class="travel-footer">
+      <div><strong>DRIFTWISE</strong><span>A small travel decision studio.</span></div>
+      <p>Independent planning information—not a booking agent, hotel inspection, safety guarantee or live price service. Confirm current details before purchase or travel.</p>
+      <nav aria-label="Footer navigation">
         <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
         <a href="refunds.html">Refunds</a>
-        <a href="mailto:xiaoyingchen0829@163.com?subject=Supplier%20Vetting%20Lab%20support">Product support</a>
+        <a href="mailto:xiaoyingchen0829@163.com">Contact</a>
       </nav>
     </footer>
 
-    <div class="mobile-buy" aria-label="Purchase shortcut">
-      <span><strong>US$2</strong><small>Tax-inclusive · after payment</small></span>
-      <a href="https://buy.stripe.com/28E5kw8Tb3IQf5K9X50sU08?client_reference_id=home_mobile">Get the kit</a>
-    </div>
-    <!-- Cloudflare Web Analytics -->
-    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"43b0181a73314e14aa9a6540e9725717"}'></script>
-    <!-- End Cloudflare Web Analytics -->
+    <dialog class="auth-dialog" id="auth-dialog">
+      <button class="dialog-close" type="button" aria-label="Close sign-in window" data-close-auth>×</button>
+      <p class="section-kicker">RETURNING READER</p>
+      <h2>Sign in to your brief.</h2>
+      <p>Use the payment email and password you created after checkout.</p>
+      <form id="login-form">
+        <label><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+        <label><span>Password</span><input name="password" type="password" minlength="10" maxlength="128" autocomplete="current-password" required></label>
+        <button type="submit">Sign in and open the guide</button>
+        <p class="form-message" data-login-message aria-live="polite"></p>
+      </form>
+      <p class="auth-help">Paid but never created a password? Open the payment-complete page from your Stripe receipt, or contact <a href="mailto:xiaoyingchen0829@163.com">support</a> with the receipt email.</p>
+    </dialog>
   </body>
 </html>
