@@ -1,12 +1,12 @@
-# Driftwise / Supplier Vetting Lab
+# Driftwise Travel
 
-Public product pages, private guide access, and secure post-payment delivery for the Driftwise travel brief and Phuket Scenic Studio.
+Public travel pages, private guide access, and secure post-payment delivery for Driftwise Travel and Phuket Scenic Studio.
 
 The paid product files are intentionally not included in this repository. Only public marketing assets, policy pages, and the payment-verification code are published.
 
 ## Public acquisition pages
 
-- `/` is the price-free Driftwise discovery page with a beach and trip-intent matcher.
+- `/` is the price-free Driftwise Travel discovery page with a wrong-coast test and interactive Phuket decision map.
 - `/phuket/` is the dated Phuket preview, currency calculator, account entry, and paid in-browser guide.
 - `/presentation-backgrounds/` presents individually downloadable, watermarked-preview Phuket scenic backgrounds grouped by coast and district.
 - `/sitemap.xml` and `/robots.txt` expose the public discovery surface to search engines.
@@ -31,9 +31,9 @@ Each catalog entry contains the exact amount in cents and the R2 object delivere
   "plink_example": {
     "amount": 100,
     "objectKey": "01-photorealistic-procurement.png",
-    "filename": "Supplier-Vetting-Background-01-Procurement-Desk.png",
+    "filename": "Phuket-Scenic-Background-01-Promthep-Afterglow.png",
     "contentType": "image/png",
-    "label": "Procurement Desk background"
+    "label": "Promthep Afterglow background"
   }
 }
 ```
@@ -44,11 +44,11 @@ Guide purchasers can register from the completed-payment URL. Passwords are PBKD
 
 Configure Stripe to send `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, and `charge.refunded` to:
 
-`https://supplier-vetting-lab.pages.dev/api/stripe-webhook`
+`https://driftwise-travel.pages.dev/api/stripe-webhook`
 
 Download products redirect to:
 
-`https://supplier-vetting-lab.pages.dev/delivery.html?session_id={CHECKOUT_SESSION_ID}`
+`https://driftwise-travel.pages.dev/delivery.html?session_id={CHECKOUT_SESSION_ID}`
 
 The Phuket guide can redirect to `/phuket/?session_id={CHECKOUT_SESSION_ID}#guide`. The root page also safely forwards an existing guide checkout session to that path.
 

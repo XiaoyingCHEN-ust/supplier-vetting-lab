@@ -8,10 +8,10 @@
     <meta property="og:title" content="Driftwise — Find your side of Phuket">
     <meta property="og:description" content="Run the free wrong-coast test, see the trade-off, then compare Phuket hotels with context.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://supplier-vetting-lab.pages.dev/">
-    <meta property="og:image" content="https://supplier-vetting-lab.pages.dev/assets/travel/phuket-dawn.webp">
+    <meta property="og:url" content="https://driftwise-travel.pages.dev/">
+    <meta property="og:image" content="https://driftwise-travel.pages.dev/assets/travel/phuket-dawn.webp">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://supplier-vetting-lab.pages.dev/">
+    <link rel="canonical" href="https://driftwise-travel.pages.dev/">
     <title>Driftwise — Find your side of Phuket</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,45 +125,60 @@
 
       <section class="atlas-section" id="atlas">
         <div class="section-intro reveal">
-          <p class="eyebrow">THE ISLAND IS NOT ONE EXPERIENCE</p>
-          <h2>Choose a coast before a room.</h2>
-          <p>A short map distance can still mean traffic, hills or an expensive cross-island trip. These six starting points answer different kinds of holidays.</p>
+          <p class="eyebrow">CLICKABLE PHUKET DECISION MAP</p>
+          <h2>Put every beach on the same island.</h2>
+          <p>Tap a point to compare the area fit, the trade-off and a dated public hotel-review sample. The map is schematic—not a navigation map or a live availability service.</p>
         </div>
 
-        <div class="coastline-board reveal" aria-label="Phuket beach and area guide">
-          <div class="coastline-thread" aria-hidden="true"><i></i></div>
-          <button class="coast-card is-active" type="button" data-coast="nai-yang">
-            <span class="coast-index">NORTH · 01</span><strong>Nai Yang</strong><small>Quiet · airport ease</small>
-          </button>
-          <button class="coast-card" type="button" data-coast="patong">
-            <span class="coast-index">WEST · 02</span><strong>Patong</strong><small>Energy · convenience</small>
-          </button>
-          <button class="coast-card" type="button" data-coast="kata">
-            <span class="coast-index">WEST · 03</span><strong>Kata</strong><small>Balance · family ease</small>
-          </button>
-          <button class="coast-card" type="button" data-coast="karon">
-            <span class="coast-index">WEST · 04</span><strong>Karon</strong><small>Long beach · breathing room</small>
-          </button>
-          <button class="coast-card" type="button" data-coast="nai-harn">
-            <span class="coast-index">SOUTH · 05</span><strong>Nai Harn</strong><small>Scenic · slower pace</small>
-          </button>
-          <button class="coast-card" type="button" data-coast="old-town">
-            <span class="coast-index">EAST · 06</span><strong>Old Town</strong><small>Food · architecture</small>
-          </button>
-        </div>
-
-        <article class="coast-reading reveal" id="coast-reading">
-          <div>
-            <p class="eyebrow">CURRENT READING</p>
-            <h3>Nai Yang</h3>
-            <p>For a quiet landing, short airport transfer and a beach beside Sirinat National Park. It is a poor base if most of your plans sit around Patong or the southern viewpoints.</p>
+        <div class="map-explorer reveal" data-destination="phuket">
+          <div class="island-map" aria-label="Schematic map of Phuket with selectable beaches and areas">
+            <svg class="island-shape" viewBox="0 0 520 760" role="img" aria-label="Original schematic outline of Phuket island">
+              <defs>
+                <linearGradient id="island-fill" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#dcebe2"></stop>
+                  <stop offset="0.58" stop-color="#8fc8b9"></stop>
+                  <stop offset="1" stop-color="#2f8b82"></stop>
+                </linearGradient>
+              </defs>
+              <path class="map-depth" d="M271 36C218 58 212 111 188 147C161 187 125 214 132 264C138 306 112 346 130 391C147 433 121 474 149 516C168 545 166 583 200 613C225 636 234 691 280 718C312 700 326 665 337 632C348 596 386 580 377 531C369 486 408 449 387 403C371 367 398 331 370 290C347 257 374 217 349 180C327 148 336 105 310 70C299 54 286 43 271 36Z"></path>
+              <path class="map-coast" d="M260 48C220 74 222 119 194 158C168 194 141 222 147 264C153 304 129 349 147 389C164 427 139 470 163 507C184 539 181 577 210 603C239 630 239 675 280 703"></path>
+              <path class="map-crossing" d="M146 270C216 294 292 309 373 291M149 391C226 382 304 389 386 406M165 515C233 500 302 507 370 531"></path>
+            </svg>
+            <div class="map-markers" id="map-markers"></div>
+            <div class="map-compass" aria-hidden="true"><span>N</span><i></i></div>
+            <p class="map-note">ORIGINAL SCHEMATIC · POSITIONS ARE APPROXIMATE · NOT FOR NAVIGATION</p>
           </div>
-          <dl>
-            <div><dt>Beach mood</dt><dd>Quiet and low-friction</dd></div>
-            <div><dt>Best for</dt><dd>Late arrivals · slow travel</dd></div>
-            <div><dt>Reality check</dt><dd>Longer trips to the south</dd></div>
-          </dl>
-        </article>
+
+          <article class="map-reading" id="map-reading" aria-live="polite">
+            <div class="map-reading-head">
+              <p class="eyebrow">SELECTED AREA · WEST COAST</p>
+              <span class="map-sequence" id="map-sequence">03 / 06</span>
+            </div>
+            <h3 id="map-area-name">Kata Beach</h3>
+            <p class="map-area-summary" id="map-area-summary">A practical first beach base for couples and families who want restaurants nearby without Patong intensity.</p>
+
+            <section class="hotel-signal" id="hotel-signal" aria-label="Dated public hotel review sample">
+              <div class="hotel-signal-top">
+                <span>DATED PUBLIC HOTEL SAMPLE</span>
+                <strong id="map-hotel-score">8.8<small>/10</small></strong>
+              </div>
+              <h4 id="map-hotel-name">OZO Phuket</h4>
+              <p id="map-hotel-pattern">Guests consistently value the location, helpful staff, family facilities, beach access and breakfast variety.</p>
+              <div class="hotel-signal-meta">
+                <span id="map-hotel-count">1,582 verified reviews · reviewed 30 Aug 2026</span>
+                <a id="map-hotel-source" href="https://www.booking.com/hotel/th/ozo-phuket.html" target="_blank" rel="noreferrer">Check current listing ↗</a>
+              </div>
+            </section>
+
+            <dl class="map-tradeoffs">
+              <div><dt>Best fit</dt><dd id="map-best-fit">First stays · beach days</dd></div>
+              <div><dt>Accept</dt><dd id="map-tradeoff">Check the real walking route</dd></div>
+              <div><dt>Area signal</dt><dd id="map-mood">Balanced and family-friendly</dd></div>
+            </dl>
+            <a class="map-cta" href="phuket/#preview">Open the hotel comparison preview <span aria-hidden="true">↗</span></a>
+            <p class="map-evidence-note">Scores and review counts change. Always confirm the latest listing, room terms and route before booking.</p>
+          </article>
+        </div>
       </section>
 
       <section class="file-section" id="preview">

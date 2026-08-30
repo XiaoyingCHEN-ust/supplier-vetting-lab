@@ -66,16 +66,27 @@ button, input { font: inherit; }
 .hero-facts { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 55px; color: rgba(255,255,255,.48); font: .52rem var(--utility); letter-spacing: .05em; text-transform: uppercase; }
 .hero-facts strong { color: white; }
 
-.hero-landscape { position: relative; min-height: 720px; margin: 0; overflow: hidden; background: var(--night); }
-.hero-landscape::after { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 42%, rgba(5,40,47,.48)); content: ""; pointer-events: none; }
-.hero-landscape img { width: 100%; height: 100%; min-height: 720px; object-fit: cover; object-position: 58% center; animation: cover-breathe 12s ease-in-out infinite alternate; }
-.cover-swell { position: absolute; z-index: 1; inset: 8% -10% 7% 7%; border: 1px solid rgba(255,255,255,.45); border-radius: 49% 51% 45% 55% / 42% 47% 53% 58%; pointer-events: none; }
-.cover-swell i { position: absolute; top: 9%; left: 10%; width: 68px; height: 68px; border: 1px solid rgba(255,255,255,.54); border-radius: 50%; box-shadow: inset 0 0 0 14px rgba(255,255,255,.06); }
-.hero-landscape figcaption { position: absolute; right: 6%; bottom: 6%; z-index: 2; padding: 13px 16px; color: var(--deep); background: rgba(242,223,188,.94); backdrop-filter: blur(12px); }
-.hero-landscape figcaption span, .hero-landscape figcaption strong { display: block; }
-.hero-landscape figcaption span { font: .48rem var(--utility); letter-spacing: .08em; }
-.hero-landscape figcaption strong { margin-top: 5px; font-size: .72rem; }
-@keyframes cover-breathe { from { transform: scale(1.01); } to { transform: scale(1.045); } }
+.hero-folio { position: relative; min-height: 720px; overflow: hidden; background: radial-gradient(circle at 48% 42%, #0d4b52, var(--night) 62%); }
+.hero-folio::before { position: absolute; inset: 0; opacity: .32; background: repeating-radial-gradient(circle at 50% 44%, transparent 0 82px, rgba(154,213,199,.11) 83px 84px); content: ""; }
+.hero-folio figure { position: absolute; z-index: 2; margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.34); background: var(--night); box-shadow: 0 24px 65px rgba(0,0,0,.28); }
+.hero-folio figure img { width: 100%; height: 100%; object-fit: cover; }
+.folio-main { inset: 6% 5% 30% 7%; transform: rotate(-1.1deg); }
+.folio-main img { animation: folio-breathe 13s ease-in-out infinite alternate; }
+.folio-card { bottom: 5%; width: 27%; height: 22%; transition: transform .35s cubic-bezier(.2,.7,.2,1), z-index .1s; }
+.folio-card:hover { z-index: 6; transform: translateY(-13px) rotate(0); }
+.folio-kata { left: 2%; transform: rotate(-3deg); }
+.folio-town { left: 25%; transform: rotate(1.8deg); }
+.folio-north { left: 48%; transform: rotate(-1.4deg); }
+.folio-bay { left: 71%; transform: rotate(2.5deg); }
+.folio-card figcaption { position: absolute; right: 0; bottom: 0; left: 0; padding: 8px 10px; color: rgba(255,255,255,.86); background: linear-gradient(180deg, transparent, rgba(5,40,47,.88)); font: .46rem/1.2 var(--utility); letter-spacing: .06em; }
+.folio-thread { position: absolute; z-index: 3; inset: 8% 7% 26%; border: 1px dashed rgba(242,223,188,.55); border-radius: 50%; pointer-events: none; transform: rotate(-8deg); }
+.folio-thread i { position: absolute; top: 13%; right: 17%; width: 8px; height: 8px; border-radius: 50%; background: var(--saffron); box-shadow: 0 0 0 8px rgba(232,164,74,.18); animation: folio-pulse 3.5s ease-in-out infinite; }
+.folio-note { position: absolute; top: 9%; right: 7%; z-index: 4; margin: 0; padding: 12px 15px; color: var(--deep); background: rgba(242,223,188,.94); backdrop-filter: blur(12px); }
+.folio-note span, .folio-note strong { display: block; }
+.folio-note span { font: .48rem/1.2 var(--utility); letter-spacing: .07em; }
+.folio-note strong { max-width: 230px; margin-top: 5px; font-size: .68rem; line-height: 1.35; }
+@keyframes folio-breathe { from { transform: scale(1.01); } to { transform: scale(1.045); } }
+@keyframes folio-pulse { 50% { transform: scale(1.65); opacity: .58; } }
 
 .gallery-section { padding: 120px 5vw 130px; }
 .gallery-intro { display: grid; grid-template-columns: .5fr 1fr .7fr; gap: 4vw; align-items: end; max-width: 1500px; margin: 0 auto 70px; opacity: 0; transform: translateY(20px); transition: .65s ease; }
@@ -130,7 +141,7 @@ button, input { font: inherit; }
   .scenic-header { grid-template-columns: 1fr auto; }
   .scenic-header nav { display: none; }
   .scenic-hero { grid-template-columns: 1fr; }
-  .hero-landscape, .hero-landscape img { min-height: 640px; }
+  .hero-folio { min-height: 640px; }
   .gallery-intro { grid-template-columns: 1fr 1.5fr; }
   .gallery-intro > p:last-child { grid-column: 2; }
   .scenic-card-wide { grid-template-columns: 1fr; }
@@ -147,8 +158,14 @@ button, input { font: inherit; }
   .hero-copy h1 { margin-top: 30px; font-size: clamp(4rem,19vw,6rem); }
   .hero-actions { align-items: stretch; flex-direction: column; }
   .scenic-button { width: 100%; }
-  .hero-landscape, .hero-landscape img { min-height: 520px; }
-  .hero-landscape figcaption { right: 16px; bottom: 16px; left: 16px; }
+  .hero-folio { min-height: 560px; }
+  .folio-main { inset: 5% 4% 36%; }
+  .folio-card { bottom: 6%; width: 31%; height: 25%; }
+  .folio-kata { left: 1%; }
+  .folio-town { left: 24%; }
+  .folio-north { left: 47%; }
+  .folio-bay { left: 70%; }
+  .folio-note { top: 8%; right: 14px; left: 14px; width: fit-content; }
   .gallery-section { padding: 85px 15px 95px; }
   .gallery-intro { display: block; }
   .gallery-intro h2 { margin: 20px 0 24px; }
