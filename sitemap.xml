@@ -2,15 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://driftwise-travel.pages.dev/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-04</lastmod>
   </url>
   <url>
     <loc>https://driftwise-travel.pages.dev/phuket/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://driftwise-travel.pages.dev/phuket/map/</loc>
+    <lastmod>2026-09-04</lastmod>
   </url>
   <url>
     <loc>https://driftwise-travel.pages.dev/bangkok/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://driftwise-travel.pages.dev/about.html</loc>
+    <lastmod>2026-09-04</lastmod>
   </url>
   <url>
     <loc>https://driftwise-travel.pages.dev/phuket-scenic-studio/</loc>

@@ -1571,8 +1571,8 @@ a {
   .travel-brand small { display: none; }
   .header-account { padding: 8px 12px; }
   .travel-hero { display: flex; flex-direction: column; }
-  .hero-photo { position: relative; top: 0; width: 100%; min-height: 48vh; background-position: 64% center; }
-  .hero-panel { padding: 48px 18px 62px; }
+  .hero-photo { position: relative; top: 0; order: 2; width: 100%; min-height: 36vh; background-position: 64% center; }
+  .hero-panel { order: 1; padding: 42px 18px 52px; }
   .hero-panel h1 { font-size: clamp(3.5rem, 17vw, 5.6rem); }
   .route-label { flex-wrap: wrap; gap: 8px 12px; }
   .route-label span + span { padding-left: 12px; }
@@ -1640,4 +1640,84 @@ a {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Destination-page clarity and search architecture. */
+.header-destinations { display: none; color: rgba(255, 255, 255, 0.76); font-size: 0.76rem; text-decoration: none; }
+.page-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 11px clamp(18px, 4vw, 70px);
+  color: #5d7679;
+  background: #edf4f1;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.75rem;
+}
+.page-breadcrumb a { color: var(--deep); text-underline-offset: 3px; }
+
+.destination-search { grid-template-columns: minmax(200px, 1.4fr) minmax(170px, 1fr) auto; }
+.hero-quick-actions { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 19px; }
+.hero-quick-actions a { color: var(--deep); font-size: 0.78rem; font-weight: 700; text-underline-offset: 4px; }
+.hero-quick-actions a:hover { color: var(--lagoon); }
+
+.area-quick-index {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.68fr) minmax(0, 1.32fr);
+  gap: clamp(34px, 6vw, 90px);
+  max-width: 1500px;
+  margin: 58px auto 0;
+  padding-top: 42px;
+  border-top: 1px solid var(--line);
+}
+.area-quick-index h3 { margin: 0; color: var(--deep); font: 500 clamp(2.25rem, 3.6vw, 4rem)/0.94 var(--display); letter-spacing: -0.04em; }
+.area-quick-index > div > p:last-child { margin: 18px 0 0; color: var(--muted); }
+.area-quick-index nav { border-top: 1px solid var(--line); }
+.area-quick-index nav a { display: grid; grid-template-columns: 120px 1fr; gap: 18px; padding: 15px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+.area-quick-index nav strong { color: var(--deep); }
+.area-quick-index nav span { color: var(--muted); font-size: 0.82rem; }
+.area-quick-index nav a:hover strong { color: var(--coral); }
+
+.faq-section {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(42px, 8vw, 130px);
+  padding: clamp(84px, 10vw, 150px) clamp(22px, 7vw, 110px);
+  color: white;
+  background: var(--deep);
+}
+.faq-heading h2 { margin: 0; color: white; font: 500 clamp(2.8rem, 4.8vw, 5.5rem)/0.92 var(--display); letter-spacing: -0.05em; }
+.faq-heading > p:last-child { margin: 27px 0 0; color: rgba(255, 255, 255, 0.62); }
+.faq-list { border-top: 1px solid rgba(255, 255, 255, 0.2); }
+.faq-list details { border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
+.faq-list summary { padding: 22px 36px 22px 0; color: white; cursor: pointer; font: 500 1.35rem/1.25 var(--display); }
+.faq-list details p { max-width: 720px; margin: -4px 0 24px; color: rgba(255, 255, 255, 0.64); }
+.method-section .section-heading a { color: var(--lagoon); }
+
+@media (max-width: 1350px) {
+  .destination-search { grid-template-columns: minmax(190px, 1.2fr) minmax(170px, 0.8fr); }
+  .destination-search label:nth-of-type(2) { border-right: 0; }
+  .destination-search button { grid-column: 1 / -1; border-top: 1px solid var(--line); }
+}
+
+@media (max-width: 1120px) {
+  .travel-header { grid-template-columns: 1fr auto auto; gap: 11px; }
+  .header-destinations { display: inline-block; }
+  .area-quick-index, .faq-section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 780px) {
+  .header-destinations { font-size: 0.7rem; }
+  .hero-panel h1 { font-size: clamp(3rem, 14vw, 4.5rem); }
+  .destination-search { grid-template-columns: 1fr; }
+  .destination-search button { grid-column: auto; }
+  .area-quick-index { margin-top: 42px; }
+  .area-quick-index nav a { grid-template-columns: 95px 1fr; }
+  .faq-section { padding: 76px 18px; }
+}
+
+@media (max-width: 480px) {
+  .travel-header { gap: 8px; }
+  .header-destinations { display: inline-block; font-size: 0.66rem; }
 }

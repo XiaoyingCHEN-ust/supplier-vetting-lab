@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Choose where to stay in Bangkok or Phuket with dated hotel and food evidence, interactive area maps, transport friction and independent decision guides.">
+    <meta name="description" content="Compare Bangkok neighborhoods and Phuket beach areas before booking a hotel. Explore free maps, transport trade-offs and dated public review patterns.">
     <meta name="robots" content="index,follow,max-image-preview:large">
-    <meta name="theme-color" content="#102d34">
-    <meta property="og:title" content="Bangkok &amp; Phuket decision maps | Driftwise Travel">
-    <meta property="og:description" content="Start with the district, coast and daily travel pattern—then compare the hotel. Explore independent Bangkok and Phuket field editions.">
+    <meta name="theme-color" content="#082f36">
+    <meta property="og:title" content="Thailand hotel area guides for Bangkok and Phuket | Driftwise Travel">
+    <meta property="og:description" content="Choose the district, beach and daily travel pattern first—then compare the hotel. Independent Bangkok and Phuket decision guides.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://driftwise-travel.pages.dev/">
     <meta property="og:image" content="https://driftwise-travel.pages.dev/assets/travel/bangkok/bangkok-river-blue-hour.jpg">
@@ -15,15 +15,13 @@
     <meta property="og:site_name" content="Driftwise Travel">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://driftwise-travel.pages.dev/">
-    <title>Bangkok &amp; Phuket Hotel Area Guides | Driftwise Travel</title>
+    <title>Thailand Hotel Area Guides: Bangkok &amp; Phuket | Driftwise Travel</title>
     <link rel="icon" href="assets/brand-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-    <link rel="stylesheet" href="home.css">
-    <script src="vendor/leaflet/leaflet.js" defer></script>
-    <script src="home.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="hub.css?v=20260904b">
+    <script src="hub.js?v=20260904b" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -33,6 +31,7 @@
             "@id": "https://driftwise-travel.pages.dev/#website",
             "url": "https://driftwise-travel.pages.dev/",
             "name": "Driftwise Travel",
+            "alternateName": "Driftwise Thailand Guides",
             "publisher": { "@id": "https://driftwise-travel.pages.dev/#organization" },
             "inLanguage": "en"
           },
@@ -42,14 +41,17 @@
             "name": "Driftwise Travel",
             "url": "https://driftwise-travel.pages.dev/",
             "email": "xiaoyingchen0829@163.com",
-            "description": "Independent, evidence-led Bangkok and Phuket travel decision guides and original scenic artwork."
+            "logo": { "@type": "ImageObject", "url": "https://driftwise-travel.pages.dev/assets/brand-mark.svg" },
+            "description": "Independent, desk-researched Bangkok and Phuket hotel-area decision guides using dated public evidence."
           },
           {
-            "@type": "WebPage",
+            "@type": "CollectionPage",
             "@id": "https://driftwise-travel.pages.dev/#webpage",
             "url": "https://driftwise-travel.pages.dev/",
-            "name": "Bangkok and Phuket Travel Decision Guides",
+            "name": "Thailand Hotel Area Guides for Bangkok and Phuket",
+            "description": "A destination hub for choosing between Bangkok districts and Phuket beach areas before comparing hotels.",
             "isPartOf": { "@id": "https://driftwise-travel.pages.dev/#website" },
+            "dateModified": "2026-09-04",
             "about": [
               { "@type": "TouristDestination", "name": "Bangkok", "address": { "@type": "PostalAddress", "addressLocality": "Bangkok", "addressCountry": "TH" } },
               { "@type": "TouristDestination", "name": "Phuket", "address": { "@type": "PostalAddress", "addressRegion": "Phuket", "addressCountry": "TH" } }
@@ -58,10 +60,10 @@
           },
           {
             "@type": "ItemList",
-            "name": "Driftwise Thailand field editions",
+            "name": "Thailand hotel area guides",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Bangkok city field edition", "url": "https://driftwise-travel.pages.dev/bangkok/" },
-              { "@type": "ListItem", "position": 2, "name": "Phuket coast field edition", "url": "https://driftwise-travel.pages.dev/phuket/" }
+              { "@type": "ListItem", "position": 1, "name": "Best areas to stay in Bangkok", "url": "https://driftwise-travel.pages.dev/bangkok/" },
+              { "@type": "ListItem", "position": 2, "name": "Best areas to stay in Phuket", "url": "https://driftwise-travel.pages.dev/phuket/" }
             ]
           }
         ]
@@ -71,316 +73,207 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="home-header">
-      <a class="home-brand" href="./" aria-label="Driftwise home">
-        <span class="brand-orbit" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span><strong>DRIFTWISE</strong><small>THAILAND · FIELD EDITIONS</small></span>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Driftwise Travel home">
+        <span class="brand-current" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>DRIFTWISE</strong><small>THAILAND AREA GUIDES</small></span>
       </a>
       <nav aria-label="Primary navigation">
         <a href="#destinations">Destinations</a>
-        <a href="#atlas">Phuket atlas</a>
-        <a href="bangkok/">Bangkok route loom</a>
-        <a href="#proof">How we review</a>
-        <a href="phuket-scenic-studio/">Scenic studio</a>
+        <a href="#choose-by-trip">Choose by trip</a>
+        <a href="#method">How we research</a>
+        <a href="phuket-scenic-studio/">Scenic art</a>
       </nav>
-      <a class="header-login" href="phuket/?login=1#guide">Reader sign in</a>
+      <a class="reader-link" href="#reader-access">Reader access</a>
     </header>
 
     <main id="main">
-      <section class="edition-hub" id="destinations" aria-labelledby="edition-hub-title">
-        <div class="edition-hub-head reveal">
-          <p class="edition-index"><span>FIELD EDITIONS · 01—02</span><span>THAILAND · INDEPENDENT</span></p>
-          <h1 id="edition-hub-title">The stay starts <em>outside</em> the room.</h1>
-          <p>Choose the city pattern or coast first. Driftwise then connects dated public evidence to the transport, heat, noise and last-kilometre friction that actually shapes a trip.</p>
-        </div>
-
-        <div class="edition-runway">
-          <article class="edition-card edition-card-phuket reveal">
-            <a href="#finder" aria-label="Explore the Phuket coast field edition">
-              <span class="edition-number">01 / COAST RHYTHM</span>
-              <div>
-                <p>PHUKET · 07.88° N</p>
-                <h2>Which coast keeps your days together?</h2>
-                <ul aria-label="Phuket field edition coverage"><li>6 island bases</li><li>Stay · eat · beach</li><li>Traffic + walk friction</li></ul>
-                <strong>Explore Phuket <span aria-hidden="true">↘</span></strong>
-              </div>
-            </a>
-          </article>
-
-          <article class="edition-card edition-card-bangkok reveal">
-            <a href="bangkok/" aria-label="Explore the Bangkok city field edition">
-              <span class="edition-number">02 / CITY RHYTHM</span>
-              <div>
-                <p>BANGKOK · 13.75° N</p>
-                <h2>Which line should every day return to?</h2>
-                <ul aria-label="Bangkok field edition coverage"><li>6 city districts</li><li>Stay · eat · move</li><li>Heat + rail + river</li></ul>
-                <strong>Open Bangkok Route Loom <span aria-hidden="true">↗</span></strong>
-              </div>
-            </a>
-          </article>
-        </div>
-
-        <div class="edition-principle reveal" aria-label="Driftwise method summary">
-          <span>OUR ORDER</span><strong>Place fit</strong><i aria-hidden="true"></i><strong>Daily friction</strong><i aria-hidden="true"></i><strong>Hotel evidence</strong>
-          <small>No hotel pays for placement.</small>
-        </div>
-      </section>
-
-      <section class="home-hero" id="finder">
-        <div class="hero-scene" role="img" aria-label="Original editorial view of a tropical Andaman bay at dawn">
-          <div class="tidal-orbit tidal-orbit-one" aria-hidden="true"></div>
-          <div class="tidal-orbit tidal-orbit-two" aria-hidden="true"></div>
-          <p class="scene-caption">Original editorial visual · not a hotel photograph</p>
-        </div>
-
-        <div class="hero-content">
-          <p class="coordinate-line"><span>07.88° N</span><span>98.39° E</span><span>PHUKET · THAILAND</span></p>
-          <h1>Don’t book the right hotel on the <em>wrong side</em> of Phuket.</h1>
-          <p class="hero-deck">Most hotel searches start with rooms. Driftwise starts one decision earlier—matching your days, nights and tolerance for island friction to the coast that makes sense.</p>
-
-          <form class="intent-finder" id="intent-finder">
-            <fieldset>
-              <legend>What would spoil the trip fastest?</legend>
-              <div class="intent-options">
-                <label><input type="radio" name="intent" value="balanced" checked><span>Daily island traffic</span></label>
-                <label><input type="radio" name="intent" value="quiet"><span>Night noise</span></label>
-                <label><input type="radio" name="intent" value="family"><span>Difficult family walks</span></label>
-                <label><input type="radio" name="intent" value="nightlife"><span>Being far from nightlife</span></label>
-                <label><input type="radio" name="intent" value="food"><span>A thin local food scene</span></label>
-                <label><input type="radio" name="intent" value="value"><span>Paying for beach I won’t use</span></label>
-              </div>
-            </fieldset>
-            <button type="submit">Run the wrong-coast test <span aria-hidden="true">↗</span></button>
-          </form>
-
-          <article class="finder-result" id="finder-result" aria-live="polite">
-            <div class="result-marker" aria-hidden="true"><span></span></div>
-            <div>
-              <small>LOWEST-REGRET STARTING COAST</small>
-              <h2>Kata · beach days without Patong intensity</h2>
-              <p class="result-summary">Good for first stays, couples and families who want a usable beach with restaurants nearby. The trade-off is hilly walking and west-coast traffic.</p>
-              <dl class="tradeoff-receipt" aria-label="Area trade-off summary">
-                <div><dt>KEEP</dt><dd id="result-gain">Balanced and family-friendly</dd></div>
-                <div><dt>ACCEPT</dt><dd id="result-tradeoff">Check the real walking route</dd></div>
-                <div><dt>BEST FOR</dt><dd id="result-fit">First stays · beach days</dd></div>
-              </dl>
-              <a href="phuket/#preview">See the hotel-level evidence <span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <div class="evidence-strip" aria-label="Research coverage">
-            <span><strong>6</strong> island bases compared</span>
-            <span><strong>3</strong> lenses: place · proof · trade-off</span>
-            <span><strong>0</strong> paid hotel placements</span>
+      <section class="hub-hero" aria-labelledby="home-title">
+        <div class="hero-copy">
+          <p class="edition-line"><span>THAILAND · TWO DECISION GUIDES</span><span>UPDATED 4 SEP 2026</span></p>
+          <h1 id="home-title">Choose where to stay in Bangkok or Phuket. <span>Area first.</span></h1>
+          <p class="hero-intro">A high hotel score cannot fix the wrong location. Start with the days you want, the transport you will use and the noise or distance you will not tolerate.</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#destination-search">Find my area</a>
+            <a class="text-action" href="#destinations">Compare both destinations</a>
           </div>
+          <dl class="trust-line" aria-label="Driftwise editorial principles">
+            <div><dt>Coverage</dt><dd>12 areas across 2 destinations</dd></div>
+            <div><dt>Evidence</dt><dd>Dated public review patterns</dd></div>
+            <div><dt>Independence</dt><dd>No paid hotel placement</dd></div>
+          </dl>
+        </div>
+
+        <div class="route-window" aria-label="Bangkok city and Phuket coast decision guides">
+          <a class="route-scene route-city" href="bangkok/">
+            <img src="assets/travel/bangkok/bangkok-river-blue-hour.jpg" width="1600" height="900" alt="AI-created editorial illustration of the Chao Phraya River and Bangkok skyline at blue hour">
+            <span><small>City route</small><strong>Bangkok</strong><em>Rail · river · six districts</em></span>
+          </a>
+          <a class="route-scene route-coast" href="phuket/">
+            <img src="assets/travel/atlas/karon-first-light.jpg" width="960" height="540" alt="AI-created layered-paper illustration inspired by Karon Beach at first light">
+            <span><small>Coast route</small><strong>Phuket</strong><em>Beach · traffic · six bases</em></span>
+          </a>
+          <div class="route-thread" aria-hidden="true"><i></i><b></b></div>
+          <p>Original editorial illustrations—not hotel photography.</p>
         </div>
       </section>
 
-      <section class="difference-section" id="difference">
-        <div class="difference-intro reveal">
-          <p class="eyebrow">THE WRONG-COAST TEST</p>
-          <h2>A room score cannot shorten the island.</h2>
-          <p>Our difference is simple: we do not begin with a “best hotels” list. We first remove the locations most likely to waste your time, disturb your sleep or make the trip harder than it needs to be.</p>
+      <section class="search-deck" id="destination-search" aria-labelledby="search-title">
+        <div class="search-intro">
+          <p>Start with a place or a problem</p>
+          <h2 id="search-title">Where do you want the trip to feel easy?</h2>
+          <p>Search a city, beach or district. If you only know the kind of trip you want, choose a priority and we will suggest a starting point.</p>
         </div>
-
-        <div class="friction-ledger reveal">
-          <article class="ledger-lead">
-            <span>THE DRIFTWISE ORDER</span>
-            <h3>Fit → friction → hotel</h3>
-            <p>Choose the right side. Name the compromise. Only then compare the rooms.</p>
-            <a href="#finder">Run the free test <span aria-hidden="true">↑</span></a>
-          </article>
-          <article>
-            <span class="ledger-code">MAP PIN</span>
-            <h3>A short distance can still be a difficult walk.</h3>
-            <p>Hills, indirect entrances and heat can matter more than the number beside the pin.</p>
-            <small>CHECK · ROUTE · SHADE · SLOPE</small>
-          </article>
-          <article>
-            <span class="ledger-code">REVIEW SCORE</span>
-            <h3>A good average can hide your deal-breaker.</h3>
-            <p>We surface repeated themes such as noise, room size and location friction beside the benefit.</p>
-            <small>READ · PATTERN · NOT HYPE</small>
-          </article>
-          <article>
-            <span class="ledger-code">ROOM PRICE</span>
-            <h3>A cheaper room can spend the saving on transport.</h3>
-            <p>Value is judged against the days you actually plan—not against a room in isolation.</p>
-            <small>COMPARE · WHOLE TRIP · NOT ROOM</small>
-          </article>
-        </div>
-      </section>
-
-      <section class="atlas-section" id="atlas">
-        <div class="section-intro reveal">
-          <p class="eyebrow">THE ANDAMAN FIELD ATLAS</p>
-          <h2>Stay, eat and choose your coast in one view.</h2>
-          <p>Tap a numbered area, then switch between one hotel sample, one food sample and the beach fit. Every public rating stays attached to its platform and 31 August 2026 evidence date.</p>
-        </div>
-
-        <div class="map-explorer reveal" data-destination="phuket">
-          <div class="island-map" aria-label="Detailed interactive map of Phuket with selectable beaches and areas">
-            <div class="phuket-map" id="phuket-map" role="region" aria-label="OpenStreetMap of Phuket with six selectable Driftwise area markers">
-              <p class="map-loading">Loading detailed island map…</p>
-            </div>
-            <div class="map-layer-controls" role="group" aria-label="Choose map evidence layer">
-              <span>MAP LENS</span>
-              <button class="is-active" type="button" data-map-layer="hotel" aria-pressed="true">Stay</button>
-              <button type="button" data-map-layer="food" aria-pressed="false">Eat</button>
-              <button type="button" data-map-layer="area" aria-pressed="false">Beaches</button>
-            </div>
-            <button class="map-reset" id="map-reset" type="button" aria-label="Return the map to the whole Phuket island view">Whole island</button>
-            <div class="map-legend" aria-hidden="true"><span><i></i> Select a numbered area</span><span><b></b> Phuket outline</span></div>
-            <p class="map-note">DETAILED MAP · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a> · PINS ARE PLANNING REFERENCES, NOT PROPERTY LOCATIONS</p>
+        <form class="place-search" id="place-search" role="search">
+          <label class="place-field">
+            <span>Destination or area</span>
+            <input id="place-query" name="place" list="place-options" autocomplete="off" placeholder="Try Bangkok, Kata, Riverside or quiet beach">
+            <datalist id="place-options">
+              <option value="Bangkok"></option>
+              <option value="Riverside"></option>
+              <option value="Sukhumvit"></option>
+              <option value="Silom and Sathorn"></option>
+              <option value="Rattanakosin Old Town"></option>
+              <option value="Ari"></option>
+              <option value="Siam"></option>
+              <option value="Phuket"></option>
+              <option value="Kata Beach"></option>
+              <option value="Karon Beach"></option>
+              <option value="Patong"></option>
+              <option value="Nai Yang"></option>
+              <option value="Nai Harn"></option>
+              <option value="Phuket Old Town"></option>
+            </datalist>
+          </label>
+          <label>
+            <span>What matters most?</span>
+            <select id="trip-priority" name="priority">
+              <option value="first">A balanced first trip</option>
+              <option value="transit">Easy public transport</option>
+              <option value="beach">Walkable beach time</option>
+              <option value="quiet">Quieter nights</option>
+              <option value="food">Food outside the door</option>
+              <option value="nightlife">Nightlife and energy</option>
+            </select>
+          </label>
+          <button type="submit">Show my starting point</button>
+        </form>
+        <article class="search-result" id="search-result" aria-live="polite">
+          <span class="result-route" aria-hidden="true"></span>
+          <div>
+            <small>START HERE</small>
+            <h3>Bangkok or Phuket?</h3>
+            <p>Use a place name above, or compare the city and coast editions below.</p>
           </div>
-
-          <article class="map-reading" id="map-reading" aria-live="polite">
-            <figure class="map-area-art">
-              <img id="map-art" src="assets/presentation-backgrounds/hero/kata-cover.jpg" width="960" height="540" alt="AI-created editorial artwork inspired by a calm morning on Kata Beach">
-              <figcaption id="map-art-caption">Kata Beach · AI-CREATED EDITORIAL ATMOSPHERE, NOT PROPERTY PHOTOGRAPHY</figcaption>
-            </figure>
-            <div class="map-reading-body">
-              <div class="map-reading-head">
-                <p class="eyebrow">SELECTED AREA · SOUTHWEST COAST</p>
-                <span class="map-sequence" id="map-sequence">03 / 06</span>
-              </div>
-              <h3 id="map-area-name">Kata Beach</h3>
-              <p class="map-area-summary" id="map-area-summary">A practical first beach base for couples and families who want restaurants nearby without Patong intensity.</p>
-
-              <section class="place-signal" aria-label="Dated public place review sample">
-                <div class="place-signal-top">
-                  <div><span id="map-lens-kicker">STAY LENS · BOOKING.COM</span><p id="map-place-category">Family hotel · beach access</p></div>
-                  <strong id="map-place-score">8.8<small>/10</small></strong>
-                </div>
-                <h4 id="map-place-name">OZO Phuket</h4>
-                <div class="signal-pair">
-                  <div class="signal-positive"><span>TRAVELLERS REPEAT</span><p id="map-place-positive">Verified-stay scores are strongest for location, staff and family facilities.</p></div>
-                  <div class="signal-watch"><span>PAUSE BEFORE BOOKING</span><p id="map-place-watch">It is lively and family-oriented rather than secluded.</p></div>
-                </div>
-                <div class="place-signal-meta">
-                  <span id="map-place-count">1,578 verified-stay reviews · checked 31 Aug 2026</span>
-                  <a id="map-place-source" href="https://www.booking.com/hotel/th/ozo-phuket.html" target="_blank" rel="noreferrer">Check current Booking.com page ↗</a>
-                </div>
-              </section>
-
-              <dl class="map-tradeoffs">
-                <div><dt>Best fit</dt><dd id="map-best-fit">First stays · beach days</dd></div>
-                <div><dt>Accept</dt><dd id="map-tradeoff">Check the real walking route</dd></div>
-                <div><dt>Area signal</dt><dd id="map-mood">Balanced and family-friendly</dd></div>
-              </dl>
-              <a class="map-cta" href="phuket/#preview">Open the six-area comparison preview <span aria-hidden="true">↗</span></a>
-              <p class="map-evidence-note">Ratings and review counts change. Links open the current platform page; Driftwise receives no hotel placement fee.</p>
-            </div>
-          </article>
+          <a id="search-result-link" href="#destinations">Compare both destination guides</a>
+        </article>
+        <div class="popular-searches" aria-label="Popular travel decisions">
+          <span>Popular decisions</span>
+          <button type="button" data-search-value="Riverside">Bangkok Riverside</button>
+          <button type="button" data-search-value="Sukhumvit">Near BTS and MRT</button>
+          <button type="button" data-search-value="Kata Beach">Kata for a first stay</button>
+          <button type="button" data-search-value="Patong">Patong nightlife</button>
         </div>
-
-        <div class="area-story-intro reveal">
-          <p class="eyebrow">SIX BASES, TWELVE PUBLIC SIGNALS</p>
-          <h3>A fast first read before the room tabs multiply.</h3>
-          <p>These are editorial starting points, not rankings. Food and hotel scores remain separate because a rating from one platform should never be blended with another.</p>
-        </div>
-        <div class="area-story-grid">
-          <article class="area-story-card reveal">
-            <img src="assets/presentation-backgrounds/hero/nai-yang-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created quiet dawn scene inspired by Nai Yang Beach">
-            <div><span>01 · QUIET ARRIVAL</span><h3>Nai Yang</h3><p>Short airport transfer and a slower beach rhythm beside Sirinat National Park.</p><dl><div><dt>Stay sample</dt><dd>Dewa · Booking.com 8.5/10 · 897</dd></div><div><dt>Eat sample</dt><dd>Sea Almond · Tripadvisor 4.3/5 · 479</dd></div></dl><a href="#atlas" data-story-area="nai-yang">Focus on the map →</a></div>
-          </article>
-          <article class="area-story-card reveal">
-            <img src="assets/travel/atlas/patong-after-rain.jpg" width="960" height="540" loading="lazy" alt="AI-created Patong street scene after tropical rain at blue hour">
-            <div><span>02 · MAXIMUM CONVENIENCE</span><h3>Patong</h3><p>Keep nightlife, shopping and restaurants close—while choosing the room position carefully.</p><dl><div><dt>Stay sample</dt><dd>Hotel Clover · Booking.com 8.9/10 · 4,280</dd></div><div><dt>Eat sample</dt><dd>Baan Rim Pa · Tripadvisor 4.1/5 · 2,647</dd></div></dl><a href="#atlas" data-story-area="patong">Focus on the map →</a></div>
-          </article>
-          <article class="area-story-card reveal">
-            <img src="assets/presentation-backgrounds/hero/kata-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created calm coastal morning inspired by Kata Beach">
-            <div><span>03 · BALANCED FIRST STAY</span><h3>Kata</h3><p>A usable beach and nearby dining without Patong’s full intensity.</p><dl><div><dt>Stay sample</dt><dd>OZO Phuket · Booking.com 8.8/10 · 1,578</dd></div><div><dt>Eat sample</dt><dd>The Boathouse · Tripadvisor 4.4/5 · 1,929</dd></div></dl><a href="#atlas" data-story-area="kata">Focus on the map →</a></div>
-          </article>
-          <article class="area-story-card reveal">
-            <img src="assets/travel/atlas/karon-first-light.jpg" width="960" height="540" loading="lazy" alt="AI-created layered-paper sunrise inspired by Karon Beach">
-            <div><span>04 · LONGER BEACH</span><h3>Karon</h3><p>More breathing room and a long west-coast beach, with less density than Patong.</p><dl><div><dt>Stay sample</dt><dd>Avista Grande · Booking.com 8.9/10 · 990</dd></div><div><dt>Eat sample</dt><dd>EAT Bar & Grill · Tripadvisor 4.8/5 · 2,567</dd></div></dl><a href="#atlas" data-story-area="karon">Focus on the map →</a></div>
-          </article>
-          <article class="area-story-card reveal">
-            <img src="assets/travel/atlas/nai-harn-slow-sunset.jpg" width="960" height="540" loading="lazy" alt="AI-created watercolor and linocut sunset inspired by Nai Harn Beach">
-            <div><span>05 · SLOWER SOUTH</span><h3>Nai Harn</h3><p>A scenic bay and quiet evenings for travellers who can accept longer transfers.</p><dl><div><dt>Stay sample</dt><dd>The Nai Harn · Booking.com 9.2/10 · 1,161</dd></div><div><dt>Eat sample</dt><dd>Rock Salt · Tripadvisor 4.8/5 · 3,929</dd></div></dl><a href="#atlas" data-story-area="nai-harn">Focus on the map →</a></div>
-          </article>
-          <article class="area-story-card reveal">
-            <img src="assets/presentation-backgrounds/hero/old-town-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created heritage streetscape inspired by Phuket Old Town">
-            <div><span>06 · FOOD + HERITAGE</span><h3>Old Town</h3><p>Trade daily beach access for walkable food, architecture and stronger city-room value.</p><dl><div><dt>Stay sample</dt><dd>Memory at On On · Booking.com 9.3/10 · 1,984</dd></div><div><dt>Eat sample</dt><dd>One Chun · Tripadvisor 4.3/5 · 643</dd></div></dl><a href="#atlas" data-story-area="old-town">Focus on the map →</a></div>
-          </article>
-        </div>
-        <p class="art-disclosure reveal">All six area visuals are original AI-created editorial artwork. They show atmosphere, not a specific hotel, restaurant or documentary condition.</p>
       </section>
 
-      <section class="file-section" id="preview">
-        <div class="file-visual reveal" aria-hidden="true">
-          <div class="file-sheet file-sheet-back"></div>
-          <div class="file-sheet file-sheet-mid"></div>
-          <div class="file-sheet file-sheet-front">
-            <span>DRIFTWISE / PHUKET</span>
-            <p>BEACH FIT</p><i></i>
-            <p>HOTEL SIGNAL</p><i></i>
-            <p>VALUE LENS</p><i></i>
-            <p>MOVE + EAT</p><i></i>
-            <strong>PRIVATE READING VIEW</strong>
+      <section class="destinations" id="destinations" aria-labelledby="destinations-title">
+        <header class="section-lead">
+          <p>Choose a destination</p>
+          <h2 id="destinations-title">Two places. Two different location problems.</h2>
+          <p>The Bangkok guide follows rail lines, river access and time lost in traffic. The Phuket guide follows beaches, transfer distance and the real walk between a map pin and the sand.</p>
+        </header>
+
+        <article class="destination-route bangkok-route">
+          <figure>
+            <img src="assets/travel/bangkok/sukhumvit-after-rain.jpg" width="1600" height="900" loading="lazy" alt="AI-created editorial illustration of Bangkok rail and street movement after tropical rain">
+            <figcaption>Bangkok · city decision guide</figcaption>
+          </figure>
+          <div class="route-copy">
+            <p class="route-meta"><span>13.75° N</span><span>6 DISTRICTS</span><span>STAY · EAT · MOVE</span></p>
+            <h3>Find your best-fit Bangkok area for the way you move.</h3>
+            <p>Compare Riverside, Sukhumvit, Silom and Sathorn, Rattanakosin, Ari, and Siam or Chidlom. See where rail helps, where river access changes the day and which trade-off follows each district.</p>
+            <ul class="decision-links">
+              <li><a href="bangkok/#districts"><span>First visit</span><strong>Compare all six Bangkok areas</strong></a></li>
+              <li><a href="bangkok/#loom"><span>Map view</span><strong>Switch between stay, eat and transport</strong></a></li>
+              <li><a href="bangkok/#move"><span>Arrival</span><strong>Check airport and rail friction</strong></a></li>
+              <li><a href="bangkok/#daypart"><span>Daily rhythm</span><strong>Plan morning, afternoon and night</strong></a></li>
+            </ul>
+            <a class="route-action" href="bangkok/">Open the Bangkok area guide</a>
           </div>
-        </div>
-        <div class="file-copy reveal">
-          <p class="eyebrow">PHUKET DECISION FILE · PREVIEW AVAILABLE</p>
-          <h2>See what the score leaves out.</h2>
-          <p>The preview shows our fields, one sample decision and the evidence date. The full reading view adds named hotels, beach proximity, repeated review patterns, watch-outs, currency conversion and practical ways to reduce wasted transport.</p>
-          <ul>
-            <li>Hotel-to-beach fit, not just a map pin</li>
-            <li>Real review patterns summarized without copying guest text</li>
-            <li>Thai baht ranges with approximate RMB and US dollar views</li>
-            <li>Value filters for families, quiet stays and short trips</li>
-          </ul>
-          <a class="primary-link" href="phuket/">Open the free preview <span aria-hidden="true">↗</span></a>
-          <p class="quiet-note">No hotel pays for placement. We do not book rooms or promise live prices.</p>
+        </article>
+
+        <article class="destination-route phuket-route">
+          <figure>
+            <img src="assets/travel/atlas/nai-harn-slow-sunset.jpg" width="960" height="540" loading="lazy" alt="AI-created watercolor and linocut illustration inspired by Nai Harn Beach at sunset">
+            <figcaption>Phuket · coast decision guide</figcaption>
+          </figure>
+          <div class="route-copy">
+            <p class="route-meta"><span>07.88° N</span><span>6 BASES</span><span>STAY · EAT · BEACH</span></p>
+            <h3>Find your best-fit Phuket beach area before you choose a resort.</h3>
+            <p>Compare Kata, Karon and Patong with quieter Nai Yang, scenic Nai Harn and food-focused Old Town. The interactive island map keeps hotel evidence beside beach fit and transport friction.</p>
+            <ul class="decision-links">
+              <li><a href="phuket/#area-fit"><span>First visit</span><strong>Compare Kata, Karon and Patong</strong></a></li>
+              <li><a href="phuket/map/#atlas"><span>Map view</span><strong>Explore six Phuket areas on the island</strong></a></li>
+              <li><a href="phuket/#preview"><span>Evidence</span><strong>Preview hotel and price context</strong></a></li>
+              <li><a href="phuket/#method"><span>Trust</span><strong>Read the research method and limits</strong></a></li>
+            </ul>
+            <a class="route-action" href="phuket/">Open the Phuket area guide</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="trip-chooser" id="choose-by-trip" aria-labelledby="trip-title">
+        <header>
+          <p>Choose by trip style</p>
+          <h2 id="trip-title">You do not need a “best hotel.” You need the right base.</h2>
+        </header>
+        <div class="choice-ledger">
+          <a href="bangkok/#sukhumvit"><span>Easy rail</span><strong>Sukhumvit, Silom or Siam</strong><small>Start with Bangkok when station access should carry most days.</small></a>
+          <a href="bangkok/#rattanakosin"><span>Temples + river</span><strong>Riverside or Rattanakosin</strong><small>Trade some rail convenience for atmosphere and shorter heritage days.</small></a>
+          <a href="phuket/map/?area=kata#atlas"><span>Balanced beach</span><strong>Kata or Karon</strong><small>Compare the real walk, evening density and west-coast traffic.</small></a>
+          <a href="phuket/map/?area=nai-yang#atlas"><span>Quiet arrival</span><strong>Nai Yang</strong><small>Keep the airport transfer short and accept longer journeys south.</small></a>
+          <a href="phuket/map/?area=patong#atlas"><span>Night energy</span><strong>Patong</strong><small>Keep nightlife close, then check room position and street noise.</small></a>
+          <a href="phuket/map/?area=old-town#atlas"><span>Food + heritage</span><strong>Phuket Old Town</strong><small>Choose a walkable cultural base and plan beach transport separately.</small></a>
         </div>
       </section>
 
-      <section class="scenic-bridge" aria-labelledby="scenic-title">
-        <div class="scenic-bridge-copy reveal">
-          <p class="eyebrow">THAILAND, REIMAGINED</p>
-          <h2 id="scenic-title">A coast, a river and the city between.</h2>
-          <p>The visual archive now moves from Phuket’s Andaman light to Bangkok’s river, rail and old-town mornings—original 16:9 artwork for travel decks, moodboards and digital stories.</p>
-          <a href="phuket-scenic-studio/#gallery">Browse the available scenic image library <span aria-hidden="true">↗</span></a>
-          <small>Editorial illustrations are clearly labelled and never presented as hotel photography. Shop previews remain watermarked; purchased files are delivered clean under the listed licence.</small>
+      <section class="method" id="method" aria-labelledby="method-title">
+        <div class="method-copy">
+          <p>How Driftwise researches</p>
+          <h2 id="method-title">Useful evidence, with the limits left visible.</h2>
+          <p>Driftwise is a desk-researched planning guide, not a booking agent or on-site hotel inspection. We connect public place information to a traveller’s location decision and show the compromise beside every benefit.</p>
         </div>
-        <div class="scenic-filmstrip reveal" aria-label="Selected Bangkok- and Phuket-inspired artwork">
-          <figure class="scenic-tile scenic-tile-wide"><img src="assets/travel/bangkok/bangkok-river-blue-hour.jpg" width="1600" height="900" loading="lazy" alt="AI-created editorial illustration of the Chao Phraya River at blue hour"><figcaption><span>BKK 01</span> River blue hour</figcaption></figure>
-          <figure class="scenic-tile"><img src="assets/travel/bangkok/sukhumvit-after-rain.jpg" width="1600" height="900" loading="lazy" alt="AI-created editorial illustration of Bangkok rail and street movement after rain"><figcaption><span>BKK 02</span> Rail after rain</figcaption></figure>
-          <figure class="scenic-tile"><img src="assets/travel/bangkok/rattanakosin-morning.jpg" width="1600" height="900" loading="lazy" alt="AI-created editorial illustration inspired by a calm Rattanakosin morning"><figcaption><span>BKK 03</span> Old-town morning</figcaption></figure>
-          <figure class="scenic-tile scenic-tile-wide"><img src="assets/presentation-backgrounds/hero/promthep-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created sunset artwork inspired by Promthep Cape"><figcaption><span>01</span> Promthep afterglow</figcaption></figure>
-          <figure class="scenic-tile"><img src="assets/presentation-backgrounds/hero/old-town-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created heritage streetscape inspired by Phuket Old Town"><figcaption><span>02</span> Old Town rhythm</figcaption></figure>
-          <figure class="scenic-tile"><img src="assets/presentation-backgrounds/hero/phang-nga-cover.jpg" width="960" height="540" loading="lazy" alt="AI-created limestone bay artwork inspired by a Phang Nga excursion"><figcaption><span>03</span> Bay excursion</figcaption></figure>
-          <figure class="scenic-tile scenic-tile-wide"><img src="assets/travel/atlas/nai-harn-slow-sunset.jpg" width="960" height="540" loading="lazy" alt="AI-created watercolor and linocut sunset inspired by Nai Harn"><figcaption><span>04</span> Nai Harn slow sunset</figcaption></figure>
+        <ol class="method-steps">
+          <li><span>1</span><div><strong>Choose the location problem</strong><p>Rail, river, beach, hills, heat, noise and transfer time come before room amenities.</p></div></li>
+          <li><span>2</span><div><strong>Check dated public evidence</strong><p>Scores and review counts stay attached to their source platform and evidence date.</p></div></li>
+          <li><span>3</span><div><strong>Write the trade-off</strong><p>We summarize recurring patterns in our own words and link the current source for verification.</p></div></li>
+        </ol>
+        <div class="method-stamp">
+          <span>Research desk</span><strong>Driftwise Travel</strong><p>Destination evidence reviewed 31 Aug 2026. Site structure edited 4 Sep 2026.</p><small>No hotel pays for placement. Ratings, routes, fares and conditions can change; verify before booking.</small>
         </div>
       </section>
 
-      <section class="proof-section" id="proof">
-        <div class="section-intro reveal">
-          <p class="eyebrow">EDITORIAL SAFETY</p>
-          <h2>Useful without pretending to know everything.</h2>
+      <section class="reader-access" id="reader-access" aria-labelledby="reader-title">
+        <div>
+          <p>Already purchased?</p>
+          <h2 id="reader-title">Return to your permanent guide.</h2>
+          <p>Sign in on the destination you bought. Your purchased edition opens in the browser; there is no file to keep track of.</p>
         </div>
-        <div class="proof-grid">
-          <article class="reveal"><span>REVIEW PATTERNS</span><h3>Consensus, not quotation</h3><p>We summarize themes that recur across verified stays. Individual guest wording, photographs and hotel descriptions are not republished.</p></article>
-          <article class="reveal"><span>DATED EVIDENCE</span><h3>Every edition has a date</h3><p>Scores, counts, fares and exchange rates are dated and linked. Readers are told to confirm the final conditions before booking.</p></article>
-          <article class="reveal"><span>VISIBLE TRADE-OFFS</span><h3>Every pick includes a pause</h3><p>Noise, hills, room size, distance or location friction appears beside the benefit. That keeps the guide independent and easier to trust.</p></article>
-        </div>
-        <div class="source-ribbon reveal">
-          <span>PUBLIC SOURCES</span>
-          <a href="https://www.tourismthailand.org/Destinations/Provinces/Phuket/350?pubDate=20250802" target="_blank" rel="noreferrer">Tourism Authority of Thailand ↗</a>
-          <a href="https://phuketsmartbus.com/payment/" target="_blank" rel="noreferrer">Phuket Smart Bus ↗</a>
-          <a href="https://guide.michelin.com/en/phuket-region/phuket/restaurants/bib-gourmand" target="_blank" rel="noreferrer">Michelin Guide ↗</a>
-          <a href="https://www.booking.com/region/th/phuket.html" target="_blank" rel="noreferrer">Verified hotel reviews ↗</a>
-        </div>
+        <nav aria-label="Reader sign-in options">
+          <a href="bangkok/?login=1#access"><span>Bangkok edition</span><strong>Sign in to Bangkok</strong></a>
+          <a href="phuket/?login=1#guide"><span>Phuket edition</span><strong>Sign in to Phuket</strong></a>
+        </nav>
       </section>
     </main>
 
-    <footer class="home-footer">
-      <div><strong>DRIFTWISE</strong><span>A small travel decision studio.</span></div>
-      <p>Independent planning information—not a booking agent, inspection, safety guarantee or live-price service.</p>
+    <footer class="site-footer">
+      <div><strong>DRIFTWISE</strong><span>Independent Thailand area guides.</span></div>
+      <p>Planning information—not a booking agent, inspection, safety guarantee or live-price service.</p>
       <nav aria-label="Footer navigation">
         <a href="bangkok/">Bangkok</a>
         <a href="phuket/">Phuket</a>
+        <a href="phuket-scenic-studio/">Scenic art</a>
+        <a href="about.html">How we research</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="refunds.html">Refunds</a>

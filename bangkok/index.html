@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Choose where to stay and eat in Bangkok with a six-district hotel, food and transport map. Compare Riverside, Old Town, Silom, Sukhumvit, Ari and Siam using dated public evidence.">
+    <meta name="description" content="Compare Sukhumvit, Riverside, Siam, Silom, Ari and Bangkok Old Town by BTS/MRT access, food, walking friction and dated public hotel-review patterns.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#111827">
-    <meta property="og:title" content="Where to Stay & Eat in Bangkok | Driftwise Travel">
-    <meta property="og:description" content="A six-district Bangkok route map with dated hotel and food review patterns, transport trade-offs and daypart planning.">
+    <meta property="og:title" content="Where to Stay in Bangkok: 6 Areas Compared | Driftwise Travel">
+    <meta property="og:description" content="Compare six Bangkok areas with a rail-and-river map, transport trade-offs and dated public hotel-review patterns.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://driftwise-travel.pages.dev/bangkok/">
     <meta property="og:image" content="https://driftwise-travel.pages.dev/assets/travel/bangkok/bangkok-river-blue-hour.jpg">
@@ -15,15 +15,15 @@
     <meta property="og:site_name" content="Driftwise Travel">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://driftwise-travel.pages.dev/bangkok/">
-    <title>Where to Stay & Eat in Bangkok | Driftwise Travel</title>
+    <title>Where to Stay in Bangkok: 6 Areas Compared | Driftwise Travel</title>
     <link rel="icon" href="../assets/brand-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
-    <link rel="stylesheet" href="bangkok.css">
+    <link rel="stylesheet" href="bangkok.css?v=20260904b">
     <script src="../vendor/leaflet/leaflet.js" defer></script>
-    <script src="bangkok.js" defer></script>
+    <script src="bangkok.js?v=20260904b" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -32,17 +32,20 @@
             "@type": "BreadcrumbList",
             "itemListElement": [
               { "@type": "ListItem", "position": 1, "name": "Driftwise Travel", "item": "https://driftwise-travel.pages.dev/" },
-              { "@type": "ListItem", "position": 2, "name": "Bangkok field edition", "item": "https://driftwise-travel.pages.dev/bangkok/" }
+              { "@type": "ListItem", "position": 2, "name": "Where to stay in Bangkok", "item": "https://driftwise-travel.pages.dev/bangkok/" }
             ]
           },
           {
-            "@type": "Guide",
+            "@type": "Article",
             "@id": "https://driftwise-travel.pages.dev/bangkok/#guide",
-            "name": "Bangkok Hotel, Food and Transport Decision Guide",
-            "description": "An independent, dated guide comparing six Bangkok districts by hotel reviews, food, transport, daypart and location trade-offs.",
+            "name": "Where to Stay in Bangkok: Six Areas Compared",
+            "headline": "Where to Stay in Bangkok: Six Areas Compared",
+            "description": "An independent, desk-researched guide comparing six Bangkok districts by hotel review patterns, food, transport, daypart and location trade-offs.",
             "url": "https://driftwise-travel.pages.dev/bangkok/",
+            "mainEntityOfPage": "https://driftwise-travel.pages.dev/bangkok/",
+            "image": "https://driftwise-travel.pages.dev/assets/travel/bangkok/bangkok-river-blue-hour.jpg",
             "datePublished": "2026-08-31",
-            "dateModified": "2026-08-31",
+            "dateModified": "2026-09-04",
             "about": {
               "@type": "TouristDestination",
               "name": "Bangkok",
@@ -54,7 +57,7 @@
           },
           {
             "@type": "Product",
-            "name": "Bangkok Hotel, Food and Transport Field Edition",
+            "name": "Bangkok Hotel, Food and Transport Decision Guide",
             "description": "Permanent browser access to a dated Bangkok guide covering six districts, hotels, food, airport routes and transport trade-offs.",
             "url": "https://driftwise-travel.pages.dev/bangkok/#access",
             "image": "https://driftwise-travel.pages.dev/assets/travel/bangkok/bangkok-river-blue-hour.jpg",
@@ -80,7 +83,7 @@
     <header class="city-header">
       <a class="city-brand" href="../" aria-label="Driftwise Travel home">
         <span class="brand-route" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span><strong>DRIFTWISE</strong><small>BANGKOK · FIELD EDITION 02</small></span>
+        <span><strong>DRIFTWISE</strong><small>BANGKOK · DECISION EDITION</small></span>
       </a>
       <nav aria-label="Primary navigation">
         <a href="#loom">City map</a>
@@ -89,15 +92,17 @@
         <a href="#move">Airport + transit</a>
         <a href="#method">Method</a>
       </nav>
+      <a class="header-destinations" href="../">Destinations</a>
       <button class="header-account" type="button" data-open-auth>Reader sign in</button>
     </header>
 
     <main id="main">
+      <nav class="page-breadcrumb" aria-label="Breadcrumb"><a href="../">Thailand guides</a><span>/</span><span aria-current="page">Bangkok</span></nav>
       <section class="city-hero" id="finder">
         <div class="hero-copy">
-          <p class="route-label"><span>13.7563° N</span><span>100.5018° E</span><span>กรุงเทพฯ · THAILAND</span></p>
-          <h1>Bangkok is not <em>one centre.</em></h1>
-          <p class="hero-deck">Choose the line your days return to—then compare the rooms. Driftwise maps hotel evidence, food, heat, rain and the first-and-last kilometre around six very different Bangkok bases.</p>
+          <p class="route-label"><span>PUBLIC-SOURCE DESK RESEARCH</span><span>13.7563° N · 100.5018° E</span><span>Evidence reviewed 31 Aug 2026</span><span>กรุงเทพฯ · THAILAND</span></p>
+          <h1>Where should you stay in Bangkok? <em>Start with the district.</em></h1>
+          <p class="hero-deck">Bangkok is not one centre. Compare six areas by the rail, river, heat, food and first-and-last kilometre that shape every day. This is independent desk research, not an on-site hotel inspection.</p>
 
           <form class="district-finder" id="district-finder">
             <fieldset>
@@ -123,6 +128,8 @@
               <a id="answer-link" href="#loom" data-focus-area="siam">Read Siam on the map <span aria-hidden="true">↓</span></a>
             </div>
           </article>
+
+          <div class="hero-quick-actions"><a href="#loom">Open the Bangkok area map</a><a href="#access">Compare free and full access</a></div>
 
           <div class="hero-proof" aria-label="Bangkok research coverage">
             <span><strong>6</strong> district bases</span>
@@ -212,6 +219,10 @@
             </div>
           </article>
         </div>
+        <aside class="map-upgrade-callout" aria-label="Bangkok full guide preview">
+          <div><span>FULL EDITION</span><strong>12 stay + 12 eat signals</strong><p>See who should skip each district and the day-to-day travel trade-offs.</p></div>
+          <div><b>US$2 total</b><small>tax included · one time</small><a href="#access">See what unlocks <span aria-hidden="true">↓</span></a></div>
+        </aside>
       </section>
 
       <section class="district-section" id="districts">
@@ -222,27 +233,27 @@
         </div>
 
         <div class="district-grid">
-          <article class="district-card reveal">
+          <article class="district-card reveal" id="riverside">
             <img src="../assets/travel/bangkok/bangkok-river-blue-hour.jpg" width="960" height="540" loading="lazy" alt="AI-created Bangkok river scene at blue hour">
             <div><span>RV · RIVER RHYTHM</span><h3>Riverside</h3><p>Hotel boats, Charoen Krung food streets and slower river light—with a timetable attached.</p><dl><div><dt>Stay</dt><dd>Chatrium Riverside · Booking.com 9.3/10 · 4,541</dd></div><div><dt>Eat</dt><dd>Prachak Roasted Duck · Tripadvisor 4.2/5 · 483</dd></div></dl><button type="button" data-focus-area="riverside">Open Riverside on the loom <span>↗</span></button></div>
           </article>
-          <article class="district-card reveal">
+          <article class="district-card reveal" id="sukhumvit">
             <img src="../assets/travel/bangkok/sukhumvit-after-rain.jpg" width="960" height="540" loading="lazy" alt="AI-created Bangkok Sukhumvit street after tropical rain">
             <div><span>AS · DUAL-LINE ACCESS</span><h3>Sukhumvit / Asok</h3><p>The BTS–MRT interchange carries the day; deep sois and late traffic shape the last kilometre.</p><dl><div><dt>Stay</dt><dd>Carlton Bangkok · Booking.com 9.3/10 · 5,665</dd></div><div><dt>Eat</dt><dd>Sri Trat · Tripadvisor 4.3/5 · 275</dd></div></dl><button type="button" data-focus-area="sukhumvit">Open Asok on the loom <span>↗</span></button></div>
           </article>
-          <article class="district-card reveal">
+          <article class="district-card reveal" id="silom">
             <img src="../assets/travel/bangkok/sukhumvit-after-rain.jpg" width="960" height="540" loading="lazy" alt="AI-created Bangkok skyline and elevated rail after rain">
             <div><span>SL · WORK + DINNER</span><h3>Silom / Sathorn</h3><p>Business hours, serious dining, Lumphini-side space and a route toward the river share one wider district.</p><dl><div><dt>Stay</dt><dd>The Standard Mahanakhon · Booking.com 9.2/10 · 1,052</dd></div><div><dt>Eat</dt><dd>Somtum Der · Tripadvisor 4.1/5 · 493</dd></div></dl><button type="button" data-focus-area="silom">Open Silom on the loom <span>↗</span></button></div>
           </article>
-          <article class="district-card reveal">
+          <article class="district-card reveal" id="rattanakosin">
             <img src="../assets/travel/bangkok/rattanakosin-morning.jpg" width="960" height="540" loading="lazy" alt="AI-created early-morning atmosphere inspired by Rattanakosin Old Town">
             <div><span>OT · CULTURE FIRST</span><h3>Rattanakosin</h3><p>Temples, piers and old Bangkok are close in map distance, but walls and crossings slow the day.</p><dl><div><dt>Stay</dt><dd>Riva Arun · Booking.com 9.1/10 · 491</dd></div><div><dt>Eat</dt><dd>Krua Apsorn · Tripadvisor 4.3/5 · 344</dd></div></dl><button type="button" data-focus-area="old-town">Open Old Town on the loom <span>↗</span></button></div>
           </article>
-          <article class="district-card reveal">
+          <article class="district-card reveal" id="ari">
             <img src="../assets/travel/bangkok/rattanakosin-morning.jpg" width="960" height="540" loading="lazy" alt="AI-created quiet Bangkok neighbourhood morning">
             <div><span>AR · LOCAL PACE</span><h3>Ari</h3><p>A café-rich everyday neighbourhood on the BTS line, with side streets adding the last walk.</p><dl><div><dt>Stay</dt><dd>Craftsman Bangkok · Booking.com 8.8/10 · 445</dd></div><div><dt>Eat</dt><dd>LayLao Aree · Tripadvisor 4.5/5 · 110</dd></div></dl><button type="button" data-focus-area="ari">Open Ari on the loom <span>↗</span></button></div>
           </article>
-          <article class="district-card reveal">
+          <article class="district-card reveal" id="siam">
             <img src="../assets/travel/bangkok/bangkok-river-blue-hour.jpg" width="960" height="540" loading="lazy" alt="AI-created central Bangkok skyline at dusk">
             <div><span>SI · ALL-WEATHER BASE</span><h3>Siam / Chit Lom</h3><p>Rail, connected malls and abundant dining make heat and rain easier to plan around.</p><dl><div><dt>Stay</dt><dd>Sindhorn Midtown · Booking.com 9.2/10 · 2,942</dd></div><div><dt>Eat</dt><dd>House of Smooth Curry · Tripadvisor 4.8/5 · 1,590</dd></div></dl><button type="button" data-focus-area="siam">Open Siam on the loom <span>↗</span></button></div>
           </article>
@@ -291,16 +302,19 @@
       <section class="preview-section" id="access">
         <div class="preview-art reveal" aria-hidden="true">
           <div class="route-sheet route-sheet-back"></div><div class="route-sheet route-sheet-mid"></div>
-          <div class="route-sheet route-sheet-front"><span>DRIFTWISE / BANGKOK</span><strong>PRIVATE FIELD EDITION</strong><i></i><p>DISTRICT FIT</p><i></i><p>HOTEL + FOOD SIGNAL</p><i></i><p>AIRPORT + LAST KM</p><i></i><p>FOUR CITY CLOCKS</p></div>
+          <div class="route-sheet route-sheet-front"><span>DRIFTWISE / BANGKOK</span><strong>PRIVATE DECISION EDITION</strong><i></i><p>DISTRICT FIT</p><i></i><p>HOTEL + FOOD SIGNAL</p><i></i><p>AIRPORT + LAST KM</p><i></i><p>FOUR CITY CLOCKS</p></div>
         </div>
         <div class="preview-copy reveal">
-          <p class="eyebrow">BANGKOK FIELD EDITION · V1</p>
+          <p class="eyebrow">BANGKOK DECISION GUIDE · V1</p>
           <h2>Keep the whole decision file in one browser view.</h2>
-          <p>The free atlas shows the evidence shape. The full field edition keeps the six district comparisons, named hotel and food watch-outs, airport choices, transport checks and daypart routes together.</p>
-          <ul><li>Six district dossiers with named public evidence</li><li>Hotel positives beside the reason to pause</li><li>Food context without copied reviews or invented experience</li><li>Pay once and return to the purchased edition</li></ul>
+          <p>The public page is useful before payment. The full edition adds a second hotel and dining signal for every district, plus guidance on who should skip each district, its daily rhythm and travel trade-offs.</p>
+          <div class="access-compare" aria-label="Free and full Bangkok guide comparison">
+            <section><span>Free to explore</span><strong>6 stay + 6 eat samples</strong><p>Six district summaries, the route map, daypart basics and public transport context.</p></section>
+            <section><span>Full edition</span><strong>12 stay + 12 eat signals</strong><p>Two shortlists per district, who-should-skip guidance, daily rhythm notes, airport choices, transport checks and permanent browser access.</p></section>
+          </div>
           <div class="purchase-row"><div><strong>US$2</strong><span>tax included · one time</span></div><a class="purchase-button" href="https://buy.stripe.com/9B64gs8Tbcfm8Hm7OX0sU0j?client_reference_id=bangkok_home_v1">Unlock the Bangkok edition <span>↗</span></a></div>
           <button class="returning-reader" type="button" data-open-auth>Already purchased? Reader sign in</button>
-          <p class="purchase-note">Secure checkout by Stripe Managed Payments. Digital browser access; no room or restaurant reservation is made. No hotel pays for placement.</p>
+          <p class="purchase-note">Secure checkout by Stripe Managed Payments. Digital browser access; no room or restaurant reservation is made. No hotel pays for placement. See the <a href="../refunds.html">digital-product refund policy</a>.</p>
         </div>
       </section>
 
@@ -317,12 +331,26 @@
       </section>
 
       <section class="purchased-guide" id="purchased-guide" hidden aria-live="polite">
-        <div class="purchased-heading"><p class="eyebrow">PURCHASED EDITION</p><h2>Your Bangkok decision file</h2><p id="purchased-meta">Loading the current field edition…</p></div>
+        <div class="purchased-heading"><p class="eyebrow">PURCHASED EDITION</p><h2>Your Bangkok decision file</h2><p id="purchased-meta">Loading the current decision edition…</p></div>
         <div id="premium-guide-content"></div>
       </section>
 
+      <section class="faq-section" id="questions" aria-labelledby="faq-title">
+        <div class="faq-heading reveal">
+          <p class="eyebrow">COMMON BANGKOK DECISIONS</p>
+          <h2 id="faq-title">Questions to answer before choosing a hotel.</h2>
+          <p>There is no single best center. The useful question is which rail line, river stop or daily rhythm removes the most friction from your own trip.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details open><summary>Which Bangkok area is easiest for a first visit?</summary><p>Siam is forgiving for rail transfers, shopping and rainy-day indoor options. Sukhumvit near Asok is stronger for dual BTS–MRT access and evening choice. The best starting point depends on which side of the city your plans occupy.</p></details>
+          <details><summary>Should I stay in Sukhumvit or by the river?</summary><p>Choose Sukhumvit for rail, restaurants and nightlife. Choose Riverside for atmosphere, river access and shorter heritage days, while accepting boat timetables and less consistent rail coverage.</p></details>
+          <details><summary>How close should a Bangkok hotel be to BTS or MRT?</summary><p>Walking conditions matter as much as the map distance. Check shade, crossings, footbridges, station exits and the final soi with luggage rather than relying on one distance number.</p></details>
+          <details><summary>Are these personal hotel reviews?</summary><p>No. Driftwise is transparent desk research using dated public listing information and recurring review patterns. We do not claim to have stayed at or inspected the properties, and we link current sources for verification.</p></details>
+        </div>
+      </section>
+
       <section class="method-section" id="method">
-        <div class="section-heading reveal"><p class="eyebrow">EDITORIAL METHOD</p><h2>Public evidence, kept in its lane.</h2><p>Booking.com and Tripadvisor scores are never merged. Driftwise summarizes recurring themes in original language and gives every positive a practical watch-out.</p></div>
+        <div class="section-heading reveal"><p class="eyebrow">EDITORIAL METHOD</p><h2>Public evidence, kept in its lane.</h2><p>Prepared by the Driftwise Travel research desk. Booking.com and Tripadvisor scores are never merged; recurring themes are summarized in original language with a practical watch-out. <a href="mailto:xiaoyingchen0829@163.com">Send a correction</a>.</p></div>
         <div class="method-grid">
           <article class="reveal"><span>01</span><h3>Platform stays visible</h3><p>A 9.3/10 hotel score and a 4.2/5 restaurant score are different signals. Each retains its source, scale, review count and date.</p></article>
           <article class="reveal"><span>02</span><h3>Consensus, not quotation</h3><p>We summarize public patterns without republishing individual guest wording, photos or hotel descriptions.</p></article>
@@ -358,7 +386,8 @@
     <footer class="city-footer">
       <div><strong>DRIFTWISE</strong><span>A small independent travel decision studio.</span></div>
       <p>Planning information—not a booking agent, inspection, safety guarantee, accessibility rating or live-price service.</p>
-      <nav aria-label="Footer navigation"><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refunds.html">Refunds</a><a href="mailto:xiaoyingchen0829@163.com">Contact</a></nav>
+      <nav aria-label="Footer navigation"><a href="../">Destinations</a><a href="../phuket/">Phuket guide</a><a href="../about.html">How we research</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refunds.html">Refunds</a><a href="mailto:xiaoyingchen0829@163.com">Contact</a></nav>
     </footer>
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"43b0181a73314e14aa9a6540e9725717"}'></script>
   </body>
 </html>
